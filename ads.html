@@ -38,25 +38,28 @@
         .radius {
     width: 95%;
     height: 95%;
-    border-radius: 10%;
+    border-radius: 20px; 
     overflow: hidden;
     padding: 10px;
-        }
-        .radius video {
+}
+
+.radius video {
     width: 100%;
     height: 100%;
+    object-fit: cover; 
     display: block;
-        }
+}
     </style>
 </head>
 <body>
     <div class="popup">
-        <div class="radius"><video src="./videos/jet2holiday.mp4" autoplay loop playsinline></video></div>
-
+    <div class="radius">
+        <video src="./videos/jet2holiday.mp4" autoplay loop playsinline></video>
     </div>
+</div>
 </body>
-
 </html>
+
 
 
 
