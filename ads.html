@@ -30,20 +30,21 @@
     }
 
     .radius {
-      width: 95%;
-      height: 95%;
-      border-radius: 10%;
-      overflow: hidden;
-      padding: 10px;
-    }
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+  overflow: hidden;
+  padding: 10px;
+  box-sizing: border-box;
+}
 
     .radius video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius:10%;
-    }
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  display: block;
+  border-radius: 10%;
+}
     #closeBtn {
   position: absolute;
   top: 10px;
@@ -76,25 +77,16 @@
   <script>
   const video = document.getElementById("adVideo");
   const closeBtn = document.getElementById("closeBtn");
-  let loopCount = 0;
 
- 
   video.addEventListener("ended", () => {
-    loopCount++;
-    if (loopCount < 3) {
-      video.currentTime = 0;
-      video.play();
-    } else {
-      closeBtn.style.display = "block";
-    }
+    closeBtn.style.display = "block";
   });
-
 
   document.getElementById("playad").addEventListener("click", () => {
     video.currentTime = 0;
     video.play();
+    closeBtn.style.display = "none";
   });
-
 
   closeBtn.addEventListener("click", () => {
     window.location.href = "a.html";
@@ -104,6 +96,7 @@
 
 </body>
 </html>
+
 
 
 
