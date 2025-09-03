@@ -55,8 +55,11 @@
   border-radius: 50%;
   cursor: pointer;
   display: none;
-  z-index: 20;
+  z-index: 999;
 }
+    #playad {
+  z-index:999;
+    }
 
   </style>
 </head>
@@ -66,6 +69,7 @@
     <video id="adVideo" src="./videos/jet2holiday.mp4" autoplay playsinline></video>
   </div>
   <button id="closeBtn">✕</button>
+  <button id="playad" onclick="document.querySelector('video').play()">Play Ad</button>
 </div>
 
   <script>
@@ -89,4 +93,5 @@
 
 </body>
 </html>
+
 
