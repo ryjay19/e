@@ -67,7 +67,7 @@
 <body>
   <div class="popup">
   <div class="radius">
-    <video id="adVideo" src="./videos/jet2holiday.mp4" autoplay loop playsinline></video>
+    <video id="adVideo" src="./videos/jet2holiday.mp4" autoplay playsinline></video>
   </div>
   <button id="closeBtn">✕</button>
   <button id="playad" onclick="document.querySelector('video').play()">Play Ad</button>
@@ -78,6 +78,7 @@
   const closeBtn = document.getElementById("closeBtn");
   let loopCount = 0;
 
+ 
   video.addEventListener("ended", () => {
     loopCount++;
     if (loopCount < 3) {
@@ -88,12 +89,22 @@
     }
   });
 
+
+  document.getElementById("playad").addEventListener("click", () => {
+    video.currentTime = 0;
+    video.play();
+  });
+
+
   closeBtn.addEventListener("click", () => {
-    window.location.href = "a.html"; 
+    window.location.href = "a.html";
+  });
 </script>
+
 
 </body>
 </html>
+
 
 
 
