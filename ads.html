@@ -43,49 +43,50 @@
       object-fit: cover;
       display: block;
     }
-
     #closeBtn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      font-size: 20px;
-      padding: 5px 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      z-index: 20;
-    }
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  z-index: 20;
+}
+
   </style>
 </head>
 <body>
   <div class="popup">
-    <div class="radius">
-      <video id="adVideo" src="./videos/jet2holiday.mp4" autoplay playsinline></video>
-    </div>
-    <button id="closeBtn">✕</button>
+  <div class="radius">
+    <video id="adVideo" src="./videos/jet2holiday.mp4" autoplay playsinline></video>
   </div>
+  <button id="closeBtn">✕</button>
+</div>
 
   <script>
-    const video = document.getElementById("adVideo");
-    const closeBtn = document.getElementById("closeBtn");
-    let loopCount = 0;
+  const video = document.getElementById("adVideo");
+  const closeBtn = document.getElementById("closeBtn");
+  let loopCount = 0;
 
-    video.addEventListener("ended", () => {
-      loopCount++;
-      if (loopCount < 3) {
-        video.currentTime = 0;
-        video.play();
-      } else {
-        closeBtn.style.display = "block";
-      }
-    });
+  video.addEventListener("ended", () => {
+    loopCount++;
+    if (loopCount < 3) {
+      video.currentTime = 0;
+      video.play();
+    } else {
+      closeBtn.style.display = "block";
+    }
+  });
 
-    closeBtn.addEventListener("click", () => {
-      window.location.href = "a.html"; 
-    });
-  </script>
+  closeBtn.addEventListener("click", () => {
+    window.location.href = "a.html"; 
+</script>
+
 </body>
 </html>
+
