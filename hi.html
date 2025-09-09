@@ -93,35 +93,30 @@
 
       <script>
         function checklogin() {
-            var message = document.getElementById("message");
             var name = document.getElementById("name").value;
             var password = document.getElementById("password").value;
             if (name === "Josie Moraleta Garalde" && password === "I love you more") {
-                message.style.color = "green";
                 alert("Woooww ang galing!!! Screenshot mo nga to may kiss ka sakin");
                 window.location.href = "ads.html";
             }
             else if (password === "I love you more" && name !== "Josie Moraleta Garalde") {
-                message.style.color = "red";
                 alert("mali poo full name po ha FULL name hehehe"); 
                 }
             else if (name === "Josie Moraleta Garalde") {
                 alert("mali po password mo");
-                message.style.color = "red"; 
                 }
-            else if (name === "Josie Garalde" || name === "Josie M. Garalde" || name === "Josie M Garalde" || name === "Garalde Josie M." || name === "Garalde Josie M" || name === "Garalde Josie") {
+            else if (name === "Josie Garalde" || name === "Josie M. Garalde" || name === "Josie M Garalde" || name === "Garalde Josie M." || name === "Garalde Josie M" || name === "Garalde Josie" || name === "Josie") {
                 alert("mali poo full name po ha FULL name hehehe"); 
-                message.style.color = "red"; 
             }
             else {
                 alert("mali po yannn try aginn pu");
-                message.style.color = "red";
             }
             }
       </script>
         
 </body>
 </html>
+
 
 
 
