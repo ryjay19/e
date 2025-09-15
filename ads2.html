@@ -95,6 +95,11 @@
 
     let currentVideoIndex = 0;
 
+playBtn.addEventListener("click", () => {
+  video.src = videos[currentVideoIndex];
+  video.play();
+  playBtn.style.display = "none"; 
+});
 
     video.src = videos[currentVideoIndex];
     video.play();
@@ -119,3 +124,4 @@
   </script>
 </body>
 </html>
+
