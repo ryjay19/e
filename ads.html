@@ -93,6 +93,13 @@ body {
     closeBtn.style.display = "block";
   });
 
+playBtn.addEventListener("click", () => {
+  video.src = videos[currentVideoIndex];
+  video.play();
+  playBtn.style.display = "none"; 
+});
+
+
   document.getElementById("playad").addEventListener("click", () => {
     video.currentTime = 0;
     video.play();
@@ -107,6 +114,7 @@ body {
 
 </body>
 </html>
+
 
 
 
