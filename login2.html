@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+      background-color: #ffffff;
+      text-align: center;
+      font-family: sans-serif;
+        }
+        .popup {
+      width: 420px;
+      height: 360px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 10;
+      align-items: center;
+      margin: auto;
+      margin-top: 290px;
+      border-radius: 10%;
+        }
+        .login form {
+      display: flex;
+      line-height: 10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 10;
+      box-sizing: border-box;
+      padding: 10px;
+      margin-top: 20px;
+        }
+        .login label:nth-child(1){
+          margin-left: -190px;
+        }
+        .login label {
+            margin-left: -270px;
+        }
+        
+    .popup h2{
+        margin-top: 10px;
+        padding-top: 10px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .hint {
+      font-size: 15px;
+      color: #888;
+      margin-left: 200px;
+      margin-top: -10px;
+      margin-bottom: 10px;   
+    }
+    input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    button {
+            width: 90%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <h2>Login</h2>
+        <div class="login">
+        <p>Please enter your full name and password to continue.</p>
+        <form>
+            <label for="name">Full Name ng baby ko:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            <div class="hint"><label for="hint">Hint:Anong date ngayon? ## / ## / ####</label><br></div>
+            <button type="button" onclick="checklogin()">Log In</button>
+        </form>
+    </div>
+    </div>
+
+      <script>
+        function checklogin() {
+            var name = document.getElementById("name").value;
+            var password = document.getElementById("password").value;
+            if (name === "Josie Moraleta Garalde" && password === "09 / 20 / 2025") {
+                alert("Wooooww ang galing tlgaaa!!! Screenshot mo nga to ulit may kiss ka sakin🥰🥰🥰");
+                window.location.href = "ads2.html";
+            }
+            else if (password === "09 / 20 / 2025" && name !== "Josie Moraleta Garalde") {
+                alert("mali poo full name po ha FULL name hehehe😘"); 
+                }
+            else if (name === "Josie Moraleta Garalde") {
+                alert("mali po password mo😘");
+                }
+            else if (name === "Josie Garalde" || name === "Josie M. Garalde" || name === "Josie M Garalde" || name === "Garalde Josie M." || name === "Garalde Josie M" || name === "Garalde Josie" || name === "Josie") {
+                alert("mali poo full name po ha FULL name hehehe😘"); 
+            }
+            else {
+                alert("mali po yannn try aginn pu");
+            }
+            }
+      </script>
+        
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

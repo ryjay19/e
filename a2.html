@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sikrit lang natin to ha</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      width: 650px;
+      height: 400px;
+      background-color: #f0f0f0; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 130px;
+    }
+    
+    .page {
+      display: none;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 23px;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      position: absolute;
+      margin-top: 280px;
+      border-radius: 10%;
+      border-color: #d8d8d8;
+    }
+    button:hover {
+      border-color: #c4c4c4;
+    }
+    button:active {
+      transform: translateY(5px);
+      transform: translateX(5px);
+    }
+
+    #customAlert {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; 
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    #customAlert .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    #customAlert p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    #customAlert button {
+      position: static;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    
+    <div id="page1" class="page active">
+      <h1>pst...</h1>
+      <button onclick="nextPage()">Po?</button>
+    </div>
+
+    <div id="page2" class="page">
+      <h2>sikrit lang po natin to ha?</h2>
+      <button onclick="nextPage()">Opo</button>
+    </div>
+
+    <div id="page3" class="page">
+      <h2>haaa?</h2>
+      <button onclick="nextPage()">OPOOO</button>
+    </div>
+
+    <div id="page4" class="page">
+      <h2>so eto na nga...</h2>
+      <button onclick="nextPage()">ano yon?</button>
+    </div>
+
+    <div id="page5" class="page">
+      <h2>napapansin mo po diba na hindi ako kumakain ng iba ibang pagkain ganon or first time ko lang sila tikman?</h2>
+      <button onclick="nextPage()">Opo</button>
+    </div>
+
+    <div id="page6" class="page">
+      <h2>Nung bata ako sobrang takaw ko kasi siguro mga 2 daw ata ako neto? One time daw kumain ako ng sobra ang nangyare nagsuka ako kaya hindi na ako kumain ng iba't ibang pagkain puro sabaw nalang so parang natrauma ganon</h2>
+      <button onclick="nextPage()">...</button>
+    </div>
+
+    <div id="page7" class="page">
+      <h2>So hanggang ngayon hindi ako kumakain ng pagkain na hindi ko pa natitikman pero mula nung nakakasama kita mas natikim nako ng mga pagkain kasi nahihiya ako minsan pero most of the time iniisip ko pano kung ganto nalang ako lagi edi same same lng lagi kinain natin ganon</h2>
+      <button onclick="nextPage(); ouch()">weirdo</button>
+    </div>
+
+    <div id="page8" class="page">
+      <h2>Andami ko na ngang iba't ibang pagkaing nakakain ngayon e dahil po sayo</h2>
+      <button onclick="nextPage()">...</button>
+    </div>
+
+    <div id="page9" class="page">
+      <h2>Thank you baby dahil sayo mas kumakain nako ng mga pagkaing hindi ko pa natitikman noon I love youu the most babyy🥰🥰🥰</h2>
+      <button onclick="nextPage()">"reacted 💛 to your message" I love you the most🥰</button>
+    </div>
+  </div>
+
+  
+  <div id="customAlert">
+    <div class="box">
+      <p>ang sakit non ah 🙄🙄🙄</p>
+      <button onclick="closeAlert()">Aww sorry MMMWWWAAAA🥰😘</button>
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 9; 
+
+    function nextPage() {
+      document.getElementById("page" + currentPage).classList.remove("active");
+
+      currentPage++;
+      if (currentPage > totalPages) {
+        window.location.href = "login2.html"; 
+      }
+      document.getElementById("page" + currentPage).classList.add("active");
+    }
+
+    function ouch() {
+      document.getElementById("customAlert").style.display = "flex";
+    }
+    function closeAlert() {
+      document.getElementById("customAlert").style.display = "none";
+    }
+  </script>
+</body>
+</html>
