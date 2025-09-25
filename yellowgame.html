@@ -120,19 +120,17 @@
         this.classList.add("active");
     });
  
-  let foundCount = 0; 
+ let foundCount = 0; 
   const totalHearts = 3;
 
   function markFound(element) {
-   
     if (!element.classList.contains("active")) {
       element.classList.add("active");
       foundCount++;
 
       if (foundCount === totalHearts) {
-        alert("Ang galing galing naman!! Screenshot nga para may kiss ulit");
+        alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
 
-        
         setTimeout(() => {
           window.location.href = "congrats.html"; 
         }, 5000);
@@ -156,3 +154,4 @@
 </body>
 
 </html>     
+
