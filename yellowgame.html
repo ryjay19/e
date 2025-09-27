@@ -118,21 +118,24 @@
   const musicBtn = document.getElementById("musicBtn");
   const clicksound = document.getElementById("clicksound");
 
-  let musicPlaying = false;
+  // Start with music OFF
+  musicBtn.textContent = "🔇 Music";
 
-  // Music toggle
+  // Toggle music on button click
   musicBtn.addEventListener("click", () => {
-    if (musicPlaying) {
+    if (bgmusic.paused) {
+      bgmusic.play().then(() => {
+        musicBtn.textContent = "🔊 Music";
+      }).catch(err => {
+        console.log("Browser blocked play until user interacts:", err);
+      });
+    } else {
       bgmusic.pause();
       musicBtn.textContent = "🔇 Music";
-    } else {
-      bgmusic.play().catch(err => console.log("Play blocked:", err));
-      musicBtn.textContent = "🔊 Music";
     }
-    musicPlaying = !musicPlaying;
   });
 
-  // Heart click logic
+  // Mark a heart as found
   function markFound(element) {
     if (!element.classList.contains("active")) {
       element.classList.add("active");
@@ -159,6 +162,7 @@
 </script>
 </body>
 </html>
+
 
 
 
