@@ -101,7 +101,7 @@
 </head>
 <body>
     <div class="game-container">
-    <audio id="bgmusic" src="./audios/hidden.mp3" autoplay loop></audio>
+    <audio id="bgmusic" src="./audios/hidden.mp3" loop></audio>
     <img src="./images/yellowgame.png">
     <div class="heart1"></div>
     <div class="heart2"></div>
@@ -117,7 +117,14 @@
   const musicBtn = document.getElementById("musicBtn");
   const clicksound = document.getElementById("clicksound");
   let musicPlaying = false;
+  let firstInteraction = false;
 
+
+  musicBtn.addEventListener("click", () => {
+    if (!firstInteraction) {
+      bgmusic.play(); 
+      firstInteraction = true;
+    }
 
   musicBtn.addEventListener("click", () => {
     if (musicPlaying) {
@@ -162,6 +169,7 @@
 </body>
 
 </html>     
+
 
 
 
