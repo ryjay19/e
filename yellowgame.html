@@ -117,20 +117,19 @@
     const bgmusic = document.getElementById("bgmusic");
     const musicBtn = document.getElementById("musicBtn");
     const clicksound = document.getElementById("clicksound");
-    let musicPlaying = false;
+  let musicPlaying = false;
 
-    
-    musicBtn.addEventListener("click", () => {
-        if (musicPlaying) {
-            bgmusic.pause();
-            musicBtn.textContent = "🔇 Music";
-        } else {
-            bgmusic.play().catch(err => console.log("Play blocked:", err));
-            musicBtn.textContent = "🔊 Music";
-        }
-        musicPlaying = !musicPlaying;
-    });
 
+  musicBtn.addEventListener("click", () => {
+    if (musicPlaying) {
+      bgmusic.pause();
+      musicBtn.textContent = "🔇 Music";
+    } else {
+      bgmusic.play();
+      musicBtn.textContent = "🔊 Music";
+    }
+    musicPlaying = !musicPlaying;
+  });
     
     function markFound(element) {
         if (!element.classList.contains("active")) {
