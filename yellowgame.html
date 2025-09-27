@@ -77,32 +77,62 @@
             .heart1.active:after, .heart2.active:after, .heart3.active:after{
                 opacity: 100%;
             }
-            
+            #musicBtn {
+                position: fixed;
+                bottom: 15px;
+                left: 340px;
+                z-index: 10;
+                padding: 10px 15px;
+                font-size: 16px;
+                font-family: "Press Start 2P", monospace;
+                border: none;
+                border-radius: 8px;
+                background: #222;
+                color: #fff;
+                cursor: pointer;
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+                transition: background 0.2s ease;
+            }
+            #musicBtn:hover {
+                background: #444;
+            }
 
     </style>
 </head>
 <body>
     <div class="game-container">
+    <audio id="bgmusic" src="./audios/hidden.mp3" autoplay loop></audio>
     <img src="./images/yellowgame.png">
     <div class="heart1"></div>
     <div class="heart2"></div>
     <div class="heart3"></div>
 </div>
+<button id="musicBtn">🔇 Music</button>
 <audio id="clicksound" src="./audios/reward.mp3" preload="auto"></audio>   
     <script>
   let foundCount = 0; 
   const totalHearts = 3;
 
+const bgmusic = document.getElementById("bgmusic");
+  const musicBtn = document.getElementById("musicBtn");
+  let musicPlaying = false;
+
+
+  musicBtn.addEventListener("click", () => {
+    if (musicPlaying) {
+      bgmusic.pause();
+      musicBtn.textContent = "🔇 Music";
+    } else {
+      bgmusic.play();
+      musicBtn.textContent = "🔊 Music";
+    }
+    musicPlaying = !musicPlaying;
+  });
+        
   function markFound(element) {
     if (!element.classList.contains("active")) {
       element.classList.add("active");
       foundCount++;
-
-      const sound = document.getElementById("clicksound");
-        sound.currentTime = 0;
-        sound.volume = 1.0;
-        sound.play();
-        
 
       if (foundCount === totalHearts) {
         setTimeout(() => {
@@ -133,6 +163,7 @@
 </body>
 
 </html>     
+
 
 
 
