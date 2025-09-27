@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PASSCODE</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            text-align: center;
+            font-family: sans-serif;
+            background-image: url('https://lh3.googleusercontent.com/rd-gg-dl/AJfQ9KTtQhHTaP3jLu10sWYa8KrZqANFefZLY1rZL0zp6VxdPW-LAXTyfGXLPnx10YlZyTDUFNwcjEdjPpwe1oBgrBsk-iJmIdj0jZm_arDbL1ZLhT7y0NYb8dEF5JKoz0_HJf16XriuMyamyf9w7CsVi1R6YDxaCVuNg6CVTIDqU5SsGnK6JDV-q-K_Y8ybBidm6dLuiGbe8mjumURiZsDb7Pvm0l-UYMHp9KhkM4cUfOKkWs3XE3Fp1ND4oiRQzuJkxeigUr0sd_v6eWsE0oAfjDCERvjCUV2zOeL3Z3teDP6y-KaedCO1wWVx6_3CD46stCqRljORQLwd2EKtR7RQw73DCggDEV1_COIyAdDRoSbcNUdMkfyZToBwlGXRISy5Ai56z-arhZQhwqLZcXKX8RT0W4iOyV9gBsk0k1-EuzAdkaPo4zEQYSVpLUvE-83FqwLyneoVcHQwsSnAOrPDjnHwIMvk_qAd9mkSQaenJvaSmY4HtZ0zNWdbamNgnEiUN-d1zCOW3Y9pflUkZfyX1xC1Bf1S2kZGHAb5VRTjdyGD7wtvh4jxTP_tyWPy2R3-FXrqEVNA7riOVHqlLeDarNZAkxpLYxYHYlZZNxxqga9iSylg0JU038E-wkqE6hu5J82GS7RflSnTkFMauwoQA3aXL7z-66BUvpfOj13U5p7RigcbTMamjGvFbgW6bht6n0hiO2Y7sUHH5IX82CZgGb1eK2Y1TdepnYsYGvVgyjD-Zg1U92gQttg6zESa_PFhMJQwXV7OkpkMCNZXJKUCO0v3tDZO9NnVmRR2OnMAuWK_pB_bMrrQOGD0x4cxlOrMHdC1Tq0ZDedsiiXl0TwVm3JA5Y2yjFE-emIrVfwCvHkz-TWfmJX4MXczQkjpcOCE8uUsJLmvlvFdmvkBUqPx6sdqiuVfPa7JV7c2OhpObdDYYCQlb-201GR4AzYi3Vpq_3OWeXWE02X5P9GmjYN555f_wPMHN4Wnh61FV9ZuM0EuFeIT5vm0rT-IVs4ll8k6De02TPBz3BV3ppDMPyCKW_mmkg_jLTlRaO4Ir3nUMvtodqRZ0rzBOZupMWH_53N7W9tMRxkH1dRHt3y0fGVlBGzRedfEBVc8CgKSkmGpCIAgch2CXchtMk_VUHON2XHFABLy-UEl-MRkwUAfzG9Qt6-_FOloYa5aEjf5=s1024');
+            background-size: 100%;
+            background-position: center;
+        }
+        .popup {
+            width: 420px;
+            height: 650px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+            align-items: center;
+            margin: 0 auto;
+            bottom: 140px;
+            margin-top: 290px;
+            border-radius: 10%;
+            background-image: url(https://i0.wp.com/www.skiptomylou.org/wp-content/uploads/2023/02/Yellow-Heart-Wallpaper-Mobile-544x900.png);
+            text-align: center;
+            background-size: cover;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+
+        }
+    h2 {
+        margin-top: 23px;
+        color: #333;
+        font-size: 28px;
+        font-family: Comic Sans MS, bold;
+        letter-spacing: 2px;
+        
+    }
+           .display {
+      align-self: center;
+      margin: 0 auto;
+      width: 300px;
+      font-size: 24px;
+      height: 40px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 5px;
+      text-align: center;
+      letter-spacing: 5px;
+      background: #FEF1B8;
+      border-radius: 50px;
+      line-height: 44px;
+      padding: 5px;
+    }
+    .keypad {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    button {
+      font-size: 22px;
+      width: 100px;
+      height: 100px;
+      border: none;
+      border-radius: 50%;
+      background: gold;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s, background 0.2s;
+    }
+    button:hover {
+      background: #ffcc00;
+      transform: scale(1.1);
+    }
+    button::before {
+      content: "💛";
+      font-size: 70px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    button span {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-weight: bold;
+      color: black;
+    }
+    .check {
+      background: #4CAF50;
+    }
+    .check:hover {
+      background-color: #388E3C;
+    }
+    .clear {
+      background: #f44336;
+    }
+    .clear:hover {
+      background: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    <h2>ENTER PASSCODE</h2>
+    <div id="display" class="display"></div>
+    <div class="keypad">
+      <button onclick="enterDigit('1')"><span>1</span></button>
+      <button onclick="enterDigit('2')"><span>2</span></button>
+      <button onclick="enterDigit('3')"><span>3</span></button>
+      <button onclick="enterDigit('4')"><span>4</span></button>
+      <button onclick="enterDigit('5')"><span>5</span></button>
+      <button onclick="enterDigit('6')"><span>6</span></button>
+      <button onclick="enterDigit('7')"><span>7</span></button>
+      <button onclick="enterDigit('8')"><span>8</span></button>
+      <button onclick="enterDigit('9')"><span>9</span></button>
+      <button class="clear" onclick="clearCode()"><span>❌</span></button>
+      <button onclick="enterDigit('0')"><span>0</span></button>
+      <button class="check" onclick="checkCode()"><span>✔</span></button>
+    </div>
+  </div>
+
+  <script>
+    let inputCode = "";
+    const correctCode = "143";
+
+    function enterDigit(num) {
+      if (inputCode.length < Infinity) {
+        inputCode += num;
+        document.getElementById("display").innerText = inputCode;
+      }
+    }
+
+    function clearCode() {
+      inputCode = "";
+      document.getElementById("display").innerText = "";
+    }
+
+    function checkCode() {
+      if (inputCode === correctCode) {
+        alert("143 yieeeeeeeeeeeeeee congrats baby may kiss yan sakin screenshot mo to ah😘");
+        
+        window.location.href = "congrats.html";
+      } else {
+        alert("Mali pooo try mo ulitt😘");
+        clearCode();
+      }
+    }
+    window.onload = function() {
+      alert("Alam ko hirap ikaw magtype eto click mo lng😘");
+    };      
+  </script>
+</body>
+</html>
