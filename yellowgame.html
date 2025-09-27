@@ -119,32 +119,31 @@
   let musicPlaying = false;
   let firstInteraction = false;
 
-
+  // 🎵 Music button toggle
   musicBtn.addEventListener("click", () => {
     if (!firstInteraction) {
-      bgmusic.play(); 
+      bgmusic.play().catch(err => {
+        console.log("Autoplay blocked until user interacts.");
+      });
       firstInteraction = true;
     }
 
-  musicBtn.addEventListener("click", () => {
     if (musicPlaying) {
       bgmusic.pause();
       musicBtn.textContent = "🔇 Music";
     } else {
-      bgmusic.play().catch(err => {
-        console.log("Autoplay blocked. User must click to start music.");
-      });
+      bgmusic.play();
       musicBtn.textContent = "🔊 Music";
     }
     musicPlaying = !musicPlaying;
   });
-        
+
   function markFound(element) {
     if (!element.classList.contains("active")) {
       element.classList.add("active");
       foundCount++;
 
-      
+      // 🔊 play click sound
       clicksound.currentTime = 0;
       clicksound.play();
 
@@ -160,7 +159,7 @@
     }
   }
 
-  
+  // ❤️ Event listeners for hearts
   document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
   document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
   document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
@@ -169,6 +168,7 @@
 </body>
 
 </html>     
+
 
 
 
