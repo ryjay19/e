@@ -163,8 +163,16 @@
 
   const bgmusic = document.getElementById("bgmusic");
   const musicBtn = document.getElementById("musicBtn");
+  const clicksound = document.getElementById("clicksound");
   let musicPlaying = false;
+  let firstInteraction = false;
 
+  
+  musicBtn.addEventListener("click", () => {
+    if (!firstInteraction) {
+      bgmusic.play(); 
+      firstInteraction = true;
+    }
 
   musicBtn.addEventListener("click", () => {
     if (musicPlaying) {
@@ -211,6 +219,7 @@
 </body>
 
 </html>     
+
 
 
 
