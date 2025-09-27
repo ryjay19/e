@@ -113,8 +113,9 @@
   let foundCount = 0; 
   const totalHearts = 3;
 
-const bgmusic = document.getElementById("bgmusic");
+  const bgmusic = document.getElementById("bgmusic");
   const musicBtn = document.getElementById("musicBtn");
+  const clicksound = document.getElementById("clicksound");
   let musicPlaying = false;
 
 
@@ -123,7 +124,9 @@ const bgmusic = document.getElementById("bgmusic");
       bgmusic.pause();
       musicBtn.textContent = "🔇 Music";
     } else {
-      bgmusic.play();
+      bgmusic.play().catch(err => {
+        console.log("Autoplay blocked. User must click to start music.");
+      });
       musicBtn.textContent = "🔊 Music";
     }
     musicPlaying = !musicPlaying;
@@ -134,11 +137,14 @@ const bgmusic = document.getElementById("bgmusic");
       element.classList.add("active");
       foundCount++;
 
+      
+      clicksound.currentTime = 0;
+      clicksound.play();
+
       if (foundCount === totalHearts) {
         setTimeout(() => {
           alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
         }, 3000);
-        
 
         setTimeout(() => {
           window.location.href = "congrats.html"; 
@@ -147,22 +153,16 @@ const bgmusic = document.getElementById("bgmusic");
     }
   }
 
-  document.querySelector(".heart1").addEventListener("click", function() {
-    markFound(this);
-  });
-
-  document.querySelector(".heart2").addEventListener("click", function() {
-    markFound(this);
-  });
-
-  document.querySelector(".heart3").addEventListener("click", function() {
-    markFound(this);
-  });
- 
+  
+  document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
 </script>
+
 </body>
 
 </html>     
+
 
 
 
