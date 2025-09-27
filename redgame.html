@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Objects Game</title>
+    <style>
+            body {
+                overflow: hidden;
+            position: relative;
+            margin: 0;  
+            padding: 0;
+            background-color: #f0f0f0; 
+            }
+            img {
+            width: 1000px;  
+            height: 992px;
+            max-height: 992px;
+            object-fit: cover;  
+            position: relative; 
+            z-index: 0;
+            display: block;
+            margin: 0 auto ;
+            margin-top: -1px;
+
+            }
+            
+            .game-container {
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin: 0 auto;
+                
+            }
+            .heart1, .heart2, .heart3, .heart4, .heart5, .heart6, .heart7{
+                z-index: 2;
+                transition: opacity 3.3s ease;
+                               
+            }
+
+            .heart1.active, .heart2.active, .heart3.active, .heart4.active, .heart5.active, .heart6.active, .heart7.active {
+                opacity: 100%;
+            }
+            .heart1 {
+                width: 150px;
+                height: 150px;
+                opacity: 0;
+                position: absolute;
+                bottom: 153px;
+                left: 544px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 50px 50px rgb(217, 255, 0);
+            }   
+            .heart2 {
+                width: 50px;
+                height: 50px;
+                opacity: 0;
+                position: absolute;
+                top: 195.5px;
+                left: 958px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 30px 25px rgb(217, 255, 0);
+            }
+            .heart3 {
+                width: 70px;
+                height: 70px;
+                opacity: 0;
+                position: absolute;
+                bottom: 285px;
+                left: 1095.5px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 40px 40px rgb(217, 255, 0);
+            }
+            .heart4 {
+                width: 75px;
+                height: 75px;
+                opacity: 0;
+                position: absolute;
+                top: 260px;
+                left: 634px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 35px 30px rgb(217, 255, 0);
+            }
+            .heart5 {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+                position: absolute;
+                top: 348px;
+                left: 918.3px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 35px 30px rgb(217, 255, 0);
+            }
+            .heart6 {
+                width: 90px;
+                height: 90px;
+                opacity: 0;
+                position: absolute;
+                top: 258px;
+                left: 1327px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 35px 30px rgb(217, 255, 0);
+            }
+            .heart7 {
+                width: 145px;
+                height: 145px;
+                opacity: 0;
+                position: absolute;
+                bottom: 79px;
+                left: 1310px;
+                border-radius: 50%;
+                background-color: rgba(0, 128, 0, 0.5);
+                box-shadow: 0 0 35px 30px rgb(217, 255, 0);
+            }
+            .heart1.active:after, .heart2.active:after, .heart3.active:after, .heart4.active:after, .heart5.active:after, .heart6.active:after, .heart7.active:after {
+                opacity: 100%;
+            }
+            #musicBtn {
+                position: fixed;
+                bottom: 15px;
+                left: 340px;
+                z-index: 10;
+                padding: 10px 15px;
+                font-size: 16px;
+                font-family: "Press Start 2P", monospace;
+                border: none;
+                border-radius: 8px;
+                background: #222;
+                color: #fff;
+                cursor: pointer;
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+                transition: background 0.2s ease;
+            }
+            #musicBtn:hover {
+                background: #444;
+            }
+    </style>
+</head>
+<body>
+    
+    <div class="game-container">
+    <audio id="bgmusic" src="./audios/hidden.mp3" autoplay loop></audio>
+    <img src="./images/redgame.png">
+    <div class="heart1"></div>
+    <div class="heart2"></div>
+    <div class="heart3"></div>
+    <div class="heart4"></div>
+    <div class="heart5"></div>
+    <div class="heart6"></div>
+    <div class="heart7"></div>
+</div>
+<button id="musicBtn">🔇 Music</button>
+<audio id="clicksound" src="./audios/reward.mp3" preload="auto"></audio>   
+    <script>
+  let foundCount = 0; 
+  const totalHearts = 7;
+
+  const bgmusic = document.getElementById("bgmusic");
+  const musicBtn = document.getElementById("musicBtn");
+  let musicPlaying = false;
+
+
+  musicBtn.addEventListener("click", () => {
+    if (musicPlaying) {
+      bgmusic.pause();
+      musicBtn.textContent = "🔇 Music";
+    } else {
+      bgmusic.play();
+      musicBtn.textContent = "🔊 Music";
+    }
+    musicPlaying = !musicPlaying;
+  });
+
+  function markFound(element) {
+    if (!element.classList.contains("active")) {
+      element.classList.add("active");
+      foundCount++;
+
+      const sound = document.getElementById("clicksound");
+      sound.currentTime = 0;
+      sound.volume = 1.0;
+      sound.play();
+
+      if (foundCount === totalHearts) {
+        setTimeout(() => {
+          alert("🎉 WOOOOOOOOWW ang galing galing tlga!! Screenshot nga para may kiss ulit");
+        }, 3000);
+
+        setTimeout(() => {
+          window.location.href = "congrats.html"; 
+        }, 5000);
+      }
+    }
+  }
+
+
+  document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart4").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart5").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart6").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart7").addEventListener("click", function() { markFound(this); });
+</script>
+</body>
+
+</html>     
+
+
+
+
+
