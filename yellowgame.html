@@ -111,53 +111,55 @@
 <audio id="clicksound" src="./audios/reward.mp3" preload="auto"></audio>   
     
     <script>
-    let foundCount = 0; 
-    const totalHearts = 3;
+  let foundCount = 0; 
+  const totalHearts = 3;
 
-    const bgmusic = document.getElementById("bgmusic");
-    const musicBtn = document.getElementById("musicBtn");
-    const clicksound = document.getElementById("clicksound");
+  const bgmusic = document.getElementById("bgmusic");
+  const musicBtn = document.getElementById("musicBtn");
+  const clicksound = document.getElementById("clicksound");
+
   let musicPlaying = false;
 
-
+  // Music toggle
   musicBtn.addEventListener("click", () => {
     if (musicPlaying) {
       bgmusic.pause();
       musicBtn.textContent = "🔇 Music";
     } else {
-      bgmusic.play();
+      bgmusic.play().catch(err => console.log("Play blocked:", err));
       musicBtn.textContent = "🔊 Music";
     }
     musicPlaying = !musicPlaying;
   });
-    
-    function markFound(element) {
-        if (!element.classList.contains("active")) {
-            element.classList.add("active");
-            foundCount++;
 
-            clicksound.currentTime = 0;
-            clicksound.play();
+  // Heart click logic
+  function markFound(element) {
+    if (!element.classList.contains("active")) {
+      element.classList.add("active");
+      foundCount++;
 
-            if (foundCount === totalHearts) {
-                setTimeout(() => {
-                    alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
-                }, 3000);
+      clicksound.currentTime = 0;
+      clicksound.play();
 
-                setTimeout(() => {
-                    window.location.href = "congrats.html"; 
-                }, 5000);
-            }
-        }
+      if (foundCount === totalHearts) {
+        setTimeout(() => {
+          alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
+        }, 3000);
+
+        setTimeout(() => {
+          window.location.href = "congrats.html"; 
+        }, 5000);
+      }
     }
+  }
 
-    
-    document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
-    document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
-    document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
+  document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
 </script>
 </body>
 </html>
+
 
 
 
