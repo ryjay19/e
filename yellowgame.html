@@ -111,65 +111,67 @@
 <audio id="clicksound" src="./audios/reward.mp3" preload="auto"></audio>   
     
     <script>
-        let foundCount = 0; 
-        const totalHearts = 3;
+    let foundCount = 0; 
+    const totalHearts = 3;
 
-        const bgmusic = document.getElementById("bgmusic");
-        const musicBtn = document.getElementById("musicBtn");
-        const clicksound = document.getElementById("clicksound");
-        let musicPlaying = false;
+    const bgmusic = document.getElementById("bgmusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const clicksound = document.getElementById("clicksound");
+    let musicPlaying = false;
 
-        
-        bgmusic.volume = 0.5;
+  
+    bgmusic.volume = 0.5;
 
-        
-        musicBtn.addEventListener("click", () => {
-            if (musicPlaying) {
-                bgmusic.pause();
-                musicBtn.textContent = "🔇 Music";
-            } else {
-                bgmusic.play().then(() => {
-                    console.log("Music started!");
-                }).catch(err => {
-                    console.error("Error playing music:", err);
-                });
+   
+    musicBtn.addEventListener("click", () => {
+        if (musicPlaying) {
+            bgmusic.pause();
+            musicBtn.textContent = "🔇 Music";
+        } else {
+            bgmusic.play().then(() => {
                 musicBtn.textContent = "🔊 Music";
-            }
-            musicPlaying = !musicPlaying;
-        });
+                console.log("Music started!");
+            }).catch(err => {
+                console.error("Error playing music:", err);
+            });
+        }
+        musicPlaying = !musicPlaying;
+    });
 
-        function markFound(element) {
-            if (!element.classList.contains("active")) {
-                element.classList.add("active");
-                foundCount++;
+    
+    function markFound(element) {
+        if (!element.classList.contains("active")) {
+            element.classList.add("active");
+            foundCount++;
 
-                
-                clicksound.currentTime = 0;
-                clicksound.play();
+            
+            clicksound.currentTime = 0;
+            clicksound.play();
 
-                if (foundCount === totalHearts) {
-                    setTimeout(() => {
-                        alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
-                    }, 3000);
+            if (foundCount === totalHearts) {
+                setTimeout(() => {
+                    alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
+                }, 3000);
 
-                    setTimeout(() => {
-                        window.location.href = "congrats.html"; 
-                    }, 5000);
-                }
+                setTimeout(() => {
+                    window.location.href = "congrats.html"; 
+                }, 5000);
             }
         }
+    }
 
-        // ❤️ Event listeners for hearts
-        document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
-        document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
-        document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
-    </script>
+    // ❤️ Event listeners for hearts
+    document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
+    document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
+    document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
+</script>
 </body>
 </html>
 
 </body>
 
 </html>     
+
 
 
 
