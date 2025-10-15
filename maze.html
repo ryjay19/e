@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maze</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: 	#FCF55F;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .maze {
+      position: relative;
+      width: 1200px;
+      height: 1200px;
+      margin: 0 auto;
+      z-index: 10000;
+    }
+
+    .mazeimg {
+      width: 1100px;
+      height: 1100px;
+      display: block;
+      z-index: 10002;
+      position: fixed;
+      top: -150px;
+      right: 21.5%;
+      margin: 0 auto;
+      transform: translateY(-2.37%);
+    }
+
+    .me{
+      position: fixed;
+      top: 208px;
+      left: 1600px;
+      z-index: 1002;
+      width: 178px;
+      height: 178px;
+      background-image: url(file:///C:/Users/PC/Downloads/pixelme.png);
+      background-size: cover;
+      transform: translateY(-7%);
+    }
+
+    .josie {
+      position: absolute;
+      top: 500px;
+      left: -40px;
+      font-size: 33px; 
+      line-height: 0.5;
+      z-index: 1000;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-45%);
+    }
+
+    .josie img {
+      width: 180px;
+      height: 180px;
+      pointer-events: none;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 10001;
+      transition: opacity 4s ease;
+    }
+
+    .controls button {
+      font-size: 40px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 10px;
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+    }
+
+    .controls button.active {
+      background-color: #ddd;
+      transform: translateY(2px);
+    }
+
+      .b {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; 
+  transition: 4s ease;
+}
+      
+    .h {
+  position: sticky;
+  top: 270px;
+  left: 1650px;
+  width: 5%;
+  height: 7.7%;
+  display: flex;
+  opacity: 0;
+  z-index: 999999;
+  align-items: center;
+  justify-content: center;
+}
+
+.h > img {
+  width: 90px;
+  height: 85px;
+  animation: beat 3s ease-in-out infinite;
+  transition: transform 5s ease;
+}
+
+@keyframes beat {
+  0%, 8%, 92%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.2); }
+  20%, 36% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+  60%, 80% { transform: scale(1); }
+}
+.h.centered{
+  margin: 0 auto;
+  top: 20%;
+  left: 47.5%;
+}
+.h.centered > img{
+  width: 160px;
+  height: 150px;
+}
+.h.centered.down {
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: down 5s ease;
+  cursor: none;
+}
+@keyframes down {
+  0%{
+    top: 20%;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    top: 90%;
+    transform: translateX(-50%) scale(1);
+  }
+}
+.h.centered.down img{
+  animation: none;
+  transform: scale(1);
+  cursor: auto;
+}
+.message {
+      display: block;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      max-width: 795px;
+      height: 880px;
+      padding: 40px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 100, 100, 0.5);
+      color: #000;
+      line-height: 1.5;
+      text-align: justify;
+      transition: transform 5s ease, opacity 1s ease, scaleY 5s ease;
+      z-index: 999999;
+      transform-origin: top center;
+      transform: translate(-50%, -50%) scaleY(0);
+      opacity: 0;
+}
+.message.show{
+      top: 75%;
+      transform: translate(-50%, -76.5%) scaleY(1);
+      opacity: 1;
+    }
+.content{
+      font-family: lucida handwriting, cursive;
+      font-size: 25px;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 90%;
+      text-align: start;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+.love{
+  margin-top: 10px;
+  margin-left: 610px;
+  font-size: 20px;
+}
+.bgs{
+  display: inline-block;
+  flex-direction: column;
+  gap: 8px;
+  position: fixed;
+  width: 153px;
+  height: 120px;
+  bottom: 10px;
+  left: 20px;
+  background-color: #fff;
+  border: 1px solid;
+}
+.bgs img{
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#volumeSlider {
+  appearance: slider-vertical;  
+  -webkit-appearance: slider-vertical;
+  width: 20px;
+  height: 100px;
+  cursor: pointer;
+  accent-color: rgba(222, 183, 128);
+  transform: rotate(-360deg);
+  border-radius: 10px;
+  left: 120px;
+  bottom: 102px;
+  display: block;
+  position: relative;
+}
+.symbol{
+  transform: translate(-90%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+.spoiler.revealed {
+  color: black;
+  filter: blur(0);
+  background-color: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+.spoiler {
+  background-color: #444;
+  color: transparent;
+  border-radius: 4px;
+  padding: 2px 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease, filter 0.3s ease, background-color 0.3s ease;
+  filter: blur(5px);
+}
+#welcome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fdf22262;
+  opacity: 0;
+  z-index: 99999;
+}
+#wpage {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 450px;
+  background-color: #f5eb38;
+  border-radius: 20px;
+  border: 2px solid #1a1919;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#wpage button {
+  position: inherit;
+  width: 100px;
+  height: 50px;
+  top: 80%;
+  left: 45.2%;
+  background-color: #fff531;
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+#welcome.show {
+  opacity: 1;
+}
+
+#welcome.start{
+  animation: down2 4s ease forwards;
+}
+@keyframes down2{
+  0% {
+    top: 0;
+  }
+  100%{
+    top: 100%;
+  }
+}
+#welcome.down2{
+  top: 100%;
+}
+.hello{
+  width: 90%;
+  height: 90%;
+}
+strong {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-size: 35px;
+  font-family: lucida handwriting, cursive;
+}
+.e{
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-size: 20px;
+  font-family: lucida handwriting, cursive;
+}
+  </style>
+</head>
+<body>
+  
+  <div id="welcome">
+    <div id="wpage">
+      <div class="hello">
+        <strong>HIIIII BABYYYYYYYYYYY</strong>
+          <br>
+          <p class="e">
+          So eto na last game na baby hihihi o ilang games yon? yieeeeeeeeeeeeeeeee
+          <br>
+          <br>
+          So etong game na to is Maze po sya so hahanapin mo po ung way papunta sakin bigay mo ung half ng heart
+          <br>
+          <br>
+          Wala pong mandadaya haa sorry hindi naperfect kasi ang hirap nya sobra hindi ko tlga kaya at ng time hihi</p>
+
+      </div>
+      <button onclick="start()">Start</button>
+    </div>
+  </div>
+  <div class="h" id="h"><img src="file:///C:/Users/PC/Downloads/pheartf.png"/></div>
+  <div class="message" id="message">
+    <div class="content"><p>HAPPY 7TH MONTHSARYYY BABYYYYYY!!! WOOOOOOHHHH!!!! PARTY PARTYY🥳🥳🥳🎉🎉🎉🎉
+Syempre sinusulat ko ulit to kahit wala pakong notes, letter sa sci, at madami pang iba HAHAHAHAHA at syempre sinusulat ko to kasi tapos na din ung kinocode ko siguro mas mahirap to don sa last one na kinode ko kasi andaming animation neto pero ung isa sobrang hirap rin nya <span class="spoiler" onclick="this.classList.toggle('revealed')">pano ko bato nagagawa ang galing ko nmn hehehehe</span> pero syempre dadagdagan ko pa siguro sya ng kung ano ano pagmay time  hindi ko nga alam kung ano paba pwedeng madagdag dito e hmmmmm dko tlga alam dna nmn ako siguro naglalagay ng song kineme dito bahala na HAHAHAHAHHA ang jejemon kasi ata? feeling ko feeling mo jejemon sya HAHAHAHAHA I miss you
+<br>
+<br>
+Woooww more than half a year na akong nanliligaw sayo ang dami nating away na ang lala ang dami nating asaran na hindi na napupunta sa away wow improving tayo, andaming times na nagiyakan, sobrang daming times na tawanan at kilig <span class="spoiler" onclick="this.classList.toggle('revealed')">naiyak ka habang kinikilig ngayon noh</span> HAHAHHAHAA <span class="spoiler" onclick="this.classList.toggle('revealed')">siguro sinabi nakakainis dyan noh</span> HAHAHHAHHA<span class="spoiler" onclick="this.classList.toggle('revealed')">sinabi mo ulit noh pahiya ako nyan paghindi pla HAHAHAHAHA</span>
+<br>
+<br>
+Alam mo baby lahat ng ginagawa kong to, tong letter, ung lahat ng kinode ko na apaka hirap ginawa ko yan lahat habang, after, before o kahit walang crinacram so basically lagi kasi ang hirap nga nya tlga HAHAHAHAHA pasikat tlga <span class="spoiler" onclick="this.classList.toggle('revealed')">pasikat para sayo😎😏😉</span> cool ko nmn siguro ineexpect mo na tong letter, at code ko no masyado akong halata e grabe pla tayo last week no buong week tayong kumain sa labas ubos tuloy allowance natin sige libre kita sa monday next week kasi mas gumagastos ikaw dahil sakin d nmn ako ganto dati e siguro mas gusto lng kita makasama ng mas matagal tlga kasi pagkarating natin sa nililikuan natin ung kila angeline banda nalulungkot nako kasi maghihiwalay nnmn tayo kunwari d laging magkavc e no pero nalulungkot tlga ako sa times na maghiwalay tayo sana hindi ikaw nasasakal sakin? icchoke pa nmn kita sa future hihi. Improving ikaw baby sa part na uhh ung tuwing inaantok ikaw ung pagchat mo sakin hindi na sya typo lagi HAHAHAHAA ang cute mo pa nmn nung mga times na yon <span class="spoiler" onclick="this.classList.toggle('revealed')">sobrang cute mo parin ngayon</span> <span class="spoiler" onclick="this.classList.toggle('revealed')">yieeeeeeeeeeeeeeee</span> HAHAHAHAHAHHAHAA I LOVE YOUUUU BABYYYY well baka mas nasanay na ikaw sa pagttype kasi lagi mo nakong kausap halos 24/7 mo na nga akong kausap o kacall e sana d ikaw tlga nasasakal
+<br>
+<br>
+Thank you baby so much kasi kahit lagi tayong nagaaway in the past few days ang lala pa sorry sobra ako lng din nmn dahilan ng most na away na yon mas less mo na din sana naiisip na istop to or patigilin ako thank you sobra baby sa pagstay, for loving me, for always being with me, for being open thank you it makes me the happiest and the luckiest boy in the world like sobrang saya ko lagi na nakakausap lng kita sa chat magseen lng ikaw kinikilig nako agad pero nalulungkot pagwalang reply makita lng kita sa school ang saya ko na ang swerte ko sayo sobra baby kasi apaka gentle mo sakin weh magiging gentle ba pagdating ng oras na yonn😏 HAHAHAHAHAHA pero thank you baby for being gentle to me apaka swerte ko tlga sayo mas swerte pako sa mga nananalo ng lotto because of you thank you po tlga sa lahat baby
+<br>
+<br>
+Dati kaya baby sobrang insecure ako sa ngipin ko kaya never ako ngumiti kasi like 9 years old na ata ako or 10 dko maalala nagsusupsup padin ako ng daliri non HAHAHAHAHA so ung ngipin ko parang rabbit na tlga pero umadjust nmn ng konti lng bumaba nmn sya ng konti na d na sya halata kaya never tlga ako ngumiti kahit tawang tawa kunwari may pupunasan ako sa labi or pisngi ganon para lng maharangan sya pero ngayon wala nakong pake tlga sa kanya kasi ayoko na syang itago kasi lagi mo na syang napapalabas HAHAHAHHAA like lagi mo nakong napapangiti kahit magkachat lng tayo ngiting ngiti ako HAHAHAHAHA ikaw kasi e lagi mo akong napapangiti i ehe HAHAHAHHAHAHA I LOVE YOUUUUUUUU BABYYYYYYYY</div>
+<br>
+<br>
+Naalala mo nung nagspam ako sayo baby nung nawala ung isang slide ba yon dmo siguro nakita basta nagcall pako non nung bibili ako ng chicharon bumili din kasi ako ng mask non don ko sana ibibigay ung chocolate e bibigay ko nga sana yon kasi ang ganda ng gawa mo well lagi naman tapos ang aga natin gumawa ngayon tapos wala lng reward mo po sana parang ganon or like thanks dahil sa hinanap mo pa ung sa science ko po so dko na sya mabigay kasi ayoko nmn machismis na napunta nga ako dyan ng ganon kadilim aw sayang dmo mahold tyan at baba ng tyan sayang sayang sige bawi next time HAHAHAHAHA. Thank you so muchh babyyy sa pagprint, paggupit, at pagdikit po ng science kooo thank you so muchh babyyyy thank you tlga kung sana pwede kita makiss bukas gagawin ko thank you po tlga baby koo I love youuuuu soooo muuuuuuuuccccchhhhh🥺🥺🥺 Thank you sobra dahil don madami kang kiss sakin sobra sobra sobraaaaaaaa hihihi. HALAAAA AKIN TLGA INUNA MO BABYYYY KOOOO🥺🥺🥺 awwww thank you sobra tlga baby isesend ko tlga sayo mga assignment ko dapat share na tayo non hihi
+<span class="spoiler" onclick="this.classList.toggle('revealed')">Pressured daw sa pagccram pero nagawa tlga ng letter at code</span> pressured parin ako pero gusto ko magthank you kasi agad e hihi
+<br>
+<br>
+Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sya don sa may kinukuhanan ko ng idea ung welcome ung start ayon ung ginagawa ko habang naiyak inis na inis nga ako non e kung san san napunta ung binabasahan bago magstart. Alam mo ba baby habang ginagawa ko tong code nato ilang beses nakong muntik na mahuli well first kitang kita nmn kasi monitor ko 2nd nageedit ako sa canva ng characters natin tas puro heart pa yan HAHAHHAHHA isang beses habang inuutusan ako sabi ni ate anne wala yan si rj ginagawan pa nya jowa niya e ganon ganon bastos tlga tong mga kapatid ko sinabi amp pero sige sinasabi ko nga dati nung bata ako na may nagI love you sa kanila e HAHAHHAHAA pero wala pading pake non si mami kapag ginaganon ko or ginanon ako ni ate rhea or ate anne tapos uh ngayon din sabi nya rj ayan ung code na sinasabi mo? pinakita ko ulit ung isa na may welcome sabi niya pa sakin ung tuwing nagsabi ka na nagccode ka laro lng yon? ano yan project nyo ganon? ganon tas pinakita ko nlng ung code kong naka100 para kunwari may ginagawa tlga ako sa ict HAHHAHAHAHAHA nilipat ko sya dito e gamit ko discord so nung tinanggal na nya mata niya sa pc tinype ko na to agad kahit paluha padin ako hindi parin naharap sa kanya.
+<br>
+<br>
+</p><div class="love"><p>Your secret admirer</p></div>
+  </div>
+<div class="b" id="b">
+  <div class="bgs">
+    <img id="musicBtn" src="https://i.scdn.co/image/ab67616d0000b273b1146b960889dba6f13e6cfc"></img>
+    <span id="symbol" class="symbol">▶</span>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
+  </div>
+  <audio id="bgmusic" src="C:\Users\PC\Downloads\padabataka.mp3" autoplay loop></audio>
+  <div class="maze" id="maze">
+  <div class="me" id="me"></div>
+    <img src="C:/Users/PC/Downloads/maze.png" class="mazeimg" id="mazeimg" />
+    <div class="josie" id="josie"><img src="C:/Users/PC/Downloads/josie.png" id="josieImg" /></div>
+  </div>
+
+  <div id="controls" class="controls">
+    <button id="up">↑</button><br />
+    <button id="left">←</button>
+    <button id="down">↓</button>
+    <button id="right">→</button>
+  </div>
+</div>
+  <script>
+    
+  const josie = document.getElementById("josie");
+  const josieImg = document.getElementById("josieImg");
+  const me = document.getElementById("me");
+  const b = document.getElementById("b");
+  const h = document.getElementById("h");
+   const controls = document.getElementById("controls");
+
+  let topPos = 500;
+  let leftPos = -20;
+  const step = 10.1;
+
+  const mazeBounds = { top: 100, left: 100, right: 1000, bottom: 1200 };
+  const mazeBounds2 = {left: 100, right: 800,};
+  const mazeBounds3 = {right: 1400,};
+
+  function move(direction) {
+    if (direction === "up") topPos -= step;
+    if (direction === "down") topPos += step;
+    if (direction === "left") leftPos -= step;
+    if (direction === "right") leftPos += step;
+
+    josie.style.top = topPos + "px";
+    josie.style.left = leftPos + "px";
+
+    updateCharacter();
+    updateCharacter2();
+    updateCharacter3();
+    updateCharacter4();
+  }
+
+ 
+  function updateCharacter() {
+    const insideMaze =
+      topPos >= mazeBounds.top &&
+      topPos <= mazeBounds.bottom &&
+      leftPos >= mazeBounds.left &&
+      leftPos <= mazeBounds.right;
+
+    if (insideMaze) {
+      josieImg.style.display = "none";
+      josie.textContent = "🙄"; 
+    } else {
+      josie.textContent = ""; 
+      josie.appendChild(josieImg);
+      josieImg.style.display = "block";
+    }
+  }
+
+
+  function updateCharacter2() {
+    const insideMaze2 =
+      topPos >= mazeBounds2.top &&
+      topPos <= mazeBounds2.bottom &&
+      leftPos >= mazeBounds2.left &&
+      leftPos <= mazeBounds2.right;
+
+    if (insideMaze2) {
+      josie.textContent = ""; 
+      josieImg.style.display = "block";
+      josieImg.src = "C:/Users/PC/Downloads/josier.png";
+    } else {
+      josieImg.src = "C:/Users/PC/Downloads/josier.png"; 
+    }
+  }
+
+   function updateCharacter3() {
+  const josieRect = josie.getBoundingClientRect();
+  const meRect = me.getBoundingClientRect();
+
+  
+  const dx = josieRect.left - meRect.left;
+  const dy = josieRect.top - meRect.top;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+
+  
+  if (distance < 200) {
+    me.style.backgroundImage = "url('C:/Users/PC/Downloads/pixelmel.png')";
+    me.style.width = "178px";      
+    me.style.height = "178px";
+    me.style.top = "210px";
+  } else {
+    me.style.backgroundImage = "url('C:/Users/PC/Downloads/pixelme.png')";
+     
+  }
+}
+
+function updateCharacter4() {
+  const josieRect = josie.getBoundingClientRect();
+  const meRect = me.getBoundingClientRect();
+ 
+  const dx = josieRect.left - meRect.left;
+  const dy = josieRect.top - meRect.top;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+
+  if (distance < 78) {
+    josieImg.style.display = "none";
+    me.style.backgroundImage = "url('C:/Users/PC/Downloads/ryjo.png')";
+    me.style.mixBlendMode = "multiply";
+    me.style.width = "200px";
+    me.style.height = "200px";
+    me.style.bottom = "770px";
+    b.style.backgroundColor = "rgba(3, 3, 3, 8)";
+    b.style.opacity = "95%"; 
+    h.style.opacity = "1";
+    h.style.cursor = "pointer";
+    controls.style.opacity = "0";
+    move = false;
+    
+  } else {
+    josieImg.style.display = "block";
+  }
+}
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp") { move("up"); pressButton("up"); }
+    if (e.key === "ArrowDown") { move("down"); pressButton("down"); }
+    if (e.key === "ArrowLeft") { move("left"); pressButton("left"); }
+    if (e.key === "ArrowRight") { move("right"); pressButton("right"); }
+  });
+
+  document.getElementById("up").addEventListener("click", () => move("up"));
+  document.getElementById("down").addEventListener("click", () => move("down"));
+  document.getElementById("left").addEventListener("click", () => move("left"));
+  document.getElementById("right").addEventListener("click", () => move("right"));
+
+  function pressButton(direction) {
+    const button = document.getElementById(direction);
+    if (!button) return;
+    button.classList.add("active");
+    setTimeout(() => { button.classList.remove("active"); }, 150);
+  }
+
+const message = document.getElementById("message");
+
+let centered = false;
+let opened = false;
+
+h.addEventListener("click", () => {
+  if (!centered) {
+    h.classList.add("centered");
+    centered = true;
+    return;
+  }
+
+
+  if (centered && !opened) {
+    h.classList.add("down");
+    message.classList.add("show");
+    opened = true;
+    return;
+  }
+});
+
+const music = document.getElementById("bgmusic");
+const musicBtn = document.getElementById("musicBtn");
+const volumeSlider = document.getElementById("volumeSlider");
+
+music.volume = 1; 
+let isPlaying = true;
+
+musicBtn.addEventListener("click", () => {
+  if (isPlaying) {
+    music.play();
+    symbol.textContent = "❚❚";
+  } else {
+    music.pause();
+    symbol.textContent = "▶"; 
+  }
+  isPlaying = !isPlaying;
+});
+
+volumeSlider.addEventListener("input", (e) => {
+  music.volume = e.target.value;
+});
+
+symbol.addEventListener("click", () => {
+  if (isPlaying) {
+    music.play();
+    symbol.textContent = "❚❚";
+  } else {
+    music.pause();
+    symbol.textContent = "▶"; 
+  }
+  isPlaying = !isPlaying;
+});
+
+volumeSlider.addEventListener("input", (e) => {
+  music.volume = e.target.value;
+});
+
+const welcome = document.getElementById("welcome")
+window.onload = function() {
+ welcome.classList.add("show");
+};
+function start() {
+  const welcome = document.getElementById("welcome");
+  const wpage = document.getElementById("wpage");
+
+  welcome.classList.add("start");
+}
+</script>
+
+</body>
+</html>
