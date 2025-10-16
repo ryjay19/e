@@ -13,10 +13,14 @@ p{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	background: url("./images/josiee.jpg") no-repeat center;
+	background-image: url("./images/josiee.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 	background-attachment: fixed;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: rgb(225, 225, 225, 0);
 }
+
 
 
