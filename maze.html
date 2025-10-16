@@ -42,7 +42,7 @@
       z-index: 9999999;
       width: 178px;
       height: 178px;
-      background-image: url(file:///C:/Users/PC/Downloads/pixelme.png);
+      background-image: url(./images/pixelme.png);
       background-size: cover;
       transform: none;
     }
@@ -366,7 +366,7 @@ strong {
       <button onclick="start()">Start</button>
     </div>
   </div>
-  <div class="h" id="h"><img src="file:///C:/Users/PC/Downloads/pheartf.png"/></div>
+  <div class="h" id="h"><img src="./images/pheartf.png"/></div>
   <div class="message" id="message">
     <div class="content"><p>HAPPY 7TH MONTHSARYYY BABYYYYYY!!! WOOOOOOHHHH!!!! PARTY PARTYY🥳🥳🥳🎉🎉🎉🎉
 Syempre sinusulat ko ulit to kahit wala pakong notes, letter sa sci, at madami pang iba HAHAHAHAHA at syempre sinusulat ko to kasi tapos na din ung kinocode ko siguro mas mahirap to don sa last one na kinode ko kasi andaming animation neto pero ung isa sobrang hirap rin nya <span class="spoiler" onclick="this.classList.toggle('revealed')">pano ko bato nagagawa ang galing ko nmn hehehehe</span> pero syempre dadagdagan ko pa siguro sya ng kung ano ano pagmay time  hindi ko nga alam kung ano paba pwedeng madagdag dito e hmmmmm dko tlga alam dna nmn ako siguro naglalagay ng song kineme dito bahala na HAHAHAHAHHA ang jejemon kasi ata? feeling ko feeling mo jejemon sya HAHAHAHAHA I miss you
@@ -401,12 +401,12 @@ Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sy
     <span id="symbol" class="symbol">▶</span>
     <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
   </div>
-  <audio id="bgmusic" src="C:\Users\PC\Downloads\padabataka.mp3" autoplay loop></audio>
+  <audio id="bgmusic" src="./audios/padabataka.mp3" autoplay loop></audio>
  
   <div class="maze" id="maze"> 
     <div class="me" id="me"></div>
-    <img src="C:/Users/PC/Downloads/maze.png" class="mazeimg" id="mazeimg" />
-    <div class="josie" id="josie"><img src="C:/Users/PC/Downloads/josie.png" id="josieImg" /></div>
+    <img src="./images/maze.png" class="mazeimg" id="mazeimg" />
+    <div class="josie" id="josie"><img src="./images/josie.png" id="josieImg" /></div>
 
   <div id="controls" class="controls">
     <button id="up">↑</button><br />
@@ -476,9 +476,9 @@ Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sy
     if (insideMaze2) {
       josie.textContent = ""; 
       josieImg.style.display = "block";
-      josieImg.src = "C:/Users/PC/Downloads/josier.png";
+      josieImg.src = "./images/josier.png";
     } else {
-      josieImg.src = "C:/Users/PC/Downloads/josier.png"; 
+      josieImg.src = "./images/josier.png"; 
     }
   }
 
@@ -513,7 +513,7 @@ function updateCharacter4() {
 
   if (distance < 78) {
     josieImg.style.display = "none";
-    me.style.backgroundImage = "url('C:/Users/PC/Downloads/ryjo.png')";
+    me.style.backgroundImage = "url('./images/ryjo.png')";
     me.style.width = "200px";
     me.style.height = "200px";
     me.style.top = "180px";
@@ -639,3 +639,4 @@ function pressButton(direction) {
 
 </body>
 </html>
+
