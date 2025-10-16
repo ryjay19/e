@@ -83,8 +83,9 @@
         <div class="login">
         <p>Please enter your full name and password to continue.</p>
         <form>
-            <label for="name">Full Name ng baby ko:</label><br>
+            <label for="name">Mobile Legends Ign:</label><br>
             <input type="text" id="name" name="name"><br>
+            <div class="hint"><label for="hint">First Ign</label><br></div>
             <label for="password">Password:</label><br>
 
             <input type="password" id="password" name="password"><br><br>
@@ -97,19 +98,16 @@
         function checklogin() {
             var name = document.getElementById("name").value;
             var password = document.getElementById("password").value;
-            if (name === "Josie Moraleta Garalde" && password === "pepe") {
-                alert("WOOOOOOOWWWW ang galing tlgaaa!!! Screenshot mo nga to ulit may kiss ka sakin🥰🥰🥰");
+            if (name === "HERUSHI30" && password === "pepe") {
+                alert("WOOOOOOOWWWW ANG GALINGGGGG!!! Screenshot mo nga to ulit may kiss ka sakin🥰🥰🥰");
                 window.location.href = "ads3.html";
             }
-            else if (password === "pepe" && name !== "Josie Moraleta Garalde") {
-                alert("mali poo full name po ha FULL name hehehe😘"); 
+            else if (password === "pepe" && name !== "HERUSHI30") {
+                alert("mali ign mo po😘"); 
                 }
-            else if (name === "Josie Moraleta Garalde") {
+            else if (name === "HERUSHI30") {
                 alert("mali po password mo😘");
                 }
-            else if (name === "Josie Garalde" || name === "Josie M. Garalde" || name === "Josie M Garalde" || name === "Garalde Josie M." || name === "Garalde Josie M" || name === "Garalde Josie" || name === "Josie") {
-                alert("mali poo full name po ha FULL name hehehe😘"); 
-            }
             else {
                 alert("mali po yannn try aginn pu");
             }
@@ -119,6 +117,7 @@
 </body>
 
 </html>
+
 
 
 
