@@ -118,10 +118,10 @@
   const musicBtn = document.getElementById("musicBtn");
   const clicksound = document.getElementById("clicksound");
 
-  // Start with music OFF
+
   musicBtn.textContent = "🔇 Music";
 
-  // Toggle music on button click
+  
   musicBtn.addEventListener("click", () => {
     if (bgmusic.paused) {
       bgmusic.play().then(() => {
@@ -135,7 +135,7 @@
     }
   });
 
-  // Mark a heart as found
+
   function markFound(element) {
     if (!element.classList.contains("active")) {
       element.classList.add("active");
@@ -146,7 +146,7 @@
 
       if (foundCount === totalHearts) {
         setTimeout(() => {
-          alert("🎉 Ang galing galing naman!! Screenshot nga para may kiss ulit");
+          alert("🎉 WOOOOOOOOOOOOWWWWWWWWW ANG GALING GALING TLGAAAA GRABEEEEE!! Screenshot nga para may kiss ulit");
         }, 3000);
 
         setTimeout(() => {
@@ -162,6 +162,7 @@
 </script>
 </body>
 </html>
+
 
 
 
