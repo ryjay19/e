@@ -88,7 +88,7 @@
             <label for="password">Password:</label><br>
 
             <input type="password" id="password" name="password"><br><br>
-            <div class="hint"><label for="hint">Hint:I love you</label><br></div>
+            <div class="hint"><label for="hint">Hint:lagi mong sinasabi</label><br></div>
             <button type="button" onclick="checklogin()">Log In</button>
         </form>
     </div>
@@ -97,14 +97,25 @@
         function checklogin() {
             var name = document.getElementById("name").value;
             var password = document.getElementById("password").value;
-            if (name === "Josie Moraleta Garalde" && password === "I love you more") {
-                alert("ang galing galing");
-                window.location.href = "ads.html";
-            } else {
-                alert("mali po");
+            if (name === "Josie Moraleta Garalde" && password === "09 / 20 / 2025") {
+                alert("Wooooww ang galing tlgaaa!!! Screenshot mo nga to ulit may kiss ka sakin🥰🥰🥰");
+                window.location.href = "ads3.html";
             }
-        }
+            else if (password === "pepe" && name !== "Josie Moraleta Garalde") {
+                alert("mali poo full name po ha FULL name hehehe😘"); 
+                }
+            else if (name === "Josie Moraleta Garalde") {
+                alert("mali po password mo😘");
+                }
+            else if (name === "Josie Garalde" || name === "Josie M. Garalde" || name === "Josie M Garalde" || name === "Garalde Josie M." || name === "Garalde Josie M" || name === "Garalde Josie" || name === "Josie") {
+                alert("mali poo full name po ha FULL name hehehe😘"); 
+            }
+            else {
+                alert("mali po yannn try aginn pu");
+            }
+            }
       </script>
         
 </body>
+
 </html>
