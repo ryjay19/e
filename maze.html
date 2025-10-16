@@ -23,27 +23,28 @@
     }
 
     .mazeimg {
+      position: fixed;
       width: 1100px;
       height: 1100px;
       display: block;
       z-index: 10002;
       position: fixed;
-      top: -150px;
+      top: -175px;
       right: 21.5%;
       margin: 0 auto;
-      transform: translateY(-2.37%);
+      transform: none;
     }
 
     .me{
       position: fixed;
-      top: 208px;
+      top: 194px;
       left: 1600px;
-      z-index: 1002;
+      z-index: 9999999;
       width: 178px;
       height: 178px;
-      background-image: url(./images/pixelme.png);
+      background-image: url(file:///C:/Users/PC/Downloads/pixelme.png);
       background-size: cover;
-      transform: translateY(-7%);
+      transform: none;
     }
 
     .josie {
@@ -58,6 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transform: none;
     }
 
     .josie img {
@@ -69,10 +71,9 @@
     .controls {
       position: fixed;
       bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 41.2%;
       text-align: center;
-      z-index: 10001;
+      z-index: 99999;
       transition: opacity 4s ease;
     }
 
@@ -85,11 +86,12 @@
       width: 100px;
       height: 100px;
       margin: 5px;
+      transition: all 0.1s ease;
     }
 
     .controls button.active {
       background-color: #ddd;
-      transform: translateY(2px);
+      transform: scale(0.97);
     }
 
       .b {
@@ -97,19 +99,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999; 
-  transition: 4s ease;
+  z-index: 99999; 
+  transition: 7s ease;
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
 }
       
     .h {
   position: sticky;
-  top: 270px;
+  top: 260px;
   left: 1650px;
   width: 5%;
   height: 7.7%;
   display: flex;
   opacity: 0;
-  z-index: 999999;
+  z-index: 9999999;
   align-items: center;
   justify-content: center;
 }
@@ -296,7 +301,10 @@
   background-color: #fff531;
   font-size: 30px;
   border-radius: 10px;
-  cursor:pointer;
+  cursor: pointer;
+}
+#wpage button:active{
+  transform: scale(0.95);
 }
 
 #welcome.show {
@@ -338,7 +346,8 @@ strong {
   </style>
 </head>
 <body>
-  
+
+ <div class="b" id="b"></div>
   <div id="welcome">
     <div id="wpage">
       <div class="hello">
@@ -357,7 +366,7 @@ strong {
       <button onclick="start()">Start</button>
     </div>
   </div>
-  <div class="h" id="h"><img src="./images/pheartf.png"/></div>
+  <div class="h" id="h"><img src="file:///C:/Users/PC/Downloads/pheartf.png"/></div>
   <div class="message" id="message">
     <div class="content"><p>HAPPY 7TH MONTHSARYYY BABYYYYYY!!! WOOOOOOHHHH!!!! PARTY PARTYY🥳🥳🥳🎉🎉🎉🎉
 Syempre sinusulat ko ulit to kahit wala pakong notes, letter sa sci, at madami pang iba HAHAHAHAHA at syempre sinusulat ko to kasi tapos na din ung kinocode ko siguro mas mahirap to don sa last one na kinode ko kasi andaming animation neto pero ung isa sobrang hirap rin nya <span class="spoiler" onclick="this.classList.toggle('revealed')">pano ko bato nagagawa ang galing ko nmn hehehehe</span> pero syempre dadagdagan ko pa siguro sya ng kung ano ano pagmay time  hindi ko nga alam kung ano paba pwedeng madagdag dito e hmmmmm dko tlga alam dna nmn ako siguro naglalagay ng song kineme dito bahala na HAHAHAHAHHA ang jejemon kasi ata? feeling ko feeling mo jejemon sya HAHAHAHAHA I miss you
@@ -376,31 +385,28 @@ Dati kaya baby sobrang insecure ako sa ngipin ko kaya never ako ngumiti kasi lik
 <br>
 <br>
 Naalala mo nung nagspam ako sayo baby nung nawala ung isang slide ba yon dmo siguro nakita basta nagcall pako non nung bibili ako ng chicharon bumili din kasi ako ng mask non don ko sana ibibigay ung chocolate e bibigay ko nga sana yon kasi ang ganda ng gawa mo well lagi naman tapos ang aga natin gumawa ngayon tapos wala lng reward mo po sana parang ganon or like thanks dahil sa hinanap mo pa ung sa science ko po so dko na sya mabigay kasi ayoko nmn machismis na napunta nga ako dyan ng ganon kadilim aw sayang dmo mahold tyan at baba ng tyan sayang sayang sige bawi next time HAHAHAHAHA. Thank you so muchh babyyy sa pagprint, paggupit, at pagdikit po ng science kooo thank you so muchh babyyyy thank you tlga kung sana pwede kita makiss bukas gagawin ko thank you po tlga baby koo I love youuuuu soooo muuuuuuuuccccchhhhh🥺🥺🥺 Thank you sobra dahil don madami kang kiss sakin sobra sobra sobraaaaaaaa hihihi. HALAAAA AKIN TLGA INUNA MO BABYYYY KOOOO🥺🥺🥺 awwww thank you sobra tlga baby isesend ko tlga sayo mga assignment ko dapat share na tayo non hihi
-<span class="spoiler" onclick="this.classList.toggle('revealed')">Pressured daw sa pagccram pero nagawa tlga ng letter at code</span> pressured parin ako pero gusto ko magthank you kasi agad e hihi
+<span class="spoiler" onclick="this.classList.toggle('revealed')">Pressured daw sa pagccram pero nagawa tlga ng letter at code</span> pressured parin ako pero gusto ko magthank you kasi agad e hihi 1143 baby
 <br>
+<span class="spoiler" onclick="this.classList.toggle('revealed')">143, rawr, I love you the most baby😛</span>
 <br>
 Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sya don sa may kinukuhanan ko ng idea ung welcome ung start ayon ung ginagawa ko habang naiyak inis na inis nga ako non e kung san san napunta ung binabasahan bago magstart. Alam mo ba baby habang ginagawa ko tong code nato ilang beses nakong muntik na mahuli well first kitang kita nmn kasi monitor ko 2nd nageedit ako sa canva ng characters natin tas puro heart pa yan HAHAHHAHHA isang beses habang inuutusan ako sabi ni ate anne wala yan si rj ginagawan pa nya jowa niya e ganon ganon bastos tlga tong mga kapatid ko sinabi amp pero sige sinasabi ko nga dati nung bata ako na may nagI love you sa kanila e HAHAHHAHAA pero wala pading pake non si mami kapag ginaganon ko or ginanon ako ni ate rhea or ate anne tapos uh ngayon din sabi nya rj ayan ung code na sinasabi mo? pinakita ko ulit ung isa na may welcome sabi niya pa sakin ung tuwing nagsabi ka na nagccode ka laro lng yon? ano yan project nyo ganon? ganon tas pinakita ko nlng ung code kong naka100 para kunwari may ginagawa tlga ako sa ict HAHHAHAHAHAHA nilipat ko sya dito e gamit ko discord so nung tinanggal na nya mata niya sa pc tinype ko na to agad kahit paluha padin ako hindi parin naharap sa kanya.
 <br>
 <br>
-
-
-
-<a href="index.html">Click me!!</a>
 </p><div class="love"><p>Your secret admirer</p></div>
   </div>
   </div>
-<div class="b" id="b">
+
   <div class="bgs">
     <img id="musicBtn" src="https://i.scdn.co/image/ab67616d0000b273b1146b960889dba6f13e6cfc"></img>
     <span id="symbol" class="symbol">▶</span>
     <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
   </div>
-  <audio id="bgmusic" src="./audios/padabataka.mp3" autoplay loop></audio>
-  <div class="maze" id="maze">
-  <div class="me" id="me"></div>
-    <img src="./images/maze.png" class="mazeimg" id="mazeimg" />
-    <div class="josie" id="josie"><img src="./images/josie.png" id="josieImg" /></div>
-  </div>
+  <audio id="bgmusic" src="C:\Users\PC\Downloads\padabataka.mp3" autoplay loop></audio>
+ 
+  <div class="maze" id="maze"> 
+    <div class="me" id="me"></div>
+    <img src="C:/Users/PC/Downloads/maze.png" class="mazeimg" id="mazeimg" />
+    <div class="josie" id="josie"><img src="C:/Users/PC/Downloads/josie.png" id="josieImg" /></div>
 
   <div id="controls" class="controls">
     <button id="up">↑</button><br />
@@ -422,7 +428,7 @@ Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sy
   let leftPos = -20;
   const step = 10.1;
 
-  const mazeBounds = { top: 100, left: 100, right: 1000, bottom: 1200 };
+  const mazeBounds = { top: -100, left: 100, right: 1000, bottom: 1200 };
   const mazeBounds2 = {left: 100, right: 800,};
   const mazeBounds3 = {right: 1400,};
 
@@ -470,9 +476,9 @@ Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sy
     if (insideMaze2) {
       josie.textContent = ""; 
       josieImg.style.display = "block";
-      josieImg.src = "./images/josier.png";
+      josieImg.src = "C:/Users/PC/Downloads/josier.png";
     } else {
-      josieImg.src = "./images/josier.png"; 
+      josieImg.src = "C:/Users/PC/Downloads/josier.png"; 
     }
   }
 
@@ -487,12 +493,12 @@ Opo, eto ung ginagawa kong code habang nanonood si mami pero buti naswitch ko sy
 
   
   if (distance < 200) {
-    me.style.backgroundImage = "url('./images/pixelmel.png')";
+    me.style.backgroundImage = "url('C:/Users/PC/Downloads/pixelmel.png')";
     me.style.width = "178px";      
     me.style.height = "178px";
-    me.style.top = "210px";
+    me.style.top = "195px";
   } else {
-    me.style.backgroundImage = "url('./images/pixelme.png')";
+    me.style.backgroundImage = "url('C:/Users/PC/Downloads/pixelme.png')";
      
   }
 }
@@ -507,11 +513,10 @@ function updateCharacter4() {
 
   if (distance < 78) {
     josieImg.style.display = "none";
-    me.style.backgroundImage = "url('./images/ryjo.png')";
-    me.style.mixBlendMode = "multiply";
+    me.style.backgroundImage = "url('C:/Users/PC/Downloads/ryjo.png')";
     me.style.width = "200px";
     me.style.height = "200px";
-    me.style.bottom = "770px";
+    me.style.top = "180px";
     b.style.backgroundColor = "rgba(3, 3, 3, 8)";
     b.style.opacity = "95%"; 
     h.style.opacity = "1";
@@ -530,11 +535,22 @@ function updateCharacter4() {
     if (e.key === "ArrowRight") { move("right"); pressButton("right"); }
   });
 
-  document.getElementById("up").addEventListener("click", () => move("up"));
-  document.getElementById("down").addEventListener("click", () => move("down"));
-  document.getElementById("left").addEventListener("click", () => move("left"));
-  document.getElementById("right").addEventListener("click", () => move("right"));
-
+document.getElementById("up").addEventListener("click", () => {
+  move("up");
+  pressButton("up");
+});
+document.getElementById("down").addEventListener("click", () => {
+  move("down");
+  pressButton("down");
+});
+document.getElementById("left").addEventListener("click", () => {
+  move("left");
+  pressButton("left");
+});
+document.getElementById("right").addEventListener("click", () => {
+  move("right");
+  pressButton("right");
+});
   function pressButton(direction) {
     const button = document.getElementById(direction);
     if (!button) return;
@@ -610,15 +626,16 @@ function start() {
 
   welcome.classList.add("start");
 }
+
+function pressButton(direction) {
+  const button = document.getElementById(direction);
+  if (!button) return;
+  button.classList.add("active");
+  setTimeout(() => {
+    button.classList.remove("active");
+  }, 150);
+}
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
