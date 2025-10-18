@@ -35,7 +35,7 @@
       transform: none;
       -webkit-user-drag: none;
       user-drag: none;
-      pointer-events: none;
+      
     }
 
     .me{
@@ -50,7 +50,6 @@
       transform: none;
       -webkit-user-drag: none;
       user-drag: none;
-      pointer-events: none;
     }
 
     .josie {
@@ -71,10 +70,8 @@
     .josie img {
       width: 180px;
       height: 180px;
-      pointer-events: none;
       -webkit-user-drag: none;
       user-drag: none;
-      pointer-events: none;
     }
 
     .controls {
@@ -133,6 +130,8 @@
   height: 85px;
   animation: beat 3s ease-in-out infinite;
   transition: transform 5s ease;
+  -webkit-user-drag: none;
+   user-drag: none;
 }
 
 @keyframes beat {
@@ -690,6 +689,7 @@ function pressButton(direction) {
 
 </body>
 </html>
+
 
 
 
