@@ -12,7 +12,6 @@
       background-color: 	#FCF55F;
       position: relative;
       overflow: hidden;
-      user-select: none;
     }
 
     .maze {
@@ -34,6 +33,9 @@
       right: 21.5%;
       margin: 0 auto;
       transform: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
     }
 
     .me{
@@ -46,6 +48,9 @@
       background-image: url(./images/pixelme.png);
       background-size: cover;
       transform: none;
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
     }
 
     .josie {
@@ -66,6 +71,9 @@
     .josie img {
       width: 180px;
       height: 180px;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      user-drag: none;
       pointer-events: none;
     }
 
@@ -682,6 +690,7 @@ function pressButton(direction) {
 
 </body>
 </html>
+
 
 
 
