@@ -12,6 +12,7 @@
       margin: 0;  
       padding: 0;
       background-color: #f0f0f0; 
+      pointer-event:none;
     }
     img {
       width: 1000px;  
@@ -22,7 +23,6 @@
       display: block;
       margin: 0 auto;
       margin-top: -1px;
-      user-select:none;
     }
     .game-container {
       position: relative;
@@ -33,7 +33,6 @@
     .heart1, .heart2, .heart3 {
       z-index: 2;
       transition: opacity 3.3s ease;
-      cursor: pointer;
     }
     .heart1.active, .heart2.active, .heart3.active {
       opacity: 100%;                
@@ -165,6 +164,7 @@
   </script>
 </body>
 </html>
+
 
 
 
