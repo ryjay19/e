@@ -159,73 +159,60 @@
 <audio id="clicksound" src="./audios/reward.mp3" preload="auto"></audio>   
     <script>
   let foundCount = 0; 
-  const totalHearts = 7;
+const totalHearts = 7;
 
-  const bgmusic = document.getElementById("bgmusic");
-  const musicBtn = document.getElementById("musicBtn");
-  let musicPlaying = false;
+const bgmusic = document.getElementById("bgmusic");
+const musicBtn = document.getElementById("musicBtn");
+let musicPlaying = false;
 
+musicBtn.addEventListener("click", () => {
+  if (musicPlaying) {
+    bgmusic.pause();
+    musicBtn.textContent = "🔇 Music";
+  } else {
+    bgmusic.play();
+    musicBtn.textContent = "🔊 Music";
+  }
+  musicPlaying = !musicPlaying;
+});
 
-  musicBtn.addEventListener("click", () => {
-    if (musicPlaying) {
-      bgmusic.pause();
-      musicBtn.textContent = "🔇 Music";
-    } else {
-      bgmusic.play();
-      musicBtn.textContent = "🔊 Music";
-    }
-    musicPlaying = !musicPlaying;
-  });
+function markFound(element) {
+  if (!element.classList.contains("active")) {
+    element.classList.add("active");
+    foundCount++;
 
-  function markFound(element) {
-    if (!element.classList.contains("active")) {
-      element.classList.add("active");
-      foundCount++;
+    const sound = document.getElementById("clicksound");
+    sound.currentTime = 0;
+    sound.volume = 1.0;
+    sound.play();
 
-      const sound = document.getElementById("clicksound");
-      sound.currentTime = 0;
-      sound.volume = 1.0;
-      sound.play();
+    if (foundCount === totalHearts) {
+      setTimeout(() => {
+        alert("🎉 WOOOOOOOOWW ANG GALING NAMAANNNN!! Screenshot nga para may kiss");
+      }, 2000);
 
-      if (foundCount === totalHearts) {
-        setTimeout(() => {
-          alert("🎉 WOOOOOOOOWW ANG GALING NAMAANNNN!! Screenshot nga para may kiss");
-        } 2000);
-          setTimeout(() => {
-          alert("bakit kaya 7 hearts🤔🤔🤔");
-          } 5000);
-          alert("hehehehe");
-        } 2000);
-        setTimeout(() => {
-          window.location.href = "yellowgame.html"; 
-        } 7000);
-      }
+      setTimeout(() => {
+        alert("bakit kaya 7 hearts🤔🤔🤔");
+      }, 5000);
+
+      setTimeout(() => {
+        alert("hehehehe");
+      }, 6000);
+
+      setTimeout(() => {
+        window.location.href = "yellowgame.html";
+      }, 7000);
     }
   }
+}
 
-
-  document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart4").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart5").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart6").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart7").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart4").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart5").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart6").addEventListener("click", function() { markFound(this); });
+document.querySelector(".heart7").addEventListener("click", function() { markFound(this); });
 </script>
 </body>
-
-</html>     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>   
