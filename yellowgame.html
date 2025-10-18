@@ -137,34 +137,37 @@
 
 
   function markFound(element) {
-    if (!element.classList.contains("active")) {
-      element.classList.add("active");
-      foundCount++;
+  if (!element.classList.contains("active")) {
+    element.classList.add("active");
+    foundCount++;
 
-      clicksound.currentTime = 0;
-      clicksound.play();
+    clicksound.currentTime = 0;
+    clicksound.play();
 
-      if (foundCount === totalHearts) {
-        setTimeout(() => {
-          alert("🎉 WOOOOOOOOOOOOWWWWWWWWW ANG GALING GALING TLGAAAA GRABEEEEE!! Screenshot nga para may kiss ulit");
-        } 3000);
+    if (foundCount === totalHearts) {
+      setTimeout(() => {
+        alert("🎉 WOOOOOOOOOOOOWWWWWWWWW ANG GALING GALING TLGAAAA GRABEEEEE!! Screenshot nga para may kiss ulit");
+      }, 3000);
+
+      setTimeout(() => {
         alert("Bakit kaya 3 ung hearts?🤔🤔🤔");
-        } 3000);
+      }, 5000);
+
+      setTimeout(() => {
         alert("hehehheehe I love you moreee");
-        } 3000);
-        setTimeout(() => {
-          window.location.href = "passcode.html"; 
-        } 5000);
-      }
+      }, 6000);
+
+      setTimeout(() => {
+        window.location.href = "passcode.html";
+      }, 8000);
     }
   }
+}
 
-  document.querySelector(".heart1").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart2").addEventListener("click", function() { markFound(this); });
-  document.querySelector(".heart3").addEventListener("click", function() { markFound(this); });
 </script>
 </body>
 </html>
+
 
 
 
