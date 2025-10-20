@@ -18,7 +18,7 @@
 
     .popup {
       width: 500px;
-      height: 730px;
+      height: 700px;
       background-color: #ffffff;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       border-radius: 10%;
@@ -27,7 +27,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      overflow:hidden;
+      overflow: hidden;
     }
 
     .radius {
@@ -43,82 +43,58 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      border-radius:10%;
-    }
-    #closeBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  font-size: 20px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  z-index: 999;
-}
-    #playad {
-  z-index:999;
+      border-radius: 10%;
     }
 
+    #closeBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      font-size: 20px;
+      padding: 5px 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+    }
+
+    #playad {
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
   <div class="popup">
-  <div class="radius">
-    <video id="adVideo" src="./videos/mcdo143.mp4" autoplay playsinline></video>
+    <div class="radius">
+      <!-- ✅ Added "muted" to make sure autoplay works -->
+      <video id="adVideo" src="./videos/mcdo143.mp4" autoplay muted playsinline></video>
+    </div>
+    <button id="closeBtn">✕</button>
+    <button id="playad">Play Ad</button>
   </div>
-  <button id="closeBtn">✕</button>
-  <button id="playad" onclick="document.querySelector('video').play()">Play Ad</button>
-    <p>alam q late na</p>
-</div>
 
-   <script>
-  const video = document.getElementById("adVideo");
-  const closeBtn = document.getElementById("closeBtn");
-  let loopCount = 0;
+  <script>
+    const video = document.getElementById("adVideo");
+    const closeBtn = document.getElementById("closeBtn");
 
- 
-  video.addEventListener("ended", () => {
-    loopCount++;
-    if (loopCount < ) {
+    // Show close button after one play
+    video.addEventListener("ended", () => {
       closeBtn.style.display = "block";
-    }
-  });
+    });
 
+    // Replay video when user clicks "Play Ad"
+    document.getElementById("playad").addEventListener("click", () => {
+      video.currentTime = 0;
+      video.play();
+    });
 
-  document.getElementById("playad").addEventListener("click", () => {
-    video.currentTime = 0;
-    video.play();
-  });
-
-
-  closeBtn.addEventListener("click", () => {
-    window.location.href = "redgame.html";
-  });
-</script>
-
-
+    // Go to next page when user clicks close
+    closeBtn.addEventListener("click", () => {
+      window.location.href = "redgame.html";
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
