@@ -1,20 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine</title>
-    <style>
-        body {
-            background-color: pink;   
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+body {
+    background-color: pink;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* HEART */
+.h {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    z-index: 99999;
+    cursor: pointer;
+}
+
+.h img {
+    width: 115px;
+    height: 115px;
+    animation: beat 3s ease-in-out infinite;
+    -webkit-user-drag: none;
+    z-index: 99999;
+}
+
+/* HEART BEAT */
+@keyframes beat {
+    0%, 8%, 92%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.2); }
+    20%, 36% { transform: scale(0.9); }
+    50% { transform: scale(1.1); }
+    60%, 80% { transform: scale(1); }
+}
+
+/* HEART DROP */
+@keyframes down {
+    0% {
+        top: 4%;
+        transform: translateX(-50%);
+    }
+    100% {
+        top: 85%;
+        transform: translateX(-50%);
+    }
+}
+
+.h.down {
+    animation: down 5s ease forwards;
+    cursor: auto;
+}
+
+/* MESSAGE */
+.message {
+    position: fixed;
+    top: 6%; /* stays at top */
+    left: 50%;
+    width: 70%;
+    max-width: 700px;
+
+    height: 0px; /* start closed */
+    overflow-y: auto; /* make scrollable */
+    overflow-x: hidden;
+
+    padding: 0 40px; /* no vertical padding yet */
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 100, 100, 0.5);
+    text-align: center;
+
+    transform: translateX(-50%);
+    opacity: 0;
+
+    transition: height 5s ease, opacity 1s ease, padding 0.5s ease;
+    z-index: 9999;
+}
+.message.show {
+    height: 76%; /* stops before heart (heart is at 80%) */
+    opacity: 1;
+    padding: 40px; /* add padding after opening */
+}
+#volumeSlider {
+  appearance: slider-vertical;  
+  -webkit-appearance: slider-vertical;
+  width: 20px;
+  height: 100px;
+  cursor: pointer;
+  accent-color: rgba(222, 183, 128);
+  transform: rotate(-360deg);
+  border-radius: 10px;
+  left: 120px;
+  bottom: 102px;
+  display: block;
+  position: relative;
+}
+
+.a {
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 12.5%;
+    right: 12.5%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.a img {
+    width: 300px;
+    height: 300px;
+    mix-blend-mode: multiply;
+}
+</style>
 </head>
+
 <body>
-    <div style="background-color: white; top: 25%; left: 12.5%; right: 12.5%;  position: absolute;">
-        <img style="width: 300px; height: 300px; mix-blend-mode: multiply;" src="https://media.tenor.com/heu_AkLRlGgAAAAM/bear-kiss-bear-kisses.gif">
-        <h1 style="width: 100%; font-size: 20px; height: 20%; text-align: center; ">Bukas yan ah, depende kung anong oras magising hehehe walter/sm tayo?</h1>
-        <h2 style="width: 100%; font-size: 12px; height: 20%; text-align: center;">potato corner and diy hehehe</h2>
-    </div>
+
+<div class="h" id="h" onclick="goDown()">
+    <img src="./images/pheartf.png"/>
+</div>
+
+<div class="message" id="message">
+    <h1 style="font-size: 30px;">HAPPY VALENTINES DAY BABYYYY!</h1>
+    <p>Hello babyyy HAPPY FIRST VALENTINES DAYYYY HEHEHEHHEEHE VALENTINES DAY NA DAY NA PINAKAINAANTAY KO MULA NOON PA kasi nagstart tayong magusap after valentines day e lungkot ko d umabot tagal mo kasi magrepost e tagal mo mang prank tsk tsk tsk </p>
+    <br>
+    <p>Alam ko baby ang panget ng mga past weeks natin lalo na this week pero phase lng to magbabago din tayo mababago din natin yan tulad dati sorry baby if apakasama ko this week sorry tlga if ang hirap ko nang mahalin Promise baby ko magbabago na po tlga ako babaguhin ko na tlga lahat sorry</p>
+    <br>
+    <p>sorry baby if hindi ako nakaready ng gifts para sayo this time siguro counted na ung mga kain natin this week araw araw ata tayo kumain halos? HAHAHHAHAHA naubos pera ko doon😭😭😭 HAHAHAHAHHAHA</p>
+    <br>
+    <p>ANLAPIT NA NANG 11 MONTHSARY NATINNN ALAM MO PA ANO MALAPIT? 1 YEAR ANNIVERSARYYYYYYY YISYISYIS ANG LAPIT NAAAAA YEHEYYYYY naalala ko apaka saya ko pa sa kama nung sinabi mong gusto mo ako HAHAHAHAHHAHA I MISS YOUUUUUUU BAT ANG AGA MO KASI MAKASLEEP NGAYONNNNN</p>
+    <br>
+    
+</div>
+
+<div class="a">
+    <img src="https://media.tenor.com/heu_AkLRlGgAAAAM/bear-kiss-bear-kisses.gif">
+    <p>Bukas yan ah, depende kung anong oras magising hehehe walter/sm tayo?</p>
+    <p style="font-size: 14px;">Potato corner and gala tayo hehehe</p>
+</div>
+
+<script>
+const h = document.getElementById("h");
+const message = document.getElementById("message");
+
+setTimeout(() => {
+    h.style.opacity = "1";
+}, 2000);
+
+function goDown() {
+    h.classList.add("down");
+    message.classList.add("show");
+}
+</script>
+
 </body>
 </html>
