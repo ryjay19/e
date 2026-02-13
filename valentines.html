@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Valentine's Day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: pink;
+        }
+        .tab {
+            background-color: white;
+            border: 2px solid red;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: 100px auto;
+            margin-top: 60%;
+        }
+        .yes, .no {
+          display: inline-block;
+          margin: 20px;
+          margin-top: -3px;  
+        }
+        .no button {
+          position: absolute;
+        }
+        .yes button {
+          margin-left: -54px;
+        }   
+    </style>
+</head>
+<body style="user-select: none; ">
+    <div class="tab" style="text-align: center; ">
+        <h1 style="color: red;">Will you be my Valentine?</h1>
+        <div class="yes">
+            <button style="background-color: red; color: white; border: 1px solid darkred; padding: 10px 20px; border-radius: 20px; cursor: pointer;">Yes</button>
+        </div>
+        <div class="no">
+            <button style="background-color: lightpink; color: white; border: 1px solid darkred; padding: 10px 23px; border-radius: 20px; cursor: pointer;">No</button>
+        </div>
+    </div>
+    <script>
+        const yesButton = document.querySelector('.yes button');
+        const noButton = document.querySelector('.no button');
+        let scale = 1;
+        yesButton.addEventListener('click', () => {
+            window.location.href = "valentine.html";
+        });
+        noButton.addEventListener('click', () => {
+            
+            const randomX = Math.random() * (window.innerWidth - 100); 
+            const randomY = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+            
+            scale += 0.2; 
+            yesButton.style.transform = `scale(${scale})`;
+        }); 
+    </script>
+</body>
+</html>
