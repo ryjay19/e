@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY BIRTHDAYYYY</title>
+
+<style>
+body {
+    background-color: #2EC872;
+    margin: 0;
+    user-select: none;
+    overflow: hidden;
+}
+
+.open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.open button {
+    position: absolute;
+    font-weight: 600;
+    font-size: 40px;
+    background-color: #23A95C;
+    color: white;
+    border: 1px solid darkgreen;
+    padding: 30px 50px;
+    border-radius: 46.5%;
+    cursor: pointer;
+}
+
+.cake {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 150px;
+    display: none; 
+    cursor: pointer;
+    z-index: 99999;
+}
+
+.message {
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    width: 70%;
+    max-width: 700px;
+    height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 40px;
+    background: #fff;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: darkgreen 0px 0px 30px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: height 5s ease, opacity 1s ease, padding 0.5s ease;
+    z-index: 9999;
+}
+
+.message.show {
+    height: 76%;
+    opacity: 1;
+    padding: 40px;
+}
+.h2 h2{
+    display:none;
+    text-align:center;
+    color:white;
+    margin-top:60px;
+    margin-bottom: -40px;
+}
+.cake.down {
+    animation: down 5s ease forwards;
+    cursor: default;
+}
+@keyframes down {
+    0% {
+        top: 4%;
+        transform: translateX(-50%);
+    }
+    100% {
+        top: 77%;
+        transform: translateX(-50%);
+    }
+}
+p {
+    font-size: 23px;
+    line-height: 1.5;
+}  
+</style>
+</head>
+
+<body>
+    <div class="cake">🎂</div>
+<div class="h2">
+<h2 id="1">GOOOO ATE DIANEEE</h2>
+<h2 id="2">KAYA MO YANNN</h2>
+<h2 id="3">GOOOOO GOOOOOOOO GOOOOOOOOOOO</h2>
+<h2 id="4">KAPIT LANG TEE</h2>
+<h2 id="5">LETS GOOOOOOOOO</h2>
+<h2 id="6">BABANGON TAYOOO</h2>
+<h2 id="7">SUSULONG TAYOOOOOO</h2>
+<h2 id="8">BABANGONN TAYOOOOOOOO</h2>
+<h2 id="9">SUSULONGG TAYOOOOOOOOOO</h2>
+<h2 id="10">Nescafé</h2>
+<h2 id="11">HAHAHAHAHAHAHAHAHAHAHAHA</h2>
+<h2 id="12">Kapit lang te malapit na</h2>
+<h2 id="13">Lets goooooo</h2>
+<h2 id="14">Malapit naaaaa</h2>
+<h2 id="15">wowerssss</h2>
+<h2 id="16">30−8×3+12÷4+6×2−9+5−15=? nlnggg</h2>
+<h2 id="17">GOOOOOOOOOOOOO ATE DIANEEEEEE</h2>
+</div>
+<div class="message">
+    
+<h1>HAPPYYYY BIRTHDAYYYY ATE DIANEEEE🥳🥳🥳🎉🎉🎉</h1>
+<p>
+Thank youuuu ate dianee sa libre mong kwek kwek nung una nating kita HAHAHAHAHA first time ko plng tlga kumain ng kwek kwek non kaya alanganin pako non na kainin yon HAHAHAHAHAHA thank youuu ate diane sa pagtulong sakin lagi tapos sa pagkampi at pagdepensa sakin lagi tuwing chinichismis ako dyan noon. Thank youuuuu din sa paggising lagi kay josie kahit ayaw nya bumangon o kahit galit na sya pinipilit mo padin HAHAHAHHAAHHA thank youuuuuu din kasi hindi ka nagagalit tuwing pinapagising ko si josieee kahit paulit ulit o araw arawin ko pa yan hindi ka naggalit. Thank youuuu rin teee sa pagsupport mo saaminnn palagiii lalo tuwing may mga times na alam na talaga na kakabahan ako HAHAHAHAHA. Stay strong kayo ni kuya aldrin galing pa naman magml. Goodluckk sa futureeeeee ate dianeee pwede ka na makulong🥰
+<br>
+<br>
+HAPPY BIRTHDAYYY ULIT ATE DIANEEE MORE BIRTHDAYS TO COMEEE MADAMI KA PANG BIGAS NA KAKAININ
+<br>
+Akala mo yun na yon? HAHAHAHAHA
+<br>
+may surprise pa sa ilalim
+</p>
+<img src="/diane/aldrin.png" style="width: 400px; height: 400px; margin-top:140px;">
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+
+<div class="open">
+<button>Open</button>
+</div>
+
+
+<audio id="hbd" src="hbd.mp3"></audio>
+<script>
+const button = document.querySelector(".open button");
+const cake = document.querySelector(".cake");
+const message = document.querySelector(".message");
+const texts = document.querySelectorAll(".h2 h2");
+
+let clickCount = 0;
+
+button.addEventListener("click", () => {
+
+    if (clickCount < texts.length) {
+        texts[clickCount].style.display = "block";
+    }
+
+    clickCount++;
+
+    if (clickCount === 18) {
+        cake.style.display = "flex";
+        button.style.display = "none";
+        document.getElementById("hbd").play();
+        document.play.hbd.mp3();
+        return;
+    }
+
+    const randomX = Math.random() * (window.innerWidth - 200);
+    const randomY = Math.random() * (window.innerHeight - 100);
+
+    button.style.left = randomX + "px";
+    button.style.top = randomY + "px";
+});
+
+cake.addEventListener("click", () => {
+    message.classList.add("show");
+    cake.classList.add("down");
+});
+</script>
+
+</body>
+</html>
