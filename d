@@ -90,8 +90,8 @@ body {
     }
 }
 p {
-    font-size: 23px;
-    line-height: 1.5;
+    font-size: 22px;
+    line-height: 1.4;
 }  
 </style>
 </head>
@@ -130,7 +130,7 @@ Akala mo yun na yon? HAHAHAHAHA
 <br>
 may surprise pa sa ilalim
 </p>
-<img src="/diane/aldrin.png" style="width: 400px; height: 400px; margin-top:140px;">
+<a href="d.html"><img src="./images/aldrin.png" style="width: 400px; height: 400px; margin-top:140px;"><p>CLICK MEEE</p></a>
 <br>
 <br>
 <br>
@@ -144,7 +144,7 @@ may surprise pa sa ilalim
 </div>
 
 
-<audio id="hbd" src="hbd.mp3"></audio>
+<audio id="hbd" src="./audio/hbd.mp3"></audio>
 <script>
 const button = document.querySelector(".open button");
 const cake = document.querySelector(".cake");
@@ -183,4 +183,5 @@ cake.addEventListener("click", () => {
 </script>
 
 </body>
+
 </html>
