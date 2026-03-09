@@ -13,11 +13,12 @@ p{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	background: url(./images/dianeee.png) no-repeat center/cover;
+	background: url(./images/dianee.png) no-repeat center/cover;
 	background-attachment: fixed;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: rgb(225, 225, 225, 0);
 }
+
 
 
 
