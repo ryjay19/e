@@ -41,6 +41,7 @@ body {
     display: none; 
     cursor: pointer;
     z-index: 99999;
+    animation: beat 3s ease-in-out infinite;
 }
 
 .message {
@@ -93,6 +94,14 @@ p {
     font-size: 23px;
     line-height: 1.5;
 }  
+@keyframes beat {
+  0%, 8%, 92%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.2); }
+  20%, 36% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+  60%, 80% { transform: scale(1); }
+}
+
 </style>
 </head>
 
@@ -186,6 +195,7 @@ cake.addEventListener("click", () => {
 </body>
 
 </html>
+
 
 
 
