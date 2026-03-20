@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories</title>
+
+<style>
+body {
+    background-color: #ffea61;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.memories {
+    width: 90%;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 10px; 
+    gap: 8px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+#p3 {
+    grid-column: span 2;
+}
+
+.memories img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+.memories img:hover {
+    transform: scale(1.05);
+}
+
+.memories img:active {
+    transform: scale(0.95);
+}
+
+
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.popup-box {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 300px;
+    animation: pop 0.2s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+#popupimg {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="memories">
+    <div id="p1">
+        <img src="josie/gangsta.png" data-message="eheyyy gangsta HAAHAHAHA lagi ko pang iniispam ung gangsta para makita kong magreact ikaw ng haha sa chat ko wala lang iniisip ko kasing ngingiti ikaw pagganon e eto yung pinakauna mong sinend na pic sakin super random kaya nga kilig na kilig ako non e update with pic heehehhee super random ng pagkasend mo ng pic syempre kikiligin ako kusa e HEHEHHEEHEHE kinikilig din naman ako kahit nagbibigay ikaw ng pic na tuwing nahenege aku eheehehhe pero mas iba yung kilig pagsurprise talaga hehehehe" data-image="josie/1pic.png">
+    </div>
+    <div id="p2">
+        <img src="josie/mata.jpg" data-message="">
+    </div>
+    <div id="p3">
+        <img src="josie/achievement.jpg" data-message="lala" data-image="josie/ewan.png" data-style="width: 100px; height: auto;" >
+    </div>
+    <div id="p4">
+        <img src="josie/1stpic.jpg" data-message="">
+    </div>
+    <div id="p5">
+        <img src="josie/pg5.jpg" data-message="">
+    </div>
+    <div id="p6">
+        <img src="josie/hbd sakin.jpg" data-message="">
+    </div>
+    <div id="p7">
+        <img src="josie/sm.jpg" data-message="">
+    </div>
+    <div id="p8">
+        <img src="josie/billiards.jpg" data-message="">
+    </div>
+    <div id="p9">
+        <img src="josie/hiphop.jpg" data-message="">
+    </div>
+    <div id="p10">
+        <img src="josie/xmas.jpg" data-message="">
+    </div>
+    <div id="p11">
+        <img src="josie/team1.jpg" data-message="">
+    </div>
+    <div id="p12">
+        <img src="josie/1stmeetup.jpg" data-message="">
+    </div>
+    <div id="p13">
+        <img src="josie/hbd saimo.jpg" data-message="">    
+    </div>
+    <div id="p14">
+        <img src="josie/anlikot.jpg" data-message="">
+    </div>
+    <div id="p15">
+        <img src="josie/team.jpg" data-message="">
+    </div>
+    <div id="p16">
+        <img src="josie/boldak.jpg" data-message="">
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    <div class="close" id="closeBtn">&times;</div>
+    <div class="popup-box">
+        <img id="popupimg" src="" alt="Popup Image">
+        <p id="popupText"></p>
+    </div>
+</div>
+
+<script>
+const images = document.querySelectorAll(".memories img");
+const popup = document.getElementById("popup");
+const popupText = document.getElementById("popupText");
+const closeBtn = document.getElementById("closeBtn");
+
+images.forEach(img => {
+    img.addEventListener("click", () => {
+        popupText.textContent = img.dataset.message;
+        popup.style.display = "flex";
+    });
+});
+
+closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+});
+
+popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+        popup.style.display = "none";
+    }
+});
+function resizeGridItems() {
+    const grid = document.querySelector(".memories");
+    const rowHeight = parseInt(getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+    const gap = parseInt(getComputedStyle(grid).getPropertyValue('gap'));
+
+    grid.querySelectorAll("div").forEach(item => {
+        const img = item.querySelector("img");
+        const height = img.getBoundingClientRect().height;
+        const rowSpan = Math.ceil((height + gap) / (rowHeight + gap));
+        item.style.gridRowEnd = "span " + rowSpan;
+    });
+}
+
+
+window.addEventListener("load", resizeGridItems);
+window.addEventListener("resize", resizeGridItems);
+</script>
+
+</body>
+</html>
