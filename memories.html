@@ -24,7 +24,7 @@ body::-webkit-scrollbar {
     max-width: 600px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 10px; 
+    grid-auto-rows: 5px; 
     gap: 8px;
     background-color: white;
     padding: 8px;
@@ -32,13 +32,18 @@ body::-webkit-scrollbar {
 }
 
 #p3 {
-    grid-column: span 2;
+    grid-column: span 2;    
+}
+
+#p3 img {
+    height: 70px;
 }
 
 .memories img {
     width: 100%;
     display: block;
     border-radius: 10px;
+    transition: transform 0.2s ease;
 }
 
 .memories img:hover {
@@ -48,8 +53,6 @@ body::-webkit-scrollbar {
 .memories img:active {
     transform: scale(0.95);
 }
-
-
 
 .popup {
     position: fixed;
@@ -61,16 +64,6 @@ body::-webkit-scrollbar {
     display: none;
     justify-content: center;
     align-items: center;
-}
-
-
-.popup-box {
-    background: white;
-    padding: 20px 30px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 300px;
-    animation: pop 0.2s ease;
 }
 
 @keyframes pop {
@@ -92,8 +85,36 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     margin-bottom: 10px;
     display: none;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
 }
 
+#popupimg.zoomed {
+    transform: scale(1);
+    cursor: zoom-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.popup-box {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 300px;
+    max-height: 80vh;   
+    overflow-y: auto; 
+    animation: pop 0.2s ease;
+}
+
+.popup-box::-webkit-scrollbar {
+    display: none;
+}
+
+#p6 {
+    grid-column: span 2;
+}
 </style>
 </head>
 
@@ -101,52 +122,55 @@ body::-webkit-scrollbar {
 
 <div class="memories">
     <div id="p1">
-        <img src="josie/gangsta.png" data-message="eheyyy gangsta HAAHAHAHA lagi ko pang iniispam ung gangsta para makita kong magreact ikaw ng haha sa chat ko wala lang iniisip ko kasing ngingiti ikaw pagganon e eto yung pinakauna mong sinend na pic sakin super random kaya nga kilig na kilig ako non e update with pic heehehhee super random ng pagkasend mo ng pic syempre kikiligin ako kusa e HEHEHHEEHEHE kinikilig din naman ako kahit nagbibigay ikaw ng pic na tuwing nahenege aku eheehehhe pero mas iba yung kilig pagsurprise talaga hehehehe" data-image="josie/1pic.png">
+        <img src="./images/gangsta.png" data-message="eheyyy gangsta HAAHAHAHA lagi ko pang iniispam ung gangsta para makita kong magreact ikaw ng haha sa chat ko wala lang iniisip ko kasing ngingiti ikaw pagganon e eto yung pinakauna mong sinend na pic sakin super random kaya nga kilig na kilig ako non e update with pic heehehhee super random ng pagkasend mo ng pic syempre kikiligin ako kusa e HEHEHHEEHEHE kinikilig din naman ako kahit nagbibigay ikaw ng pic na tuwing nahenege aku eheehehhe pero mas iba yung kilig pagsurprise talaga hehehehe" data-image="./images/1pic.png">
     </div>
     <div id="p2">
-        <img src="josie/mata.jpg" data-message="">
+        <img src="./images/mata.jpg" data-message="eto rin isa sa random na pics na sinend mo sakin hehehehe super kilig din ako non hihihi pero nahenge na nmn ako neto nung mga times na to pero sinend mo sya sakin randomly HAHAHHAHAA sabi mo pa non nagpapacute lang ikaw sa tiktok ganon ganon hehehehhehe 2nd wallpaper ku sau hehehhehehehehehehe taposs eto rin yung parang naging sign nila omega na nahahalata na tayo BWHAHAHAHAHHAA pero ang galing ko talaga d nila nalaman nahahalata nga lang okay na yon kinikilig nga ako tuwing tinatry nilang alamin kung ano meron satin e kasi mas naiisip kong meron tayong something hindi ko rin talaga alam e pero gusto ko yung feeling na yon mas nafefeel kong may something special talaga tayo HAHAHAHAHA (yung battery mo 67)" data-image="./images/HAHAHA.jpg">
     </div>
     <div id="p3">
-        <img src="josie/achievement.jpg" data-message="lala" data-image="josie/ewan.png" data-style="width: 100px; height: auto;" >
+        <img src="./images/achievement.jpg" data-message="HAHAHAHAHAHAHAHAHA FIRST ACHIEVEMENT UNLOCKED!!! LETS GOOOOOOOOO HAHAHAHAHAHHAHAHAHAHAAHHAHAHA KELEG NA KELEG DIN AKO DITO HAHAHAHAHHAHAHAHAHAAHHAAAAHAHAHAH TAPOS CINOCOMFORT MO PA AKO ABOUT SA MABABANG CONFIDENCE KO LIKE BINOBOOST MO CONFIDENCE KO I LOVE YOUUUUUUU ang cute pa kasi baby na tawagan pero hindi pa crush BWHAHAHAHAHAHAHAHA" data-image="./images/ewan.png">
     </div>
     <div id="p4">
-        <img src="josie/1stpic.jpg" data-message="">
+        <img src="./images/1stpic.jpg" data-message="1ST PIC NATIN MWEHWHEWHEHWHEWHEHWHEWEHWEHE kilig na keleg kaya ako neto baby AHHAHAHAHAHAHA kasi naman 1st pic natin nung honors nanginginig pako dyan sabi ko pano pose ko shet nagssearch pako sa tiktok nyan pano magpose BWAHAHAHAHAHHAHAHAHA HINDI KO TALAGA ALAM NAPANGITI AKO SA KABA KAYA ANG AWKWARD NG NGITI KO BWHAHAHAHHAHAHA NANGINGINIG MUKHA KO DYAN BABY HABANG NAGPPIC TAYO HAHAHAAHAHA">
     </div>
     <div id="p5">
-        <img src="josie/pg5.jpg" data-message="">
+        <img src="./images/pg5.jpg" data-message="Ang saya netong mga times na to kasama natin si zay nabuo anggg *drum roll* RATED PG(PATAY GUTOM) HAHAHAHHAHA tapos kilig na kilig din apaka dikit natin nung mga times na yan nakahiga na u sakin hehehee nanonood pa tayo sa bahay nyo ng movies tapos nakahawak kamay ikaw sakin sa takot sa ilalim ng unan na nakapatong sayo HAHAHAHHAHA ang saya pa lagi tayong nasa bahay nyo or sm nyan tapos after nyan kinabahan nako kasi nga nahuli na tau HAHAHAHAHAHA tapos nangyare yan like bday ni zay taposs nangyare din dyan ung mga ano alam mo na yon hihi" data-image="./images/pg4.jpg">
     </div>
     <div id="p6">
-        <img src="josie/hbd sakin.jpg" data-message="">
+        <img src="./images/achievement2.png" data-message="2ND ACHIEVEMENT UNLOCKED!!! HAHAHAHAHAHAHA NAGING CRUSH NAGING BFF+ NAGING MAGBABY TAS NAGING MANLILIGAW YIEEEEEEEEEEEE hehehhehehehehe random ko magbigay ng gift nyan no gusto ko lang talaga magkaroon tayo ng sarili nating monthsary tapos gusto ko mafeel mo yung ganyan sorry dko kinaya magchat kila cheska mo balak ko talaga kay cheska balak ko talaga pero hindi ko kinaya sorry😓😓😓 sorry din na weird ako na naiiba na hindi manlang nagchat kila ate diane para magganon sorry talaga😓😓😓">
     </div>
     <div id="p7">
-        <img src="josie/sm.jpg" data-message="">
+        <img src="./images/hbd sakin.jpg" data-message="HEHEHEHEHEHE THANKYOUUUUUUUUUU TALAGA BABYYYYY KOOOOO ISA NA TO SA PINAKAMASAYANG BIRTHDAYS KO MWHEWHEWHEHWHEWEHWHEW KASI FIRST TIME KONG MAKASALUBONG YUNG BIRTHDAY KO NA KASAMA IS HINDI KO KAMAGANAK TAPOS PARANG BDAY CELEBRATION TALAGA RAMDAM NUNG GABING YON HAHAHHAAHHAA samin kasi pagkagising yon nangyayare hindi sa gabing yon mismo HAHAHHAAHHAHAHAHA I LOVE YOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU">
     </div>
     <div id="p8">
-        <img src="josie/billiards.jpg" data-message="">
+        <img src="./images/sm.jpg" data-message="ANG SAYA KO DITOOO KASI TONG MGA GANTO NATIN LAGI TAYONG NAPUNTANGG SM PARA GUMALAA at ubusin pera😭😭 pero atleast ANG SAYA NATINNN MWHEWHEHEHWHHEWHHWEHWHEWHEWHEWHEHWEHWEHWEHWEH">
     </div>
     <div id="p9">
-        <img src="josie/hiphop.jpg" data-message="">
+        <img src="./images/billiards.jpg" data-message="EHEYYY FIRST TIME KO NA NAKAINTERACT MAMA MO DITO pinilit mo talaga ako na makipagpic kasama mama mo no🙄🙄 pero okay lang yon sobrang tuwang tuwa naman si mami sobrang tuwa ko rin dito kasi ang saya talaga gumala kasama kayo tapos super late na tayo nakauwi HAHAHHAHAA">
     </div>
     <div id="p10">
-        <img src="josie/xmas.jpg" data-message="">
+        <img src="./images/hiphop.jpg" data-message="ANG SAYA KO NUNG MGA TIMES NA TO BABY KASI APAKA DIKIT NATIN LAGIII TAPOSS NASUOT MO DIN MAYAPIS TSHIRT KO MWHEWHEWHEWHEHWHE BIANZON KA PALA EEEY HAHAHAHAHAHAHAA ang cute cute cuteeee mo pa sa tshirt ko bagay sayo bianzon yieeeeeeeeee HAHAHAHAHHAHA">
     </div>
     <div id="p11">
-        <img src="josie/team1.jpg" data-message="">
+        <img src="./images/xmas.jpg" data-message="hehehheehheehehehehehe dito tayo nagkaroon ng mga pics at photobooth pic nasayo padin ung isa🙄🙄🙄 dapat tigisa tau doonn e pero okay sige sa future nakaframe na yan sa bahay natin mwehwhewhewehwhewhewhe ang saya din ng gala natin dito kahit nagaway tayo nung una HAAHHAHAHAHA I LOVE YOUUUUUUUUUUUUUUUUUUU">
     </div>
     <div id="p12">
-        <img src="josie/1stmeetup.jpg" data-message="">
+        <img src="./images/team1.jpg" data-message="EYYYYYY dko masyado talaga maalala to like bakit tayo gumala neto alam ko lang si ate diane is pupunta kila ate naning neto tas nagarcade tayuuu netooo then binili ku sau si sol or si luna ba yon mwhewhehwhewhew tapos tinatago ko pa yon sa likod ko HAHAHHAHAHAA tapos nahahalata mo pala na binili ko yon taposss binili din natin netoo yung mga stuff toy nila ate dianeee">
     </div>
     <div id="p13">
-        <img src="josie/hbd saimo.jpg" data-message="">    
+        <img src="./images/1stmeetup.jpg" data-message="eheyyy first meet up yarn HAHHAHAHAHAHAA ang kyot may dala pang inasal naginasal tayo neto ni isse akala AHAHAAHAAHA taposs tinanong din nya saken kung ano nagostohan ku sau mwhewhewhewehwehwhehwhewh first time ko sa inasal pala to noh na kumain ng sisig thankyouuuuu babyyyy napapakain mo na ako ng kung ano ano neto HAHAHAHAHHA nakadaming rice din tayo HAHAHAHAHAAA sulit talaga unli rice e">
     </div>
     <div id="p14">
-        <img src="josie/anlikot.jpg" data-message="">
+        <img src="./images/hbd saimo.jpg" data-message="YIEEEEEEEEEEEEEEEEEEEEEEEEEEEEHIEEEEEEEEEEEEEEEEEEEEEEEEEE NABIGYAN KO SYA NANG MASAYANG BIRTHDAYYYY MWEHWHEWHEHWHEHWEWHEWHE YIEEEEEEEEEEEEEEEEEEEEE MASAYA BIRTHDAY MOOOO? MASAYA? MASAYA? MASAYAA? YIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE mwehwhewhewhhewhe dami kong benegay sau nyan ganda ng gift ko noh tagal ko pinagplanuhan yunnn HAHHAHAAHAAHHAA pero konti lang yung mga nagkatotoo😓 naiinis lang ako sa part na yon pero masaya naman sa part na napuri nila ako sa mga ginawa ko para sayo hehehheeheehehehe tapos napuri mo dinn akooo taposss naketa ko esmayl mu mwhewhehwewhewhewhewhewehwehw">
     </div>
     <div id="p15">
-        <img src="josie/team.jpg" data-message="">
+        <img src="./images/anlikot.jpg" data-message="AHAHAHAHAHAHAHAHAHA WALA NANG PINAPAGAWA SA ROOM KAYA NAGLANDIAN NALANG KUNG ANO ANO NANGYAYARE DITO BWHAHAHAHAHAHHAAHA sayang naman pinatapon mo sakin ung bulbol mo na nasa wallet ko este buhok heheheheheeh pabunot nga isa dami nangyare dito puro asaran at kung ano ano pa dami mong vid at pics tuloy sakin yieeeeee">
     </div>
     <div id="p16">
-        <img src="josie/boldak.jpg" data-message="">
+        <img src="./images/team.jpg" data-message="YEYYYYY BIRTHDAYY NA NI ATE DIANEEE grabe cram ko nung gabing yan para sa code tapos dpa pla nung 12 na yon ioopen BWHAHAHAHHAA peor okay lang atleast wala nakong ginawa pagkauwi dba ang saya ng araw na to e mas naging close ko lang mga family mo ganun ganun muntikan pakong mapainom HAHHAHAHAHAHA grabe nga yon kabado pako kaya mas tumaas lvl ng pagkabingi ko hayst pahiya ako sa papa mo non sayang nagaantay din ako ng pustahan ml neto e AHAHAHHAHAHAHA">
+    </div>
+    <div id="p17">
+        <img src="./images/boldak.jpg" data-message="HEHEHHEHEEHEEHEHEE LAST GALA NATIN ANG SAYA SAYA ANG SAYA SAYAAAAAAA well hindi masyado masaya lang ako na kasama kita bibigay ko na nga sayo dapat libro mo neto e nasa bag ko na ang laki ng parcel dalawa kasi yung layer ng bubble wrap parang ewan HAHAHAHAHAHA ang panget neto kasi titig ikaw sa mga lalaki sa poster kada subo hmp dmo manlng ako tinitignan pero okay nakasama kita gumala tapos kung ano ano pa pinagsasabi ko kay sarah neto wala po kaming barya dko tlga alam pano ko naganon si sarah at bakit HAHAAHAHAHAHHA">
     </div>
 </div>
 
@@ -163,39 +187,74 @@ const images = document.querySelectorAll(".memories img");
 const popup = document.getElementById("popup");
 const popupText = document.getElementById("popupText");
 const closeBtn = document.getElementById("closeBtn");
+const popupImg = document.getElementById("popupimg");
 
 images.forEach(img => {
     img.addEventListener("click", () => {
         popupText.textContent = img.dataset.message;
+
+        if (img.dataset.image) {
+            popupImg.src = img.dataset.image;
+            popupImg.style.display = "block";
+
+            popupImg.style.width = "";
+            popupImg.style.height = "";
+
+            if (img.dataset.style) {
+                popupImg.style.cssText += img.dataset.style;
+            }
+
+        } else {
+            popupImg.style.display = "none";
+        }
+
         popup.style.display = "flex";
     });
 });
 
-closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-});
-
-popup.addEventListener("click", (e) => {
-    if (e.target === popup) {
-        popup.style.display = "none";
-    }
-});
 function resizeGridItems() {
     const grid = document.querySelector(".memories");
     const rowHeight = parseInt(getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     const gap = parseInt(getComputedStyle(grid).getPropertyValue('gap'));
 
-    grid.querySelectorAll("div").forEach(item => {
+    grid.querySelectorAll(".memories div").forEach(item => {
         const img = item.querySelector("img");
-        const height = img.getBoundingClientRect().height;
+
+        if (!img) return;
+
+        const height = img.offsetHeight;
         const rowSpan = Math.ceil((height + gap) / (rowHeight + gap));
+
         item.style.gridRowEnd = "span " + rowSpan;
     });
 }
 
+window.addEventListener("load", () => {
+    resizeGridItems();
 
-window.addEventListener("load", resizeGridItems);
+    document.querySelectorAll("img").forEach(img => {
+        img.addEventListener("load", resizeGridItems);
+    });
+});
+
 window.addEventListener("resize", resizeGridItems);
+
+popupImg.addEventListener("click", (e) => {
+    e.stopPropagation();
+    popupImg.classList.toggle("zoomed");
+});
+
+closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+    popupImg.classList.remove("zoomed");
+});
+
+popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+        popup.style.display = "none";
+        popupImg.classList.remove("zoomed");
+    }
+});
 </script>
 
 </body>
