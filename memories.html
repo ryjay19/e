@@ -85,6 +85,13 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     margin-bottom: 10px;
     display: none;
+}
+
+#popupimg {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: none;
     cursor: zoom-in;
     transition: transform 0.3s ease;
 }
@@ -111,9 +118,17 @@ body::-webkit-scrollbar {
 .popup-box::-webkit-scrollbar {
     display: none;
 }
-
 #p6 {
     grid-column: span 2;
+}
+
+#p18{
+    grid-column: span 2;
+}
+
+.popup-box {
+    display: flex;
+    flex-direction: column;
 }
 </style>
 </head>
@@ -143,7 +158,7 @@ body::-webkit-scrollbar {
         <img src="./images/hbd sakin.jpg" data-message="HEHEHEHEHEHE THANKYOUUUUUUUUUU TALAGA BABYYYYY KOOOOO ISA NA TO SA PINAKAMASAYANG BIRTHDAYS KO MWHEWHEWHEHWHEWEHWHEW KASI FIRST TIME KONG MAKASALUBONG YUNG BIRTHDAY KO NA KASAMA IS HINDI KO KAMAGANAK TAPOS PARANG BDAY CELEBRATION TALAGA RAMDAM NUNG GABING YON HAHAHHAAHHAA samin kasi pagkagising yon nangyayare hindi sa gabing yon mismo HAHAHHAAHHAHAHAHA I LOVE YOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU">
     </div>
     <div id="p8">
-        <img src="./images/sm.jpg" data-message="ANG SAYA KO DITOOO KASI TONG MGA GANTO NATIN LAGI TAYONG NAPUNTANGG SM PARA GUMALAA at ubusin pera😭😭 pero atleast ANG SAYA NATINNN MWHEWHEHEHWHHEWHHWEHWHEWHEWHEWHEHWEHWEHWEHWEH">
+        <img src="./images/sm.jpg" data-message="ANG SAYA KO DITOOO KASI TONG MGA GANTO NATIN LAGI TAYONG NAPUNTANGG SM PARA GUMALAA at ubusin pera😭😭 pero atleast ANG SAYA NATINNN MWHEWHEHEHWHHEWHHWEHWHEWHEWHEWHEHWEHWEWHEHWEH">
     </div>
     <div id="p9">
         <img src="./images/billiards.jpg" data-message="EHEYYY FIRST TIME KO NA NAKAINTERACT MAMA MO DITO pinilit mo talaga ako na makipagpic kasama mama mo no🙄🙄 pero okay lang yon sobrang tuwang tuwa naman si mami sobrang tuwa ko rin dito kasi ang saya talaga gumala kasama kayo tapos super late na tayo nakauwi HAHAHHAHAA">
@@ -161,7 +176,7 @@ body::-webkit-scrollbar {
         <img src="./images/1stmeetup.jpg" data-message="eheyyy first meet up yarn HAHHAHAHAHAHAA ang kyot may dala pang inasal naginasal tayo neto ni isse akala AHAHAAHAAHA taposs tinanong din nya saken kung ano nagostohan ku sau mwhewhewhewehwehwhehwhewh first time ko sa inasal pala to noh na kumain ng sisig thankyouuuuu babyyyy napapakain mo na ako ng kung ano ano neto HAHAHAHAHHA nakadaming rice din tayo HAHAHAHAHAAA sulit talaga unli rice e">
     </div>
     <div id="p14">
-        <img src="./images/hbd saimo.jpg" data-message="YIEEEEEEEEEEEEEEEEEEEEEEEEEEEEHIEEEEEEEEEEEEEEEEEEEEEEEEEE NABIGYAN KO SYA NANG MASAYANG BIRTHDAYYYY MWEHWHEWHEHWHEHWEWHEWHE YIEEEEEEEEEEEEEEEEEEEEE MASAYA BIRTHDAY MOOOO? MASAYA? MASAYA? MASAYAA? YIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE mwehwhewhewhhewhe dami kong benegay sau nyan ganda ng gift ko noh tagal ko pinagplanuhan yunnn HAHHAHAAHAAHHAA pero konti lang yung mga nagkatotoo😓 naiinis lang ako sa part na yon pero masaya naman sa part na napuri nila ako sa mga ginawa ko para sayo hehehheeheehehehe tapos napuri mo dinn akooo taposss naketa ko esmayl mu mwhewhehwewhewhewhewhewehwehw tapus nagdate din tau nung gabi nagdinner din tayu sa sm hihihihih first time ko kumain ng ganon tapos lumabas ng gabi puntang sm sucat tapos magdinner with someone yieeeeeee award yan HAHHAHAHHAHAHA data-image="./images/hbd saimo.jpg">
+        <img src="./images/hbd saimo.jpg" data-message="YIEEEEEEEEEEEEEEEEEEEEEEEEEEEEHIEEEEEEEEEEEEEEEEEEEEEEEEEE NABIGYAN KO SYA NANG MASAYANG BIRTHDAYYYY MWEHWHEWHEHWHEHWEWHEWHE YIEEEEEEEEEEEEEEEEEEEEE MASAYA BIRTHDAY MOOOO? MASAYA? MASAYA? MASAYAA? YIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE mwehwhewhewhhewhe dami kong benegay sau nyan ganda ng gift ko noh tagal ko pinagplanuhan yunnn HAHHAHAAHAAHHAA pero konti lang yung mga nagkatotoo😓 naiinis lang ako sa part na yon pero masaya naman sa part na napuri nila ako sa mga ginawa ko para sayo hehehheeheehehehe tapos napuri mo dinn akooo taposss naketa ko esmayl mu mwhewhehwewhewhewhewhewehwehw isa sa pinakafav na pic ko na to mwehwhewhewhehwe ang ganda kasi ng ngiti mo dito kahit sinasabi mo panget hehehehe maganda ikaw dyan gustong gusto ko smile mu dyan hihihiihihihi its giving super natural super happy baby HAHAHAHHAHAHAH" data-image="./images/smileyy.jpg">    
     </div>
     <div id="p15">
         <img src="./images/anlikot.jpg" data-message="AHAHAHAHAHAHAHAHAHA WALA NANG PINAPAGAWA SA ROOM KAYA NAGLANDIAN NALANG KUNG ANO ANO NANGYAYARE DITO BWHAHAHAHAHAHHAAHA sayang naman pinatapon mo sakin ung bulbol mo na nasa wallet ko este buhok heheheheheeh pabunot nga isa dami nangyare dito puro asaran at kung ano ano pa dami mong vid at pics tuloy sakin yieeeeee">
@@ -172,6 +187,10 @@ body::-webkit-scrollbar {
     <div id="p17">
         <img src="./images/boldak.jpg" data-message="HEHEHHEHEEHEEHEHEE LAST GALA NATIN ANG SAYA SAYA ANG SAYA SAYAAAAAAA well hindi masyado masaya lang ako na kasama kita bibigay ko na nga sayo dapat libro mo neto e nasa bag ko na ang laki ng parcel dalawa kasi yung layer ng bubble wrap parang ewan HAHAHAHAHAHA ang panget neto kasi titig ikaw sa mga lalaki sa poster kada subo hmp dmo manlng ako tinitignan pero okay nakasama kita gumala tapos kung ano ano pa pinagsasabi ko kay sarah neto wala po kaming barya dko tlga alam pano ko naganon si sarah at bakit HAHAAHAHAHAHHA">
     </div>
+    <div id="p18">
+        <img src="./images/letter.jpg" data-message="<strong><span style='color:#ffdf00;' >HAPPY 12TH MONTHSARY BABYYYYYY KOOOOOOOO!!!</strong><br><br> hehehehhehe akala mo yun na yon yung kagabi? hindi kayaaa akala mo lang yon pero may pinagpplanuhan din ako dito matagal na😏😏😏 HAHAHAHAHAAHAHAHAHHA o bat ka nangiti? bat ka nangiti? HAHAHAHAHAHAHAHAHA I LOVE YOUUUUUUUUUUUU BABYYYYYYY KOOOOOOOOO thank you kasi lagi mo akong binibigyan ng chance ulit baby ko marupok HAHAHHAHAAHA babawi po talaga ako sa mga nagawa ko noon sorry po talaga thank youuu babyyyy sa lahat lahaaaatt ng libre mo sa pagiintindi mo saakin sa pagtulong sakin sa mga gawain ko thank youuuuuu kasi lahat ng araw ay ginawa mong special para sakin kahit maglakad lang tayo pauwi magkasama ang saya ko sobra HAHAHAHHA dapat nga kahapon pa to e tuwing iniimagine ko talagang ibibigay ko na to sayo nasa mcdo tayo tapos issend ko sayo to sa mcdo sasabihin ko testing mo nga tong code na ginawa ko HAHAHAHAHHA pagkatapos ko kumuha ng gravy nyan antagal siguro natin sa mcdo nyan kasi manonood pa tayo ng movie BWHAHAHAHAHAHA pero okay lang naman siguro sa mcdo pero baka para sa tao sa bahay hindi pero dedma d naman nila ako papagalitan siguro nyan okay lang yan atleast magkasama tayo ngayon yieeeeeeeeeeeeeeeeee tsk nangiti ka nanaman HAHAHAHHAHAHAHA I LOVE YOUUUUUUUUUU BABYYYYYYYYYYY sobrang saya ko sa lahat ng kulitan natin sa room kahit biglaan kang magtatampo ang saya ko sa lahat ng gala natin sobrang saya kasi mas matagal kitang nakakasama mas matagal kitang naaasar superr saya ko din tuwing nakakainteract ko family mooo ang saya sayaa sa inyooooo hehehe dyan nako para araw araw tau cuddlee yieeeeeeeeeee I love you the most babyyyy kooo kahit ano pong mangyari paggalit ako galit lang hindi unlove hinding hinding hindi po kita iiwanan kahit itulak mo pako yayakapin kita nang yayakapin at kiss yieeeeeeee HAHAHAHAHAHAHAHHAHAHA babyyy kooo HAHAHHAHAHAAHHAAH wait kinikilig ako kaagad HAHAHAHHAHAHAHAHAHAHHAHA tingin ka nga sakin hehehehhehehe tapos sabihin mo sakinnn hoy ano yon? o ayan ah may script kana HAHAHAHAHHAHAHA I LOVE YOUUUUUUUUUUUUUUUUUUUUU THEEEEEEEEE MOOOOOOOOOOOOOOOSSSTTT BABYYYYYYYYYYY">
+    </div>
+    
 </div>
 
 <div class="popup" id="popup">
@@ -191,27 +210,27 @@ const popupImg = document.getElementById("popupimg");
 
 images.forEach(img => {
     img.addEventListener("click", () => {
-        popupText.textContent = img.dataset.message;
+        popupText.innerHTML = img.dataset.message;
+
+        // reset
+        popupImg.style.display = "none";
+        popupImg.style.order = "0";
+        popupText.style.order = "0";
 
         if (img.dataset.image) {
             popupImg.src = img.dataset.image;
             popupImg.style.display = "block";
+        }
 
-            popupImg.style.width = "";
-            popupImg.style.height = "";
-
-            if (img.dataset.style) {
-                popupImg.style.cssText += img.dataset.style;
-            }
-
-        } else {
-            popupImg.style.display = "none";
+        // 🔥 ONLY for p18
+        if (img.dataset.layout === "image-bottom") {
+            popupText.style.order = "1";
+            popupImg.style.order = "2";
         }
 
         popup.style.display = "flex";
     });
 });
-
 function resizeGridItems() {
     const grid = document.querySelector(".memories");
     const rowHeight = parseInt(getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
@@ -238,12 +257,11 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", resizeGridItems);
-
 popupImg.addEventListener("click", (e) => {
     e.stopPropagation();
+
     popupImg.classList.toggle("zoomed");
 });
-
 closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
     popupImg.classList.remove("zoomed");
