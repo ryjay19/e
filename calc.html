@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.calculator{
+    width:360px;
+    background:#1c1c1c;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.display{
+    margin-bottom:20px;
+}
+
+#history{
+    height:25px;
+    color:#888;
+    text-align:right;
+    font-size:.9rem;
+    overflow:hidden;
+}
+
+#display{
+    width:100%;
+    height:70px;
+    background:#111;
+    border:none;
+    outline:none;
+    color:white;
+    font-size:2.5rem;
+    text-align:right;
+    padding:10px;
+    border-radius:10px;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+button{
+    height:65px;
+    border:none;
+    border-radius:12px;
+    background:#2d2d2d;
+    color:white;
+    font-size:1.3rem;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    background:#3b3b3b;
+}
+
+button:active{
+    transform:scale(.95);
+}
+
+.operator{
+    background:#ff9500;
+}
+
+.operator:hover{
+    background:#ffac33;
+}
+
+.equals{
+    background:#00b894;
+}
+
+.equals:hover{
+    background:#00d6a8;
+}
+
+#clear{
+    background:#d63031;
+}
+
+#clear:hover{
+    background:#ff5252;
+}
+
+#delete{
+    background:#636e72;
+}
+
+#delete:hover{
+    background:#7f8c8d;
+}
+button.pressed {
+    transform: scale(.95);
+    filter: brightness(1.2);
+}
+</style>
+<body>
+    <div class="calculator">
+
+    <div class="display">
+        <div id="history"></div>
+        <input
+            type="text"
+            id="display"
+            placeholder="0"
+            readonly>
+    </div>
+
+<div class="buttons">
+
+    <button id="clear" data-key="Escape" onclick="clearDisplay()">AC</button>
+    <button id="delete" data-key="Backspace" onclick="deleteLast()">DEL</button>
+    <button id="percent" data-key="%" onclick="percent()">%</button>
+    <button class="operator" data-key="/" onclick="appendOperator('/')">÷</button>
+    <button class="number" data-key="7" onclick="appendNumber('7')">7</button>
+    <button class="number" data-key="8" onclick="appendNumber('8')">8</button>
+    <button class="number" data-key="9" onclick="appendNumber('9')">9</button>
+    <button class="operator" data-key="*" onclick="appendOperator('*')">×</button>
+    <button class="number" data-key="4" onclick="appendNumber('4')">4</button>
+    <button class="number" data-key="5" onclick="appendNumber('5')">5</button>
+    <button class="number" data-key="6" onclick="appendNumber('6')">6</button>
+    <button class="operator" data-key="-" onclick="appendOperator('-')">−</button>
+    <button class="number" data-key="1" onclick="appendNumber('1')">1</button>
+    <button class="number" data-key="2" onclick="appendNumber('2')">2</button>
+    <button class="number" data-key="3" onclick="appendNumber('3')">3</button>
+    <button class="operator" data-key="+" onclick="appendOperator('+')">+</button>
+    <button data-key="F9" onclick="toggleSign()">±</button>
+    <button class="number" data-key="0" onclick="appendNumber('0')">0</button>
+    <button data-key="." onclick="appendDecimal()">.</button>
+    <button data-key="Enter" class="operator equals" onclick="calculate()">=</button>   
+
+</div>
+</div>
+<script>
+    function animateButton(key) {
+    const button = document.querySelector(`[data-key="${key}"]`);
+
+    if (!button) return;
+
+    button.classList.add("pressed");
+
+    setTimeout(() => {
+        button.classList.remove("pressed");
+    }, 100);
+}
+
+document.addEventListener("keydown", function (event) {
+    const key = event.key;
+
+    animateButton(key);
+
+    if (key >= "0" && key <= "9") {
+        appendNumber(key);
+    }
+
+    else if (key === "+" || key === "-" || key === "*" || key === "/") {
+        appendOperator(key);
+    }
+
+    else if (key === ".") {
+        appendDecimal();
+    }
+
+    else if (key === "Enter" || key === "=") {
+        event.preventDefault();
+        calculate();
+    }
+
+    else if (key === "Backspace") {
+        deleteLast();
+    }
+
+    else if (key === "Escape") {
+        clearDisplay();
+    }
+
+    else if (key === "%") {
+        percent();
+    }
+    else if (key === "F9") {
+        event.preventDefault();
+        toggleSign();
+    }
+});
+
+function appendNumber(number) {
+    animateButton(number);
+    document.getElementById("display").value += number;
+}
+
+function appendOperator(operator) {
+    const display = document.getElementById("display");
+    let value = display.value;
+
+    if (value === "") return;
+
+    const lastChar = value[value.length - 1];
+
+    if ("+-*/".includes(lastChar)) {
+        display.value = value.slice(0, -1) + operator;
+    } else {
+        display.value += operator;
+    }
+
+    animateButton(operator);
+}
+
+function appendDecimal() {
+    const display = document.getElementById("display");
+    let value = display.value;
+
+    const lastNumber = value.split(/[+\-*/]/).pop();
+
+    if (lastNumber.includes(".")) return;
+
+    if (value === "" || "+-*/".includes(value.slice(-1))) {
+        display.value += "0.";
+    } else {
+        display.value += ".";
+    }
+
+    animateButton(".");
+}
+
+function clearDisplay() {
+    animateButton("Escape");
+    document.getElementById("display").value = "";
+}
+
+function deleteLast() {
+    animateButton("Backspace");
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
+
+function percent() {
+    animateButton("%");
+
+    const display = document.getElementById("display");
+
+    if (display.value !== "") {
+        display.value = Number(display.value) / 100;
+    }
+}
+
+function toggleSign() {
+    const display = document.getElementById("display");
+
+    if (display.value !== "") {
+        display.value = Number(display.value) * -1;
+    }
+}
+
+function calculate() {
+    animateButton("Enter");
+
+    const display = document.getElementById("display");
+    const history = document.getElementById("history");
+
+    try {
+        const expression = display.value;
+        const result = eval(expression);
+
+        history.textContent = expression + " =";
+        display.value = result;
+
+        if (Number(result) === 143) {
+            playSong();
+        }
+
+    } catch {
+        display.value = "Syntax Error";
+    }
+}
+
+function playSong() {
+        const display = document.getElementById("display");
+
+        const lyrics = [
+            { text: "I'm gonna", delay: 500 },
+            { text: "swallow", delay: 700 },
+            { text: "my pride", delay: 1000 },
+            { text: "Say I'm sorry", delay: 2000 },
+            { text: "Stop pointing", delay: 1000 },
+            { text: "fingers", delay: 1000 },
+            { text: "The blame", delay: 500 },
+            { text: "Is on me", delay: 1500 },
+            { text: "I want a new", delay: 1000 },
+            { text: "life", delay: 700 },
+            { text: "and I want it", delay: 1000 },
+            { text: "with you", delay: 1500 },
+            { text: "If you feel", delay: 1000 },
+            { text: "the same", delay: 1000 },
+            { text: "don't ever let", delay: 1000 },
+            { text: "it go", delay: 1200 },
+            { text: "you gotta believe", delay: 1500 },
+            { text: "in the spirit", delay: 1000 },
+            { text: "of love", delay: 1000 },
+            { text: "It'll heal", delay: 1000 },
+            { text: "all things", delay: 1000 },
+            { text: "it won't hurt", delay: 1000 },
+            { text: "anymore", delay: 1000 }
+        ];
+
+        let white = false;
+
+        const flicker = setInterval(() => {
+            if (white) {
+                display.style.backgroundColor = "white";
+                display.style.color = "black";
+            } else {
+                display.style.backgroundColor = "black";
+                display.style.color = "white";
+            }
+
+            white = !white;
+        }, 100);
+
+        let line = 0;
+
+        function showLine() {
+            if (line >= lyrics.length) {
+                clearInterval(flicker);
+
+                display.style.backgroundColor = "#111";
+                display.style.color = "white";
+                display.value = "";
+
+                return;
+            }
+
+            display.value = lyrics[line].text;
+
+            setTimeout(() => {
+                line++;
+                showLine();
+            }, lyrics[line].delay);
+        }
+
+        showLine();
+    }
+</script>
+</body>
+</html>
