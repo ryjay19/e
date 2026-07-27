@@ -137,7 +137,7 @@ button.pressed {
     <button class="number" data-key="7" onclick="appendNumber('7')">7</button>
     <button class="number" data-key="8" onclick="appendNumber('8')">8</button>
     <button class="number" data-key="9" onclick="appendNumber('9')">9</button>
-    <button class="operator" data-key="" onclick="appendOperator('')">×</button>
+    <button class="operator" data-key="*" onclick="appendOperator('*')">×</button>
     <button class="number" data-key="4" onclick="appendNumber('4')">4</button>
     <button class="number" data-key="5" onclick="appendNumber('5')">5</button>
     <button class="number" data-key="6" onclick="appendNumber('6')">6</button>
@@ -154,9 +154,9 @@ button.pressed {
 </div>
 </div>
 <video id="secretVideo" width="600" style="display:none;" controls>
-    <source src="2+2.mp4" type="video/mp4">
+    <source src="./videos/2+2.mp4" type="video/mp4">
 </video>
-<audio id="song" src="obk.m4a"></audio>
+<audio id="songAudio" src="./audios/obk.mp3"></audio>
 <script>
     function animateButton(key) {
     const button = document.querySelector(`[data-key="${key}"]`);
@@ -298,7 +298,8 @@ function calculate() {
             playSong();
         }
 
-    } catch {
+        }   catch (err) {
+        console.error(err);
         display.value = "Syntax Error";
     }
 }
@@ -399,24 +400,24 @@ function playSong() {
         showLine();
     }
         function playVideo() {
-        const video = document.getElementById("secretVideo");
+            const video = document.getElementById("secretVideo");
 
-        video.style.display = "block";
-        video.currentTime = 0;
-        video.play();
-    }
-        function playVideo() {
-        const video = document.getElementById("secretVideo");
+            video.style.display = "block";
+            video.currentTime = 0;
 
-        video.style.display = "block";
-        video.currentTime = 0;
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            }
 
-        if (video.requestFullscreen) {
-            video.requestFullscreen();
+            video.play();
+
+            video.onended = () => {
+                video.style.display = "none";
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+            };
         }
-
-        video.play();
-    }
 </script>
 </body>
 </html>
