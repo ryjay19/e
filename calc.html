@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
 </head>
 <style>
     *{
@@ -152,6 +153,9 @@ button.pressed {
 
 </div>
 </div>
+<video id="secretVideo" width="600" style="display:none;" controls>
+    <source src="./videos/2+2.mp4" type="video/mp4">
+</video>
 <script>
     function animateButton(key) {
     const button = document.querySelector(`[data-key="${key}"]`);
@@ -285,6 +289,10 @@ function calculate() {
         history.textContent = expression + " =";
         display.value = result;
 
+        if (expression === "2+2") {
+            playVideo();
+        }
+
         if (Number(result) === 143) {
             playSong();
         }
@@ -359,6 +367,25 @@ function playSong() {
         }
 
         showLine();
+    }
+        function playVideo() {
+        const video = document.getElementById("secretVideo");
+
+        video.style.display = "block";
+        video.currentTime = 0;
+        video.play();
+    }
+        function playVideo() {
+        const video = document.getElementById("secretVideo");
+
+        video.style.display = "block";
+        video.currentTime = 0;
+
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        }
+
+        video.play();
     }
 </script>
 </body>
