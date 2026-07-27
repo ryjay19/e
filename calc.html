@@ -137,7 +137,7 @@ button.pressed {
     <button class="number" data-key="7" onclick="appendNumber('7')">7</button>
     <button class="number" data-key="8" onclick="appendNumber('8')">8</button>
     <button class="number" data-key="9" onclick="appendNumber('9')">9</button>
-    <button class="operator" data-key="*" onclick="appendOperator('*')">×</button>
+    <button class="operator" data-key="" onclick="appendOperator('')">×</button>
     <button class="number" data-key="4" onclick="appendNumber('4')">4</button>
     <button class="number" data-key="5" onclick="appendNumber('5')">5</button>
     <button class="number" data-key="6" onclick="appendNumber('6')">6</button>
@@ -154,8 +154,9 @@ button.pressed {
 </div>
 </div>
 <video id="secretVideo" width="600" style="display:none;" controls>
-    <source src="./videos/2+2.mp4" type="video/mp4">
+    <source src="2+2.mp4" type="video/mp4">
 </video>
+<audio id="song" src="obk.m4a"></audio>
 <script>
     function animateButton(key) {
     const button = document.querySelector(`[data-key="${key}"]`);
@@ -303,55 +304,59 @@ function calculate() {
 }
 
 function playSong() {
-        const display = document.getElementById("display");
+            const display = document.getElementById("display");
 
-        const lyrics = [
-            { text: "YEEEEEAAAAH", delay: 2700 },
-            { text: "I'm gonna", delay: 600 },
-            { text: "swallow", delay: 700 },
+            const audio = document.getElementById("songAudio");
+            audio.currentTime = 0;
+            audio.play();
+
+            const lyrics = [
+            { text: "YEEEEEAAAAH", delay: 2800 },
+            { text: "I'm gonna", delay: 650 },
+            { text: "swallow", delay: 750 },
             { text: "my pride", delay: 1000 },
             { text: "Say I'm sorry", delay: 2000 },
             { text: "Stop pointing", delay: 1000 },
             { text: "fingers", delay: 1000 },
             { text: "The blame", delay: 500 },
-            { text: "is on me", delay: 1500 },
+            { text: "is on me", delay: 1550 },
             { text: "I want a new", delay: 1000 },
-            { text: "life", delay: 700 },
-            { text: "and I want it", delay: 1000 },
-            { text: "with you", delay: 1500 },
-            { text: "If you feel", delay: 1000 },
-            { text: "the same", delay: 1000 },
+            { text: "life", delay: 1000 },
+            { text: "and I want it", delay: 1150 },
+            { text: "with you", delay: 950 },
+            { text: "If you feel", delay: 950 },
+            { text: "the same", delay: 1400 },
             { text: "don't ever let", delay: 1000 },
             { text: "it go", delay: 1200 },
             { text: "you gotta believe", delay: 1500 },
             { text: "in the spirit", delay: 1000 },
-            { text: "of love", delay: 1000 },
-            { text: "It'll heal", delay: 1000 },
-            { text: "all things", delay: 1000 },
+            { text: "of love", delay: 1400 },
+            { text: "It'll heal", delay: 900 },
+            { text: "all things", delay: 1100 },
             { text: "it won't hurt", delay: 1000 },
-            { text: "anymore", delay: 1200 },
-            { text: "So I don't", delay: 1000 },
+            { text: "anymore", delay: 1000 },
+            { text: "No I don't", delay: 1100 },
             { text: "believe", delay: 900 },
             { text: "our love's ", delay: 800 },
             { text: "terminal", delay: 1200 },
             { text: "I'm down", delay: 900 },
             { text: "on my knees", delay: 1300 },
-            { text: "begging you", delay: 1200 },
-            { text: "please", delay: 800 },
-            { text: "Can we", delay: 1000 },
-            { text: "go back", delay: 800 },
+            { text: "begging you", delay: 1000 },
+            { text: "please", delay: 500 },
+            { text: "Can we", delay: 950 },
+            { text: "go back", delay: 750 },
             { text: "to the days", delay: 800 },
             { text: "our love", delay: 1000 },
-            { text: "was strong?", delay: 1000 },
+            { text: "was strong?", delay: 1500 },
             { text: "Can we", delay: 600 },
             { text: "come back", delay: 600 },
             { text: "for you", delay: 600 },
             { text: "I just wanna", delay: 700 },
             { text: "come back", delay: 700 },
-            { text: "for you", delay: 600 },
+            { text: "for you", delay: 650 },
             { text: "Can you tell me", delay: 900 },
             { text: "TELL me", delay: 600 },
-            { text: "how a", delay: 1200 },
+            { text: "how a", delay: 1500 },
             { text: "PERFECT LOVE", delay: 800 },
             { text: "goes wrong?", delay: 3100 },
         ];
