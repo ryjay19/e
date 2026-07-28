@@ -115,6 +115,19 @@ button.pressed {
     transform: scale(.95);
     filter: brightness(1.2);
 }
+#sixseven{
+    display: none;
+}
+video {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    max-width: 90vw;
+    z-index: 9999;
+}
 </style>
 <body>
     <div class="calculator">
@@ -153,10 +166,13 @@ button.pressed {
 
 </div>
 </div>
+<div>
 <video id="secretVideo" width="600" style="display:none;" controls>
     <source src="./videos/2+2.mp4" type="video/mp4">
 </video>
 <audio id="songAudio" src="./audios/obk.mp3"></audio>
+<video id="sixseven" src="./videos/2+2.mp4"></video>
+</div>
 <script>
     function animateButton(key) {
     const button = document.querySelector(`[data-key="${key}"]`);
@@ -289,6 +305,25 @@ function calculate() {
 
         history.textContent = expression + " =";
         display.value = result;
+        
+        if (expression === "1+1") {
+            history.textContent = expression + " =";
+            display.value = "I miss you";
+            return;
+        }
+
+        if (expression === "6+9") {
+            display.value = "nice";
+        }
+
+        if (result === 69) {
+            display.value = "nice";
+        }
+
+        if (Number(result) === 67 || expression === "6+7") {
+            display.value = "67"
+            play67();
+        }
 
         if (expression === "2+2") {
             playVideo();
@@ -412,7 +447,25 @@ function playSong() {
             video.play();
 
             video.onended = () => {
-                video.style.display = "none";
+            video.style.display = "none";
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+            };
+        }
+        function play67() {
+            const sixseven = document.getElementById("sixseven");
+
+            sixseven.style.display = "block";
+            sixseven.currentTime = 0;
+
+            if (sixseven.requestFullscreen) {
+                sixseven.requestFullscreen();
+            }
+            sixseven.play();
+
+            sixseven.onended = () => {
+            sixseven.style.display = "none";
                 if (document.fullscreenElement) {
                     document.exitFullscreen();
                 }
