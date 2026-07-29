@@ -172,6 +172,7 @@ video {
 </video>
 <audio id="songAudio" src="./audios/obk.mp3"></audio>
 <video id="sixseven" src="./videos/2+2.mp4"></video>
+<audio id="song2" src="./audios/obk.mp3"></audio>
 </div>
 <script>
     function animateButton(key) {
@@ -312,6 +313,11 @@ function calculate() {
             return;
         }
 
+        if (expression === "1+0"){
+            playSong2();
+        }
+
+
         if (expression === "6+9") {
             display.value = "nice";
         }
@@ -430,6 +436,101 @@ function playSong() {
                 line++;
                 showLine();
             }, lyrics[line].delay);
+        }
+
+        showLine();
+    }
+function playSong2() {
+            const display = document.getElementById("display");
+
+            const missu = document.getElementById("song2");
+            missu.currentTime = 0;
+            missu.play();
+
+            const lyrics2 = [
+            { text: "YEEEEEAAAAH", delay: 2800 },
+            { text: "I'm gonna", delay: 800 },
+            { text: "swallow", delay: 750 },
+            { text: "my pride", delay: 1000 },
+            { text: "Say I'm sorry", delay: 2000 },
+            { text: "Stop pointing", delay: 1000 },
+            { text: "fingers", delay: 1000 },
+            { text: "The blame", delay: 500 },
+            { text: "is on me", delay: 1550 },
+            { text: "I want a new", delay: 1000 },
+            { text: "life", delay: 1000 },
+            { text: "and I want it", delay: 1150 },
+            { text: "with you", delay: 950 },
+            { text: "If you feel", delay: 950 },
+            { text: "the same", delay: 1400 },
+            { text: "don't ever let", delay: 1000 },
+            { text: "it go", delay: 1200 },
+            { text: "you gotta believe", delay: 1500 },
+            { text: "in the spirit", delay: 1000 },
+            { text: "of love", delay: 1400 },
+            { text: "It'll heal", delay: 900 },
+            { text: "all things", delay: 1100 },
+            { text: "it won't hurt", delay: 1000 },
+            { text: "anymore", delay: 1000 },
+            { text: "No I don't", delay: 1100 },
+            { text: "believe", delay: 900 },
+            { text: "our love's ", delay: 800 },
+            { text: "terminal", delay: 1200 },
+            { text: "I'm down", delay: 900 },
+            { text: "on my knees", delay: 1300 },
+            { text: "begging you", delay: 1000 },
+            { text: "please", delay: 500 },
+            { text: "Can we", delay: 950 },
+            { text: "go back", delay: 750 },
+            { text: "to the days", delay: 800 },
+            { text: "our love", delay: 1000 },
+            { text: "was strong?", delay: 1500 },
+            { text: "Can we", delay: 600 },
+            { text: "come back", delay: 600 },
+            { text: "for you", delay: 600 },
+            { text: "I just wanna", delay: 700 },
+            { text: "come back", delay: 700 },
+            { text: "for you", delay: 650 },
+            { text: "Can you tell me", delay: 900 },
+            { text: "TELL me", delay: 600 },
+            { text: "how a", delay: 1500 },
+            { text: "PERFECT LOVE", delay: 800 },
+            { text: "goes wrong?", delay: 3100 },
+        ];
+
+        let white = false;
+
+        const flicker = setInterval(() => {
+            if (white) {
+                display.style.backgroundColor = "white";
+                display.style.color = "black";
+            } else {
+                display.style.backgroundColor = "black";
+                display.style.color = "white";
+            }
+
+            white = !white;
+        }, 100);
+
+        let line = 0;
+
+        function showLine() {
+            if (line >= lyrics2.length) {
+                clearInterval(flicker);
+
+                display.style.backgroundColor = "#111";
+                display.style.color = "white";
+                display.value = "";
+
+                return;
+            }
+
+            display.value = lyrics2[line].text;
+
+            setTimeout(() => {
+                line++;
+                showLine();
+            }, lyrics2[line].delay);
         }
 
         showLine();
