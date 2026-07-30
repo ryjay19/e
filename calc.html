@@ -149,7 +149,7 @@ body.splitFlashReverse {
 }
 #display.lyrics {
     text-align:center;
-    font-size:2rem;
+    font-size:2.7rem;
 }
 #display.lyrics2 {
     text-align:center;
@@ -199,11 +199,11 @@ body.splitFlashReverse {
 </div>
 <div>
 <video id="secretVideo" width="600" style="display:none;" controls>
-    <source src="2+2.mp4" type="video/mp4">
+    <source src="./videos/2+2.mp4" type="video/mp4">
 </video>
-<audio id="songAudio" src="obk.mp3"></audio>
-<audio id="sixseven" src="sixseven.mp3"></audio>
-<audio id="song2" src="missu.mp3"></audio>
+<audio id="songAudio" src="./audios/obk.mp3"></audio>
+<audio id="sixseven" src="./audios/sixseven.mp3"></audio>
+<audio id="song2" src="./audios/missu.mp3"></audio>
 </div>
 <script>
     
@@ -505,44 +505,25 @@ function playSong2() {
         { text: "I", delay: 9800 },
         { text: "I have built", delay: 1550 },
         { text: "a house", delay: 1200 },
-        { text: "where I wait", delay: 800 },
-        { text: "for your", delay: 650 },
+        { text: "where I wait", delay: 1060 },
+        { text: "for your", delay: 900 },
         { text: "return", delay: 1900 },
-        { text: "I only want", delay: 1300 },
-        { text: "you to be", delay: 1300 },
-        { text: "mine", delay: 1000 },
-        { text: "and not a", delay: 1200 },
+        { text: "I only want you", delay: 1200 },
+        { text: "to be", delay: 1100 },
+        { text: "mine", delay: 1050 },
+        { text: "and not a", delay: 1100 },
         { text: "lesson learned", delay: 1500 },
-        { text: "And I will wait", delay: 1000 },
-        { text: "and wait", delay: 1000 },
-        { text: "and wait", delay: 1000 },
+        { text: "And I will wait", delay: 1550 },
+        { text: "and wait", delay: 1050 },
+        { text: "and wait", delay: 1100 },
         { text: "until this city", delay: 1200 },
-        { text: "BURNS", delay: 1000 },
-        { text: "anymore", delay: 1000 },
-        { text: "No I don't", delay: 1100 },
-        { text: "believe", delay: 900 },
-        { text: "our love's", delay: 800 },
-        { text: "terminal", delay: 1200 },
-        { text: "I'm down", delay: 900 },
-        { text: "on my knees", delay: 1300 },
-        { text: "begging you", delay: 1000 },
-        { text: "please", delay: 500 },
-        { text: "Can we", delay: 950 },
-        { text: "go back", delay: 750 },
-        { text: "to the days", delay: 800 },
-        { text: "our love", delay: 1000 },
-        { text: "was strong?", delay: 1500 },
-        { text: "Can we", delay: 600 },
-        { text: "come back", delay: 600 },
-        { text: "for you", delay: 600 },
-        { text: "I just wanna", delay: 700 },
-        { text: "come back", delay: 700 },
-        { text: "for you", delay: 650 },
-        { text: "Can you tell me", delay: 900 },
-        { text: "TELL me", delay: 600 },
-        { text: "how a", delay: 1500 },
-        { text: "PERFECT LOVE", delay: 800 },
-        { text: "goes wrong?", delay: 3100 }
+        { text: "BURNS", delay: 1300 },
+        { text: "I will wait", delay: 1150 },
+        { text: "and wait", delay: 1250 },
+        { text: "and wait", delay: 1200 },
+        { text: "and live on", delay: 1000 },
+        { text: "what we were...", delay: 5000 },
+        
     ];
 
 
@@ -664,26 +645,46 @@ function stopSplitFlash() {
         }
         if (line === 16) {
            stopSplitFlash();
-            display.classList.add("lyrics1");
-            display.classList.remove("lyrics", "lyrics2", "lyrics3");
+            display.classList.add("lyrics");
+            display.classList.remove( "lyrics2", "lyrics3");
         }
         if (line === 17) {
             startSplitFlash(20);
             display.classList.add("lyrics2");
         }
         if (line === 18) {
-            startSplitFlash(20);
+            startSplitFlash(10);
             display.classList.add("lyrics3");
         }
         if (line === 19) {
-            startSplitFlash(20);
-            display.classList.add("lyrics2");
-            display.classList.remove("lyrics","lyrics3");
+            startSplitFlash(5);
+            display.classList.add("lyrics");
+            display.classList.remove("lyrics2","lyrics3");
 
         }
         if (line === 20) {
-            startSplitFlash(20);
+            startSplitFlash(5);
             display.classList.add("lyrics3");
+        }
+        if (line === 21) {
+            startSplitFlash(5);
+            display.classList.add("lyrics");
+            display.classList.remove("lyrics2","lyrics3");
+        }
+        if (line === 22) {
+            startSplitFlash(5);
+            display.classList.add("lyrics2");
+            display.classList.remove("lyrics","lyrics3");
+        }
+        if (line === 23) {
+            startSplitFlash(5);
+            display.classList.add("lyrics3");
+            display.classList.remove("lyrics2","lyrics");
+        }
+        if (line === 24) {
+            stopSplitFlash();
+            display.classList.remove("lyrics", "lyrics2","lyrics3");
+
         }
 
 
@@ -734,4 +735,4 @@ function stopSplitFlash() {
 }
 </script>
 </body>
-</html>v
+</html>
