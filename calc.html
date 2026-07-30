@@ -128,6 +128,37 @@ video {
     max-width: 90vw;
     z-index: 9999;
 }
+body.splitFlash {
+    background: linear-gradient(
+        to bottom,
+        white 0%,
+        white 50%,
+        black 50%,
+        black 100%
+    ) !important;
+}
+
+body.splitFlashReverse {
+    background: linear-gradient(
+        to bottom,
+        black 0%,
+        black 50%,
+        white 50%,
+        white 100%
+    ) !important;
+}
+#display.lyrics {
+    text-align:center;
+    font-size:2rem;
+}
+#display.lyrics2 {
+    text-align:center;
+    font-size:3.5rem;
+}
+#display.lyrics3 {
+    text-align:center;
+    font-size:5rem;
+}
 </style>
 <body>
     <div class="calculator">
@@ -162,19 +193,20 @@ video {
     <button data-key="F9" onclick="toggleSign()">±</button>
     <button class="number" data-key="0" onclick="appendNumber('0')">0</button>
     <button data-key="." onclick="appendDecimal()">.</button>
-    <button data-key="Enter" class="operator equals" onclick="calculate()">=</button>   
+    <button data-key="Enter"  class="operator equals" onclick="calculate()">=</button>   
 
 </div>
 </div>
 <div>
 <video id="secretVideo" width="600" style="display:none;" controls>
-    <source src="./videos/2+2.mp4" type="video/mp4">
+    <source src="2+2.mp4" type="video/mp4">
 </video>
-<audio id="songAudio" src="./audios/obk.mp3"></audio>
-<video id="sixseven" src="./videos/2+2.mp4"></video>
-<audio id="song2" src="./audios/obk.mp3"></audio>
+<audio id="songAudio" src="obk.mp3"></audio>
+<audio id="sixseven" src="sixseven.mp3"></audio>
+<audio id="song2" src="missu.mp3"></audio>
 </div>
 <script>
+    
     function animateButton(key) {
     const button = document.querySelector(`[data-key="${key}"]`);
 
@@ -338,7 +370,7 @@ function calculate() {
         if (Number(result) === 143) {
             playSong();
         }
-
+        
         }   catch (err) {
         console.error(err);
         display.value = "Syntax Error";
@@ -351,7 +383,7 @@ function playSong() {
             const audio = document.getElementById("songAudio");
             audio.currentTime = 0;
             audio.play();
-
+            
             const lyrics = [
             { text: "YEEEEEAAAAH", delay: 2800 },
             { text: "I'm gonna", delay: 950 },
@@ -360,7 +392,7 @@ function playSong() {
             { text: "Say I'm sorry", delay: 2000 },
             { text: "Stop pointing", delay: 1000 },
             { text: "fingers", delay: 1000 },
-            { text: "The blame", delay: 500 },
+            { text: "The blame", delay: 600 },
             { text: "is on me", delay: 1550 },
             { text: "I want a new", delay: 1000 },
             { text: "life", delay: 1000 },
@@ -396,7 +428,7 @@ function playSong() {
             { text: "I just wanna", delay: 700 },
             { text: "come back", delay: 700 },
             { text: "for you", delay: 650 },
-            { text: "Can you tell me", delay: 900 },
+            { text: "Can you tell me", delay: 1000 },
             { text: "TELL me", delay: 600 },
             { text: "how a", delay: 1500 },
             { text: "PERFECT LOVE", delay: 800 },
@@ -441,100 +473,229 @@ function playSong() {
         showLine();
     }
 function playSong2() {
-            const display = document.getElementById("display");
+    const display = document.getElementById("display");
+    const missu = document.getElementById("song2");
 
-            const missu = document.getElementById("song2");
-            missu.currentTime = 0;
-            missu.play();
 
-            const lyrics2 = [
-            { text: "YEEEEEAAAAH", delay: 2800 },
-            { text: "I'm gonna", delay: 800 },
-            { text: "swallow", delay: 750 },
-            { text: "my pride", delay: 1000 },
-            { text: "Say I'm sorry", delay: 2000 },
-            { text: "Stop pointing", delay: 1000 },
-            { text: "fingers", delay: 1000 },
-            { text: "The blame", delay: 500 },
-            { text: "is on me", delay: 1550 },
-            { text: "I want a new", delay: 1000 },
-            { text: "life", delay: 1000 },
-            { text: "and I want it", delay: 1150 },
-            { text: "with you", delay: 950 },
-            { text: "If you feel", delay: 950 },
-            { text: "the same", delay: 1400 },
-            { text: "don't ever let", delay: 1000 },
-            { text: "it go", delay: 1200 },
-            { text: "you gotta believe", delay: 1500 },
-            { text: "in the spirit", delay: 1000 },
-            { text: "of love", delay: 1400 },
-            { text: "It'll heal", delay: 900 },
-            { text: "all things", delay: 1100 },
-            { text: "it won't hurt", delay: 1000 },
-            { text: "anymore", delay: 1000 },
-            { text: "No I don't", delay: 1100 },
-            { text: "believe", delay: 900 },
-            { text: "our love's ", delay: 800 },
-            { text: "terminal", delay: 1200 },
-            { text: "I'm down", delay: 900 },
-            { text: "on my knees", delay: 1300 },
-            { text: "begging you", delay: 1000 },
-            { text: "please", delay: 500 },
-            { text: "Can we", delay: 950 },
-            { text: "go back", delay: 750 },
-            { text: "to the days", delay: 800 },
-            { text: "our love", delay: 1000 },
-            { text: "was strong?", delay: 1500 },
-            { text: "Can we", delay: 600 },
-            { text: "come back", delay: 600 },
-            { text: "for you", delay: 600 },
-            { text: "I just wanna", delay: 700 },
-            { text: "come back", delay: 700 },
-            { text: "for you", delay: 650 },
-            { text: "Can you tell me", delay: 900 },
-            { text: "TELL me", delay: 600 },
-            { text: "how a", delay: 1500 },
-            { text: "PERFECT LOVE", delay: 800 },
-            { text: "goes wrong?", delay: 3100 },
-        ];
+    missu.pause();
+    missu.currentTime = 115;
 
-        let white = false;
+    missu.ontimeupdate = () => {
+        if (missu.currentTime >= 175) {
+            missu.pause();
+            missu.currentTime = 117;
+            missu.ontimeupdate = null;
+        }
+    };
 
-        const flicker = setInterval(() => {
-            if (white) {
-                display.style.backgroundColor = "white";
-                display.style.color = "black";
-            } else {
-                display.style.backgroundColor = "black";
-                display.style.color = "white";
-            }
+    missu.play().catch(err => {
+        console.log("Audio error:", err);
+    });
 
-            white = !white;
-        }, 100);
 
-        let line = 0;
 
-        function showLine() {
-            if (line >= lyrics2.length) {
-                clearInterval(flicker);
 
-                display.style.backgroundColor = "#111";
-                display.style.color = "white";
-                display.value = "";
 
-                return;
-            }
+    const lyrics2 = [
+        { text: "", delay: 4300 },
+        { text: "Where do I go", delay: 1300 },
+        { text: "from here?", delay: 2800 },
+        { text: "I", delay: 3700},
+        { text: "I", delay: 10000 },
+        { text: "I", delay: 9800 },
+        { text: "I have built", delay: 1550 },
+        { text: "a house", delay: 1200 },
+        { text: "where I wait", delay: 800 },
+        { text: "for your", delay: 650 },
+        { text: "return", delay: 1900 },
+        { text: "I only want", delay: 1300 },
+        { text: "you to be", delay: 1300 },
+        { text: "mine", delay: 1000 },
+        { text: "and not a", delay: 1200 },
+        { text: "lesson learned", delay: 1500 },
+        { text: "And I will wait", delay: 1000 },
+        { text: "and wait", delay: 1000 },
+        { text: "and wait", delay: 1000 },
+        { text: "until this city", delay: 1200 },
+        { text: "BURNS", delay: 1000 },
+        { text: "anymore", delay: 1000 },
+        { text: "No I don't", delay: 1100 },
+        { text: "believe", delay: 900 },
+        { text: "our love's", delay: 800 },
+        { text: "terminal", delay: 1200 },
+        { text: "I'm down", delay: 900 },
+        { text: "on my knees", delay: 1300 },
+        { text: "begging you", delay: 1000 },
+        { text: "please", delay: 500 },
+        { text: "Can we", delay: 950 },
+        { text: "go back", delay: 750 },
+        { text: "to the days", delay: 800 },
+        { text: "our love", delay: 1000 },
+        { text: "was strong?", delay: 1500 },
+        { text: "Can we", delay: 600 },
+        { text: "come back", delay: 600 },
+        { text: "for you", delay: 600 },
+        { text: "I just wanna", delay: 700 },
+        { text: "come back", delay: 700 },
+        { text: "for you", delay: 650 },
+        { text: "Can you tell me", delay: 900 },
+        { text: "TELL me", delay: 600 },
+        { text: "how a", delay: 1500 },
+        { text: "PERFECT LOVE", delay: 800 },
+        { text: "goes wrong?", delay: 3100 }
+    ];
 
-            display.value = lyrics2[line].text;
 
-            setTimeout(() => {
-                line++;
-                showLine();
-            }, lyrics2[line].delay);
+    let white = false;
+
+    const flicker = setInterval(() => {
+        if (white) {
+            display.style.backgroundColor = "white";
+            display.style.color = "black";
+        } else {
+            display.style.backgroundColor = "black";
+            display.style.color = "white";
         }
 
-        showLine();
+        white = !white;
+
+    }, 100);
+
+
+    let splitInterval = null;
+
+function startSplitFlash(speed = 100) {
+
+    stopSplitFlash(); 
+
+    let flipped = false;
+
+    splitInterval = setInterval(() => {
+
+        if (flipped) {
+            document.body.classList.add("splitFlash");
+            document.body.classList.remove("splitFlashReverse");
+        } else {
+            document.body.classList.add("splitFlashReverse");
+            document.body.classList.remove("splitFlash");
+        }
+
+        flipped = !flipped;
+
+    }, speed);
+}
+
+function stopSplitFlash() {
+    clearInterval(splitInterval);
+    splitInterval = null;
+
+    document.body.classList.remove("splitFlash");
+    document.body.classList.remove("splitFlashReverse");
+
+    document.body.style.background = "#111";
+}
+
+    let line = 0;
+
+    function showLine() {
+
+        if (line >= lyrics2.length) {
+            
+            clearInterval(flicker);
+            stopSplitFlash();
+            
+            display.style.backgroundColor = "#111";
+            display.style.color = "white";
+            display.value = "";
+
+            return;
+        }
+
+        display.value = lyrics2[line].text;
+
+
+        if (lyrics2[line].text === "from here?") {
+            startSplitFlash();
+            display.classList.add("lyrics");
+        }
+        if (line === 3) {
+            startSplitFlash(40);
+            display.classList.add("lyrics");
+        }
+        if (line === 4) {
+            startSplitFlash(25);
+            display.classList.add("lyrics2");
+        }
+        if (line === 5) {
+            startSplitFlash(5);
+            display.classList.add("lyrics3");
+        }
+        if (line === 6) {
+            stopSplitFlash();
+            display.classList.remove("lyrics", "lyrics2", "lyrics3");
+        }
+        if (line === 7) {
+            startSplitFlash(40);
+            display.classList.add("lyrics2");
+        }
+        if (line === 8) {
+            stopSplitFlash();
+            display.classList.remove("lyrics", "lyrics2", "lyrics3");
+        }
+        if (line === 10) {
+            startSplitFlash(20);
+            display.classList.add("lyrics2");
+        }
+        if (line === 11) {
+            stopSplitFlash();
+            display.classList.remove("lyrics", "lyrics2", "lyrics3");
+        }
+        if (line === 13) {
+            startSplitFlash(20);
+            display.classList.add("lyrics2");
+        }
+        if (line === 14) {
+           stopSplitFlash();
+            display.classList.remove("lyrics", "lyrics2", "lyrics3");
+        }
+        if (line === 15) {
+            startSplitFlash(20);
+            display.classList.add("lyrics");
+        }
+        if (line === 16) {
+           stopSplitFlash();
+            display.classList.add("lyrics1");
+            display.classList.remove("lyrics", "lyrics2", "lyrics3");
+        }
+        if (line === 17) {
+            startSplitFlash(20);
+            display.classList.add("lyrics2");
+        }
+        if (line === 18) {
+            startSplitFlash(20);
+            display.classList.add("lyrics3");
+        }
+        if (line === 19) {
+            startSplitFlash(20);
+            display.classList.add("lyrics2");
+            display.classList.remove("lyrics","lyrics3");
+
+        }
+        if (line === 20) {
+            startSplitFlash(20);
+            display.classList.add("lyrics3");
+        }
+
+
+
+        setTimeout(() => {
+            line++;
+            showLine();
+        }, lyrics2[line].delay);
     }
+
+    showLine();
+}
         function playVideo() {
             const video = document.getElementById("secretVideo");
 
@@ -554,24 +715,23 @@ function playSong2() {
                 }
             };
         }
-        function play67() {
-            const sixseven = document.getElementById("sixseven");
+            function play67() {
+        const sixseven = document.getElementById("sixseven");
 
-            sixseven.style.display = "block";
-            sixseven.currentTime = 0;
+        sixseven.currentTime = 0;
 
-            if (sixseven.requestFullscreen) {
-                sixseven.requestFullscreen();
+        function stop() {
+            if (sixseven.currentTime >= 29) {
+                sixseven.pause();
+                sixseven.currentTime = 0;
+                sixseven.removeEventListener("timeupdate", stop);
             }
-            sixseven.play();
-
-            sixseven.onended = () => {
-            sixseven.style.display = "none";
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
-                }
-            };
         }
+
+        sixseven.addEventListener("timeupdate", stop);
+
+        sixseven.play();
+}
 </script>
 </body>
-</html>
+</html>v
