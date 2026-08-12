@@ -1,133 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+
+    <meta charset="UTF-9">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png">
 
     <title>૮・ﻌ・ა To-do List</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f7;
-            min-height: 100vh;
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff8d6;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px 10px;
+        overflow-Y: hidden;
+    }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .todo-container {
+        background: #fffdf0;
+        width: 300px;
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(180, 140, 0, 0.15);
+    }
 
-        .todo-container {
-            background: white;
-            width: 90%;
-            max-width: 500px;
+    h1 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 24px;
+        color: #6b5200;
+    }
 
-            padding: 30px;
-            border-radius: 15px;
+    .inputarea {
+        display: flex;
+        gap: 7px;
+    }
 
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
+    input {
+        flex: 1;
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        min-width: 0;
+        padding: 9px;
 
-        .inputarea {
-            display: flex;
-            gap: 10px;
-        }
+        border: 1px solid #e5c84b;
+        border-radius: 7px;
 
-        input {
-            flex: 1;
+        font-size: 14px;
+        background: white;
+    }
 
-            padding: 12px;
+    input:focus {
+        outline: none;
+        border-color: #e0b800;
+    }
 
-            border: 1px solid #ccc;
-            border-radius: 8px;
+    #add {
+        padding: 9px 13px;
 
-            font-size: 16px;
-        }
+        border: none;
+        border-radius: 7px;
 
-        #add {
-            padding: 12px 18px;
+        background: #f2c94c;
+        color: #5c4600;
 
-            border: none;
-            border-radius: 8px;
+        cursor: pointer;
 
-            background: #007bff;
-            color: white;
+        font-size: 14px;
+        font-weight: bold;
 
-            cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    #add:hover {
+        background: #e8b92e;
+    }
 
-        #add:hover {
-            background: #005cbe;
-        }
+    #add:active,
+    #add.active {
+        background: #d6a600;
+        transform: translateY(2px);
+    }
 
-        #add:active {
-            background: #004998;
-            transform: translateY(3px);
-        }
+    ul {
+        list-style: none;
+        margin-top: 15px;
+    }
 
-        ul {
-            list-style: none;
-            margin-top: 20px;
-        }
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-        li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        gap: 8px;
 
-            padding: 12px;
-            margin-bottom: 10px;
+        padding: 9px;
+        margin-bottom: 7px;
 
-            background: #f8f9fa;
+        background: #fff8cf;
 
-            border-radius: 8px;
-        }
+        border: 1px solid #f0d66a;
+        border-radius: 7px;
 
-        .task-text {
-            cursor: pointer;
-        }
+        font-size: 14px;
+    }
 
-        .completed {
-            text-decoration: line-through;
-            color: #888;
-        }
+    .task-text {
+        cursor: pointer;
+        color: #5c4a00;
+        overflow-wrap: anywhere;
+    }
 
-        .del {
-            padding: 8px 12px;
+    .completed {
+        text-decoration: line-through;
+        color: #a99b63;
+    }
 
-            border: none;
-            border-radius: 6px;
+    .del {
+        flex-shrink: 0;
+        padding: 6px 9px;
+        border: none;
+        border-radius: 5px;
+        background: #e6b800;
+        color: white;
+        cursor: pointer;
+        font-size: 12px;
+    }
 
-            background: #dc3545;
-            color: white;
+    .del:hover {
+        background: #c99f00;
+    }
 
-            cursor: pointer;
-        }
-
-        .del:hover {
-            background: #a71d2a;
-        }
-
-        .del:active {
-            background: #8f1823;
-            transform: translateY(3px);
-        }
-
-    </style>
+    .del:active {
+        background: #aa8500;
+        transform: translateY(2px);
+    }
+    #purin{
+        display: flex;
+        justify-self: end;
+    }
+</style>
 </head>
 <body>
 <div>
@@ -148,6 +168,7 @@
             </div>
             <ul id="tl"></ul>
         </div>
+        <img id="purin" src="https://i.pinimg.com/originals/4b/14/51/4b1451b3c38b5ce96071be02c58d90cb.png">
     </div>
 </div>
     <script>
@@ -212,7 +233,6 @@
         }
 
         function addTask() {
-
             const text = ti.value.trim();
             if (text === "") {
                 return;
@@ -232,6 +252,12 @@
         ti.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
                 addTask();
+
+                add.classList.add("active");
+
+                setTimeout(() => {
+                    add.classList.remove("active");
+                }, 150);
             }
         });
 
