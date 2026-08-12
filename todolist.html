@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png">
+
+    <title>૮・ﻌ・ა To-do List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .todo-container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+
+            padding: 30px;
+            border-radius: 15px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .inputarea {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 8px;
+
+            font-size: 16px;
+        }
+
+        #add {
+            padding: 12px 18px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #007bff;
+            color: white;
+
+            cursor: pointer;
+
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #add:hover {
+            background: #005cbe;
+        }
+
+        #add:active {
+            background: #004998;
+            transform: translateY(3px);
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 12px;
+            margin-bottom: 10px;
+
+            background: #f8f9fa;
+
+            border-radius: 8px;
+        }
+
+        .task-text {
+            cursor: pointer;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .del {
+            padding: 8px 12px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: #dc3545;
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .del:hover {
+            background: #a71d2a;
+        }
+
+        .del:active {
+            background: #8f1823;
+            transform: translateY(3px);
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div id="todo">
+        <div class="todo-container">
+
+            <h1>My To-Do List</h1>
+
+            <div class="inputarea">
+
+                <input
+                    type="text"
+                    id="ti"
+                    placeholder="Enter a task..."
+                    >
+
+                <button id="add">Add</button>
+            </div>
+            <ul id="tl"></ul>
+        </div>
+    </div>
+</div>
+    <script>
+        const ti = document.getElementById("ti");
+        const add = document.getElementById("add");
+        const tl = document.getElementById("tl");
+
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        function save() {
+
+            localStorage.setItem(
+                "tasks",
+                JSON.stringify(tasks)
+            );
+
+        }
+
+        function display() {
+
+            tl.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+
+                const li = document.createElement("li");
+                const span = document.createElement("span");
+
+                span.textContent = task.text;
+                span.classList.add("task-text");
+
+                if (task.completed) {
+
+                    span.classList.add("completed");
+
+                }
+
+                span.addEventListener("click", () => {
+
+                    tasks[index].completed = !tasks[index].completed;
+                    save();
+                    display();
+
+                });
+
+                const deleteButton =
+                    document.createElement("button");
+
+                deleteButton.textContent = "Delete";
+                deleteButton.classList.add("del");
+
+                deleteButton.addEventListener("click", () => {
+                    tasks.splice(index, 1);
+                    save();
+                    display();
+                });
+
+                li.appendChild(span);
+                li.appendChild(deleteButton);
+                tl.appendChild(li);
+            });
+
+        }
+
+        function addTask() {
+
+            const text = ti.value.trim();
+            if (text === "") {
+                return;
+            }
+
+            tasks.push({
+                text: text,
+                completed: false
+            });
+
+            save();
+            ti.value = "";
+            display();
+        }
+
+        add.addEventListener("click", addTask);
+        ti.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+
+        display();
+
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("offline.js");
+        }
+    </script>
+</body>
+</html>
