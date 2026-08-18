@@ -561,178 +561,183 @@
 
             </section>
 <script>
-        const ti = document.getElementById("ti");
-        const add = document.getElementById("add");
+        
+    console.log("Notification supported:", "Notification" in window);
+    console.log("Notification permission:", Notification.permission);
+    console.log("Secure:", window.isSecureContext);
 
-        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const ti = document.getElementById("ti");
+    const add = document.getElementById("add");
 
-        function save() {
-            localStorage.setItem("tasks", JSON.stringify(tasks));
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    function save() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    async function requestNotificationPermission() {
+
+        if (!("Notification" in window)) {
+            alert("Your browser does not support notifications.");
+            return false;
         }
 
-        async function requestNotificationPermission() {
-
-            if (!("Notification" in window)) {
-                alert("Your browser does not support notifications.");
-                return false;
-            }
-
-            if (Notification.permission === "granted") {
-                return true;
-            }
-
-            if (Notification.permission === "denied") {
-                alert("Notification permission for this website is denied.");
-                return false;
-            }
-
-            const permission = await Notification.requestPermission();
-
-            return permission === "granted";
+        if (Notification.permission === "granted") {
+            return true;
         }
 
-        async function addTask() {
-
-            const subject = document.getElementById("subject").value;
-            const text = ti.value.trim();
-            const date = document.getElementById("date").value;
-            const time = document.getElementById("time").value;
-
-            if (
-                subject === "" ||
-                text === "" ||
-                date === "" ||
-                time === ""
-            ) {
-                alert("Please complete all fields.");
-                return;
-            }
-
-            const allowed = await requestNotificationPermission();
-
-            if (!allowed) {
-                return;
-            }
-
-            tasks.push({
-                subject: subject,
-                text: text,
-                date: date,
-                time: time,
-                completed: false,
-                notified: false
-            });
-
-            save();
-
-            document.getElementById("subject").value = "";
-            ti.value = "";
-            document.getElementById("date").value = "";
-            document.getElementById("time").value = "";
-
-            updateTable();
-            displayTasks();
+        if (Notification.permission === "denied") {
+            alert("Notification permission for this website is denied.");
+            return false;
         }
 
-        add.addEventListener("click", addTask);
+        const permission = await Notification.requestPermission();
 
-        function displayTasks() {
+        return permission === "granted";
+    }
 
-            const tl = document.getElementById("tl");
+    async function addTask() {
 
-            tl.innerHTML = "";
+        const subject = document.getElementById("subject").value;
+        const text = ti.value.trim();
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
 
-            tasks.forEach((task, index) => {
-
-                const li = document.createElement("li");
-
-                li.innerHTML = `
-                    <div class="task-info">
-                        <strong>${task.text}</strong>
-                        <small>📚 ${task.subject}</small>
-                        <small>📅 ${task.date}</small>
-                        <small>⏰ ${task.time}</small>
-                    </div>
-
-                    <button class="del">Delete</button>
-                `;
-
-                const deleteButton = li.querySelector(".del");
-
-                deleteButton.addEventListener("click", function () {
-
-                    tasks.splice(index, 1);
-
-                    save();
-
-                    displayTasks();
-                    updateTable();
-                });
-
-                tl.appendChild(li);
-            });
+        if (
+            subject === "" ||
+            text === "" ||
+            date === "" ||
+            time === ""
+        ) {
+            alert("Please complete all fields.");
+            return;
         }
 
-        function updateTable() {
+        const allowed = await requestNotificationPermission();
 
-            const cells = {
+        if (!allowed) {
+            return;
+        }
 
-                "Filipino 1":
-                    document.getElementById("f"),
+        tasks.push({
+            subject: subject,
+            text: text,
+            date: date,
+            time: time,
+            completed: false,
+            notified: false
+        });
 
-                "Kasaysayan":
-                    document.getElementById("k"),
+        save();
 
-                "Effective Communication":
-                    document.getElementById("ec"),
+        document.getElementById("subject").value = "";
+        ti.value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("time").value = "";
 
-                "Mabisang Komunikasyon":
-                    document.getElementById("mb"),
+        updateTable();
+        displayTasks();
+    }
 
-                "Life Skills":
-                    document.getElementById("ls"),
+    add.addEventListener("click", addTask);
 
-                "General Science":
-                    document.getElementById("gs"),
+    function displayTasks() {
 
-                "General Mathematics":
-                    document.getElementById("gm")
-            };
+        const tl = document.getElementById("tl");
 
-            Object.values(cells).forEach(cell => {
+        tl.innerHTML = "";
 
-                cell.innerHTML =
-                    `<span class="none">None</span>`;
+        tasks.forEach((task, index) => {
 
-            });
+            const li = document.createElement("li");
 
-            tasks.forEach(task => {
-
-                const cell = cells[task.subject];
-
-                if (!cell) return;
-
-                if (cell.querySelector(".none")) {
-                    cell.innerHTML = "";
-                }
-
-                const taskDiv =
-                    document.createElement("div");
-
-                taskDiv.classList.add("table-task");
-
-
-                taskDiv.innerHTML = `
+            li.innerHTML = `
+                <div class="task-info">
                     <strong>${task.text}</strong>
+                    <small>📚 ${task.subject}</small>
                     <small>📅 ${task.date}</small>
                     <small>⏰ ${task.time}</small>
-                `;
+                </div>
 
+                <button class="del">Delete</button>
+            `;
 
-                cell.appendChild(taskDiv);
+            const deleteButton = li.querySelector(".del");
 
+            deleteButton.addEventListener("click", function () {
+
+                tasks.splice(index, 1);
+
+                save();
+
+                displayTasks();
+                updateTable();
             });
-        }
+
+            tl.appendChild(li);
+        });
+    }
+
+    function updateTable() {
+
+        const cells = {
+
+            "Filipino 1":
+                document.getElementById("f"),
+
+            "Kasaysayan":
+                document.getElementById("k"),
+
+            "Effective Communication":
+                document.getElementById("ec"),
+
+            "Mabisang Komunikasyon":
+                document.getElementById("mb"),
+
+            "Life Skills":
+                document.getElementById("ls"),
+
+            "General Science":
+                document.getElementById("gs"),
+
+            "General Mathematics":
+                document.getElementById("gm")
+        };
+
+        Object.values(cells).forEach(cell => {
+
+            cell.innerHTML =
+                `<span class="none">None</span>`;
+
+        });
+
+        tasks.forEach(task => {
+
+            const cell = cells[task.subject];
+
+            if (!cell) return;
+
+            if (cell.querySelector(".none")) {
+                cell.innerHTML = "";
+            }
+
+            const taskDiv =
+                document.createElement("div");
+
+            taskDiv.classList.add("table-task");
+
+
+            taskDiv.innerHTML = `
+                <strong>${task.text}</strong>
+                <small>📅 ${task.date}</small>
+                <small>⏰ ${task.time}</small>
+            `;
+
+
+            cell.appendChild(taskDiv);
+
+        });
+    }
 
     async function checkNotifications() {
 
