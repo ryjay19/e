@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <meta charset="UTF-9">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png">
 
     <title>૮・ﻌ・ა To-do List</title>
     <style>
+
+    @media screen and (max-width: 600px) {
+
+        #eyy {
+            width: 90px;
+            right: -5px;
+            top: -30px;
+        }
+
+        .navbar {
+            width: 120%;
+            margin-left: -10%;
+            padding: 8px 5px;
+        }
+
+        nav {
+            width: 100%;
+            transform: none;
+            justify-content: space-around;
+        }
+
+        nav a {
+            margin: 8px 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+    }
+    
     * {
         box-sizing: border-box;
         margin: 0;
@@ -18,11 +47,183 @@
         font-family: Arial, sans-serif;
         background: #fff8d6;
         min-height: 100vh;
+        display: grid;
+        grid-template-rows: 35px 1fr;
+        padding: 0 10px;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: #c7f2f8;
+        z-index: -1;
+    }
+
+    /* ETO MGA NASA TAAS */
+
+    .navbar {
+        width: 120%;
+        margin-left: -10%;
+        align-items: center;
+        justify-content: center;
+        background-color: #fdc97d;
+        border: 2px #614238 solid;
+    }
+
+    nav {
         display: flex;
         justify-content: center;
-        align-items: flex-start;
-        padding: 20px 10px;
-        overflow-Y: hidden;
+        align-items: center;
+        width: 100%;
+        transform: translateX(-10px);
+    }
+
+    nav a {
+        display: inline;
+        justify-content: center;
+        align-items: center;
+        margin-left: 15px;
+        margin: 5px;
+        text-decoration: none;
+        padding: 17px;
+        color: #614238;
+        background-color: #fdc97d;
+        border-radius: 9em;
+        font-weight: bolder;
+        height: fit-content;
+        width: fit-content;
+    }
+
+    nav a:hover {
+        background-color: #fdcf8a;
+    }
+
+    nav a:active {
+        background-color: #ffd391;
+    }
+
+    #a {
+        position: relative; 
+        margin-top: 70px;
+        grid-row: 1 / 3;
+    }
+
+    #home {
+        background: #c7f2f8;
+        width: 100vw;
+        height: 35px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+        /* MGA NASA PAGE 1 */
+
+    .sched {
+        width: 335px;
+        height: auto;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .sched img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        transition: transform 0.3s ease;
+        transform-origin: 79% center;
+        margin: 20px auto;
+        border-radius: 1em;
+    }
+
+    .sched:hover img,
+    .sched:active img {
+        transform: scale(1.39); 
+        border-radius: 0;
+    }   
+
+    .ilan {
+        border: 2px #6b5200 solid;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 8.67px;
+    }
+
+    #f1 {
+        font-size: 12px;
+    }
+
+    .ilan tr,
+    .ilan th {
+        text-align: center;
+        padding: 14px;
+        font-weight: bolder;
+    }
+
+    #page1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ilan td {
+        min-width: 100px;
+        min-height: 50px;
+        padding: 8px;
+        vertical-align: top;
+    }
+
+    .table-task {
+        background: #fff8cf;
+        border: 1px solid #f0d66a;
+        border-radius: 6px;
+        padding: 5px;
+        margin: 3px;
+        font-size: 10px;
+    }
+
+    .table-task strong {
+        color: #6b5200;
+    }
+
+    .table-task small {
+        display: block;
+        color: #806f30;
+        margin-top: 3px;
+    }
+
+    .none {
+        color: #a99b63;
+        font-style: italic;
+        font-size: 10px;
+    }
+
+    /* ETO NAMAN UNG MGA NASA TODOLIST EHEYYYY*/
+
+    #eyy {
+        position: absolute;
+        z-index: 10;
+        width: 130px;
+        height: auto;
+        right: -22px;
+        top: -45.0248px;
+        mix-blend-mode: normal;
+    }
+
+    #todo {
+        width: 100%;
+        display: none;
+        justify-content: center;
+        position: relative;
+        top: 0;
+        padding-bottom: 30px;
     }
 
     .todo-container {
@@ -31,6 +232,8 @@
         padding: 18px;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(180, 140, 0, 0.15);
+        align-self: flex-start;
+        margin-top: 30px;
     }
 
     h1 {
@@ -47,37 +250,31 @@
 
     input {
         flex: 1;
-
-        min-width: 0;
         padding: 9px;
-
-        border: 1px solid #e5c84b;
+        border: 1px solid #f8d951;
         border-radius: 7px;
-
         font-size: 14px;
         background: white;
+        margin-bottom: 6px;
     }
 
     input:focus {
         outline: none;
-        border-color: #e0b800;
+        border-color: #d0aa00;
+        box-shadow: 0 0 1px 1px #e1bb32;
     }
 
     #add {
         padding: 9px 13px;
-
         border: none;
         border-radius: 7px;
-
         background: #f2c94c;
         color: #5c4600;
-
         cursor: pointer;
-
         font-size: 14px;
         font-weight: bold;
-
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 8px;
     }
 
     #add:hover {
@@ -90,179 +287,658 @@
         transform: translateY(2px);
     }
 
-    ul {
+    #tl {
         list-style: none;
         margin-top: 15px;
+        padding: 0;
+        width: 100%;
     }
 
     li {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-
+        align-items: flex-start;
         gap: 8px;
-
         padding: 9px;
         margin-bottom: 7px;
-
         background: #fff8cf;
-
         border: 1px solid #f0d66a;
         border-radius: 7px;
-
         font-size: 14px;
     }
 
-    .task-text {
-        cursor: pointer;
-        color: #5c4a00;
+    .task-info {
+        flex: 1;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .task-info strong {
+        display: block;
+        color: #6b5200;
+        display: block;
         overflow-wrap: anywhere;
     }
 
-    .completed {
-        text-decoration: line-through;
-        color: #a99b63;
+    .task-info small {
+        display: block;
+        color: #806f30;
+        margin-top: 6px;
     }
 
     .del {
-        flex-shrink: 0;
         padding: 6px 9px;
         border: none;
         border-radius: 5px;
         background: #e6b800;
         color: white;
         cursor: pointer;
-        font-size: 12px;
     }
 
     .del:hover {
         background: #c99f00;
     }
 
-    .del:active {
-        background: #aa8500;
-        transform: translateY(2px);
+    select {
+        width: 100%;
+        padding: 9px;
+        border: 1px solid #f8d951;
+        border-radius: 7px;
+        font-size: 14px;
+        background: white;
+        color: #5c4a00;
+        margin-bottom: 7px;
     }
-    #purin{
+
+    select:focus {
+        outline: none;
+        border-color: #d0aa00;
+        box-shadow: 0 0 1px 1px #e1bb32;
+    }
+
+    /* PAGE 3 TO UNG LIST NAMAN */
+
+    #list {
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding-top: 30px;
+        position: absolute;
+        top: 130px;
+        left: 0;
+    }
+
+    .list-container {
+        background: #fffdf0;
+        width: 300px;
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(180, 140, 0, 0.15);
+        margin-top: 0;
+    }
+
+    .list-input {
         display: flex;
-        justify-self: end;
+        gap: 7px;
     }
+
+    #listInput {
+        margin-bottom: 0;
+    }
+
+    #listAdd {
+        padding: 9px 13px;
+        border: none;
+        border-radius: 7px;
+        background: #f2c94c;
+        color: #5c4600;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #listAdd:hover {
+        background: #e8b92e;
+    }
+
+    #list2 {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    #list2 li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 9px;
+        margin-bottom: 7px;
+        background: #fff8cf;
+        border: 1px solid #f0d66a;
+        border-radius: 7px;
+    }
+
+    .ldel {
+        padding: 5px 8px;
+        border: none;
+        border-radius: 5px;
+        background: #e6b800;
+        color: white;
+        cursor: pointer;
+    }
+
+    .ldel:hover {
+        background: #c99f00;
+    }
+
 </style>
 </head>
 <body>
-<div>
-    <div id="todo">
-        <div class="todo-container">
 
-            <h1>My To-Do List</h1>
+    <div id="home"></div>
 
-            <div class="inputarea">
+        <section id="a">
 
-                <input
-                    type="text"
-                    id="ti"
-                    placeholder="Enter a task..."
+            <img
+                id="eyy"
+                src="https://i.pinimg.com/736x/40/d0/13/40d0134535cfe123efa7dc23d7e51204.jpg"
+                onmouseover="showRandomTitle(this)"
+                >
+
+            <header class="navbar">
+
+                <nav>
+                    <a id="btn1" href="#home">Home</a>
+                    <a id="btn2" href="#todo">To-Do</a>
+                    <a id="btn3" href="#list">List</a>
+                    <a href="https://open.spotify.com/">Spotify</a>
+                </nav>
+
+            </header>
+    <div id="page1">
+            <div class="sched">
+            <img
+                id="sched"
+                src="./sched.jpg?v=1"
+                >
+            </div>
+
+        <table class="ilan" border="1">
+
+            <tr>
+                <th colspan="3" id="f1">FILIPINO 1</th>
+            </tr>
+
+            <tr>
+                <td colspan="3" id="f"></td>
+            </tr>
+
+            <tr>    
+                <th>KASAYSAYAN</th>
+                <th>EFFECTIVE<br>COMMUNICATION</th>
+                <th>MABISANG<br>KOMUNIKASYON</th>
+            </tr>    
+            
+            <tr>
+                <td id="k"></td>
+                <td id="ec"></td>
+                <td id="mb"></td>
+            </tr>
+
+            <tr>
+                <th>LIFE SKILLS</th>
+                <th>GENERAL<br>SCIENCE</th>
+                <th>GENERAL<br>MATHEMATICS</th>
+            </tr>
+
+            <tr>
+                <td id="ls"></td>
+                <td id="gs"></td>
+                <td id="gm"></td>
+            </tr>
+
+        </table>
+
+    </div>
+            
+            <main id="todo">
+
+                <div class="todo-container">
+
+
+                    <h1>My To-Do List</h1>
+
+                    <select id="subject">
+                        <option value="" disabled selected hidden>Select Subjects</option>
+                        <option value="Filipino 1">Filipino 1</option>
+                        <option value="Kasaysayan">Kasaysayan</option>
+                        <option value="Effective Communication">Effective Communication</option>
+                        <option value="Mabisang Komunikasyon">Mabisang Komunikasyon</option>
+                        <option value="Life Skills">Life Skills</option>
+                        <option value="General Science">General Science</option>
+                        <option value="General Mathematics">General Mathematics</option>
+                    </select>
+
+                    <input
+                        type="text"
+                        id="ti"
+                        placeholder="Enter a task..."
                     >
 
-                <button id="add">Add</button>
-            </div>
-            <ul id="tl"></ul>
-        </div>
-        <img id="purin" src="https://i.pinimg.com/originals/4b/14/51/4b1451b3c38b5ce96071be02c58d90cb.png">
-    </div>
-</div>
-    <script>
+                    <div class="datetime">
+                        <input type="date" id="date">
+                        <input type="time" id="time">
+                    </div>
+
+                    <button id="add">Add Task</button>
+
+                    <ul id="tl"></ul>
+                </div>
+
+            </main>
+
+        </section>
+
+            <section id="list">
+
+                <div class="list-container">
+
+                    <h1>My List</h1>
+
+                    <div class="list-input">
+                        <input
+                            type="text"
+                            id="listInput"
+                            placeholder="Enter something..."
+                        >
+
+                        <button id="listAdd">Add</button>
+                    </div>
+
+                    <ul id="list2"></ul>
+
+                </div>
+
+            </section>
+<script>
         const ti = document.getElementById("ti");
         const add = document.getElementById("add");
-        const tl = document.getElementById("tl");
 
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
         function save() {
-
-            localStorage.setItem(
-                "tasks",
-                JSON.stringify(tasks)
-            );
-
+            localStorage.setItem("tasks", JSON.stringify(tasks));
         }
 
-        function display() {
+        async function requestNotificationPermission() {
+
+            if (!("Notification" in window)) {
+                alert("Your browser does not support notifications.");
+                return false;
+            }
+
+            if (Notification.permission === "granted") {
+                return true;
+            }
+
+            if (Notification.permission === "denied") {
+                alert("Notifications are blocked. Please allow notifications in your browser settings.");
+                return false;
+            }
+
+            const permission = await Notification.requestPermission();
+
+            return permission === "granted";
+        }
+
+        async function addTask() {
+
+            const subject = document.getElementById("subject").value;
+            const text = ti.value.trim();
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+            if (
+                subject === "" ||
+                text === "" ||
+                date === "" ||
+                time === ""
+            ) {
+                alert("Please complete all fields.");
+                return;
+            }
+
+            const allowed = await requestNotificationPermission();
+
+            if (!allowed) {
+                return;
+            }
+
+            tasks.push({
+                subject: subject,
+                text: text,
+                date: date,
+                time: time,
+                completed: false,
+                notified: false
+            });
+
+            save();
+
+            document.getElementById("subject").value = "";
+            ti.value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("time").value = "";
+
+            updateTable();
+            displayTasks();
+        }
+
+        add.addEventListener("click", addTask);
+
+        function displayTasks() {
+
+            const tl = document.getElementById("tl");
 
             tl.innerHTML = "";
 
             tasks.forEach((task, index) => {
 
                 const li = document.createElement("li");
-                const span = document.createElement("span");
 
-                span.textContent = task.text;
-                span.classList.add("task-text");
+                li.innerHTML = `
+                    <div class="task-info">
+                        <strong>${task.text}</strong>
+                        <small>📚 ${task.subject}</small>
+                        <small>📅 ${task.date}</small>
+                        <small>⏰ ${task.time}</small>
+                    </div>
 
-                if (task.completed) {
+                    <button class="del">Delete</button>
+                `;
 
-                    span.classList.add("completed");
+                const deleteButton = li.querySelector(".del");
 
-                }
+                deleteButton.addEventListener("click", function () {
 
-                span.addEventListener("click", () => {
-
-                    tasks[index].completed = !tasks[index].completed;
-                    save();
-                    display();
-
-                });
-
-                const deleteButton =
-                    document.createElement("button");
-
-                deleteButton.textContent = "Delete";
-                deleteButton.classList.add("del");
-
-                deleteButton.addEventListener("click", () => {
                     tasks.splice(index, 1);
+
                     save();
-                    display();
+
+                    displayTasks();
+                    updateTable();
                 });
 
-                li.appendChild(span);
-                li.appendChild(deleteButton);
                 tl.appendChild(li);
             });
-
         }
 
-        function addTask() {
-            const text = ti.value.trim();
-            if (text === "") {
+        function updateTable() {
+
+            const cells = {
+
+                "Filipino 1":
+                    document.getElementById("f"),
+
+                "Kasaysayan":
+                    document.getElementById("k"),
+
+                "Effective Communication":
+                    document.getElementById("ec"),
+
+                "Mabisang Komunikasyon":
+                    document.getElementById("mb"),
+
+                "Life Skills":
+                    document.getElementById("ls"),
+
+                "General Science":
+                    document.getElementById("gs"),
+
+                "General Mathematics":
+                    document.getElementById("gm")
+            };
+
+            Object.values(cells).forEach(cell => {
+
+                cell.innerHTML =
+                    `<span class="none">None</span>`;
+
+            });
+
+            tasks.forEach(task => {
+
+                const cell = cells[task.subject];
+
+                if (!cell) return;
+
+                if (cell.querySelector(".none")) {
+                    cell.innerHTML = "";
+                }
+
+                const taskDiv =
+                    document.createElement("div");
+
+                taskDiv.classList.add("table-task");
+
+
+                taskDiv.innerHTML = `
+                    <strong>${task.text}</strong>
+                    <small>📅 ${task.date}</small>
+                    <small>⏰ ${task.time}</small>
+                `;
+
+
+                cell.appendChild(taskDiv);
+
+            });
+        }
+
+        function checkNotifications() {
+
+            if (!("Notification" in window)) {
                 return;
             }
 
-            tasks.push({
-                text: text,
-                completed: false
+            if (Notification.permission !== "granted") {
+                return;
+            }
+
+            const now = new Date();
+
+            tasks.forEach(task => {
+
+                if (task.notified) {
+                    return;
+                }
+
+                const taskTime =
+                    new Date(task.date + "T" + task.time);
+
+                if (now >= taskTime) {
+
+                    new Notification("To-Do Reminder 📚", {
+                        body: task.subject + ": " + task.text,
+                        icon: "https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png"
+                    });
+
+                    task.notified = true;
+                }
             });
 
             save();
-            ti.value = "";
-            display();
         }
 
-        add.addEventListener("click", addTask);
-        ti.addEventListener("keypress", (event) => {
-            if (event.key === "Enter") {
-                addTask();
+        setInterval(checkNotifications, 1000);
 
-                add.classList.add("active");
+        window.testNotification = async function () {
 
-                setTimeout(() => {
-                    add.classList.remove("active");
-                }, 150);
+            const allowed =
+                await requestNotificationPermission();
+
+
+            if (!allowed) {
+                return;
             }
+
+
+            new Notification(
+                "Test Notification 🔔",
+                {
+                    body:
+                        "Your notifications are working!"
+                }
+            );
+        };
+
+    const listInput = document.getElementById("listInput");
+    const listAdd = document.getElementById("listAdd");
+    const list2 = document.getElementById("list2");
+
+    let simpleItems = JSON.parse(localStorage.getItem("simpleItems")) || [];
+
+    function savelist2() {
+        localStorage.setItem("simpleItems", JSON.stringify(simpleItems));
+    }
+
+    function displaylist2() {
+
+        list2.innerHTML = "";
+
+        simpleItems.forEach((item, index) => {
+
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+                <span>${item}</span>
+                <button class="ldel">Delete</button>
+            `;
+
+            li.querySelector(".ldel").addEventListener("click", () => {
+
+                simpleItems.splice(index, 1);
+
+                savelist2();
+                displaylist2();
+
+            });
+
+            list2.appendChild(li);
         });
+    }
 
-        display();
+    function addSimpleItem() {
 
+        const text = listInput.value.trim();
+
+        if (text === "") {
+            return;
+        }
+
+        simpleItems.push(text);
+
+        savelist2();
+        displaylist2();
+
+        listInput.value = "";
+        listInput.focus();
+    }
+
+    listAdd.addEventListener("click", addSimpleItem);
+
+    listInput.addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            addSimpleItem();
+        }
+
+    });
+
+    displaylist2();
+
+        const page1 =
+            document.getElementById("page1");
+
+        const page2 =
+            document.getElementById("todo");
+
+        const page3 = 
+            document.getElementById("list");    
+
+        const btn1 =
+            document.getElementById("btn1");
+
+        const btn2 =
+            document.getElementById("btn2");
+
+        const btn3 =
+            document.getElementById("btn3");
+
+        btn1.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                page2.style.display = "none";
+
+                page1.style.display = "block";
+
+                page3.style.display = "none";
+            }
+        );
+
+        btn2.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                page1.style.display = "none";
+
+                page2.style.display = "flex";
+
+                page3.style.display = "none";
+            }
+        );
+
+        btn3.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                page1.style.display = "none";
+
+                page2.style.display = "none";
+                
+                page3.style.display = "flex"
+            }
+        );
+
+        function showRandomTitle(element) {
+
+        const titles = [
+            "GOOO YOU CAN DO IT!!!!",
+            "Hello there!",
+            "Ansipag mo naman yah",
+            "Bolaga!",
+            "Listen to spotify while studying it helps!",
+            "Kaya mo yan boii",
+            "Gangsta",
+            "Let's eat pudding",
+            "YOOOOOOOOOOWWWWWWWWW"
+        ];
+
+        const randomIndex = Math.floor(Math.random() * titles.length);
+
+        element.title = titles[randomIndex];
+        }
+
+        updateTable();
+        displayTasks();
+        checkNotifications();
+        
         if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("offline.js");
         }
