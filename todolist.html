@@ -37,6 +37,25 @@
 
     }
     
+    ::-webkit-scrollbar {
+        width: 18px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #fff8cf;
+        border-left: 2px solid #6b5200;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #f2c94c;
+        border: 3px solid #fff8cf;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #e8b92e;
+    }
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -142,9 +161,8 @@
         border-radius: 1em;
     }
 
-    .sched:hover img,
-    .sched:active img {
-        transform: scale(1.39); 
+    .sched.zoomed img {
+        transform: scale(1.39);
         border-radius: 0;
     }   
 
@@ -442,7 +460,7 @@
             <img
                 id="eyy"
                 src="https://i.pinimg.com/736x/40/d0/13/40d0134535cfe123efa7dc23d7e51204.jpg"
-                onmouseover="showRandomTitle(this)"
+                onclick="showRandomTitle(this)"
                 >
 
             <header class="navbar">
@@ -561,10 +579,6 @@
 
             </section>
 <script>
-        
-    console.log("Notification supported:", "Notification" in window);
-    console.log("Notification permission:", Notification.permission);
-    console.log("Secure:", window.isSecureContext);
 
     const ti = document.getElementById("ti");
     const add = document.getElementById("add");
@@ -575,33 +589,21 @@
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
-    async function requestNotificationPermission() {
+    add.addEventListener("click", addTask);
 
-        if (!("Notification" in window)) {
-            alert("Your browser does not support notifications.");
-            return false;
-        }
+    function addTask() {
 
-        if (Notification.permission === "granted") {
-            return true;
-        }
+        const subject =
+            document.getElementById("subject").value;
 
-        if (Notification.permission === "denied") {
-            alert("Notification permission for this website is denied.");
-            return false;
-        }
+        const text =
+            ti.value.trim();
 
-        const permission = await Notification.requestPermission();
+        const date =
+            document.getElementById("date").value;
 
-        return permission === "granted";
-    }
-
-    async function addTask() {
-
-        const subject = document.getElementById("subject").value;
-        const text = ti.value.trim();
-        const date = document.getElementById("date").value;
-        const time = document.getElementById("time").value;
+        const time =
+            document.getElementById("time").value;
 
         if (
             subject === "" ||
@@ -613,19 +615,12 @@
             return;
         }
 
-        const allowed = await requestNotificationPermission();
-
-        if (!allowed) {
-            return;
-        }
-
         tasks.push({
             subject: subject,
             text: text,
             date: date,
             time: time,
-            completed: false,
-            notified: false
+            completed: false
         });
 
         save();
@@ -638,8 +633,6 @@
         updateTable();
         displayTasks();
     }
-
-    add.addEventListener("click", addTask);
 
     function displayTasks() {
 
@@ -662,7 +655,8 @@
                 <button class="del">Delete</button>
             `;
 
-            const deleteButton = li.querySelector(".del");
+            const deleteButton =
+                li.querySelector(".del");
 
             deleteButton.addEventListener("click", function () {
 
@@ -726,99 +720,41 @@
 
             taskDiv.classList.add("table-task");
 
-
             taskDiv.innerHTML = `
                 <strong>${task.text}</strong>
                 <small>📅 ${task.date}</small>
                 <small>⏰ ${task.time}</small>
             `;
 
-
             cell.appendChild(taskDiv);
 
         });
     }
 
-    async function checkNotifications() {
+    const listInput =
+        document.getElementById("listInput");
 
-        if (!("Notification" in window)) {
-            return;
-        }
+    const listAdd =
+        document.getElementById("listAdd");
 
-        if (Notification.permission !== "granted") {
-            return;
-        }
+    const list2 =
+        document.getElementById("list2");
 
-        if (!("serviceWorker" in navigator)) {
-            return;
-        }
+    let simpleItems =
+        JSON.parse(
+            localStorage.getItem("simpleItems")
+        ) || [];
 
-        const registration = await navigator.serviceWorker.getRegistration();
-
-        if (!registration) {
-            return;
-        }
-
-        const now = new Date();
-
-        tasks.forEach(async task => {
-
-            if (task.notified) {
-                return;
-            }
-
-            const taskTime =
-                new Date(task.date + "T" + task.time);
-
-            if (now >= taskTime) {
-
-                await registration.showNotification(
-                    "To-Do Reminder 📚",
-                    {
-                        body: task.subject + ": " + task.text,
-                        icon: "https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png",
-                        tag: "todo-" + task.date + "-" + task.time
-                    }
-                );
-
-                task.notified = true;
-                save();
-            }
-        });
-    }
-
-        setInterval(checkNotifications, 1000);
-
-    window.testNotification = async function () {
-
-        const allowed =
-            await requestNotificationPermission();
-
-        if (!allowed) {
-            return;
-        }
-
-        const registration =
-            await navigator.serviceWorker.ready;
-
-        await registration.showNotification(
-            "Test Notification 🔔",
-            {
-                body: "Your notifications are working!",
-                icon: "https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png"
-            }
-        );
-    };
-
-    const listInput = document.getElementById("listInput");
-    const listAdd = document.getElementById("listAdd");
-    const list2 = document.getElementById("list2");
-
-    let simpleItems = JSON.parse(localStorage.getItem("simpleItems")) || [];
 
     function savelist2() {
-        localStorage.setItem("simpleItems", JSON.stringify(simpleItems));
+
+        localStorage.setItem(
+            "simpleItems",
+            JSON.stringify(simpleItems)
+        );
+
     }
+
 
     function displaylist2() {
 
@@ -826,29 +762,35 @@
 
         simpleItems.forEach((item, index) => {
 
-            const li = document.createElement("li");
+            const li =
+                document.createElement("li");
 
             li.innerHTML = `
                 <span>${item}</span>
                 <button class="ldel">Delete</button>
             `;
 
-            li.querySelector(".ldel").addEventListener("click", () => {
+            li.querySelector(".ldel")
+                .addEventListener("click", () => {
 
-                simpleItems.splice(index, 1);
+                    simpleItems.splice(index, 1);
 
-                savelist2();
-                displaylist2();
+                    savelist2();
+                    displaylist2();
 
-            });
+                });
 
             list2.appendChild(li);
+
         });
+
     }
+
 
     function addSimpleItem() {
 
-        const text = listInput.value.trim();
+        const text =
+            listInput.value.trim();
 
         if (text === "") {
             return;
@@ -861,81 +803,98 @@
 
         listInput.value = "";
         listInput.focus();
+
     }
 
-    listAdd.addEventListener("click", addSimpleItem);
 
-    listInput.addEventListener("keydown", function(event) {
+    listAdd.addEventListener(
+        "click",
+        addSimpleItem
+    );
 
-        if (event.key === "Enter") {
-            addSimpleItem();
+
+    listInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+                addSimpleItem();
+            }
+
         }
+    );
 
-    });
 
     displaylist2();
 
-        const page1 =
-            document.getElementById("page1");
+    const page1 =
+        document.getElementById("page1");
 
-        const page2 =
-            document.getElementById("todo");
+    const page2 =
+        document.getElementById("todo");
 
-        const page3 = 
-            document.getElementById("list");    
+    const page3 =
+        document.getElementById("list");
 
-        const btn1 =
-            document.getElementById("btn1");
 
-        const btn2 =
-            document.getElementById("btn2");
+    const btn1 =
+        document.getElementById("btn1");
 
-        const btn3 =
-            document.getElementById("btn3");
+    const btn2 =
+        document.getElementById("btn2");
 
-        btn1.addEventListener(
-            "click",
-            function (event) {
+    const btn3 =
+        document.getElementById("btn3");
 
-                event.preventDefault();
 
-                page2.style.display = "none";
+    btn1.addEventListener(
+        "click",
+        function(event) {
 
-                page1.style.display = "block";
+            event.preventDefault();
 
-                page3.style.display = "none";
-            }
-        );
+            page2.style.display = "none";
 
-        btn2.addEventListener(
-            "click",
-            function (event) {
+            page1.style.display = "block";
 
-                event.preventDefault();
+            page3.style.display = "none";
 
-                page1.style.display = "none";
+        }
+    );
 
-                page2.style.display = "flex";
 
-                page3.style.display = "none";
-            }
-        );
+    btn2.addEventListener(
+        "click",
+        function(event) {
 
-        btn3.addEventListener(
-            "click",
-            function (event) {
+            event.preventDefault();
 
-                event.preventDefault();
+            page1.style.display = "none";
 
-                page1.style.display = "none";
+            page2.style.display = "flex";
 
-                page2.style.display = "none";
-                
-                page3.style.display = "flex"
-            }
-        );
+            page3.style.display = "none";
 
-        function showRandomTitle(element) {
+        }
+    );
+
+
+    btn3.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            page1.style.display = "none";
+
+            page2.style.display = "none";
+
+            page3.style.display = "flex";
+
+        }
+    );
+
+    function showRandomTitle(element) {
 
         const titles = [
             "GOOO YOU CAN DO IT!!!!",
@@ -946,21 +905,33 @@
             "Kaya mo yan boii",
             "Gangsta",
             "Let's eat pudding",
-            "YOOOOOOOOOOWWWWWWWWW"
+            "YOOOOOOOOOOWWWWWWWWW",
+            "Palo magaaral ulit",
+            "ano na sah",
+            "simulan mo na dapat mong simulan boi",
         ];
 
-        const randomIndex = Math.floor(Math.random() * titles.length);
+        const randomIndex =
+            Math.floor(
+                Math.random() * titles.length
+            );
 
-        element.title = titles[randomIndex];
-        }
+        alert("Pompompurin says: " + titles[randomIndex]);
+    }
 
-        updateTable();
-        displayTasks();
-        checkNotifications();
-        
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("offline.js");
-        }
-    </script>
+    const sched = document.querySelector(".sched");
+
+    sched.addEventListener("click", function() {
+        sched.classList.toggle("zoomed");
+    });
+
+    if ("serviceWorker" in navigator) { 
+        navigator.serviceWorker.register("offline.js"); 
+    }
+
+    updateTable();
+    displayTasks();
+
+</script>
 </body>
 </html>
