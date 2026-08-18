@@ -582,7 +582,7 @@
             }
 
             if (Notification.permission === "denied") {
-                alert("Notifications are blocked. Please allow notifications in your browser settings.");
+                alert("Notification permission for this website is denied.");
                 return false;
             }
 
@@ -734,62 +734,76 @@
             });
         }
 
-        function checkNotifications() {
+    async function checkNotifications() {
 
-            if (!("Notification" in window)) {
-                return;
-            }
-
-            if (Notification.permission !== "granted") {
-                return;
-            }
-
-            const now = new Date();
-
-            tasks.forEach(task => {
-
-                if (task.notified) {
-                    return;
-                }
-
-                const taskTime =
-                    new Date(task.date + "T" + task.time);
-
-                if (now >= taskTime) {
-
-                    new Notification("To-Do Reminder 📚", {
-                        body: task.subject + ": " + task.text,
-                        icon: "https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png"
-                    });
-
-                    task.notified = true;
-                }
-            });
-
-            save();
+        if (!("Notification" in window)) {
+            return;
         }
+
+        if (Notification.permission !== "granted") {
+            return;
+        }
+
+        if (!("serviceWorker" in navigator)) {
+            return;
+        }
+
+        const registration = await navigator.serviceWorker.getRegistration();
+
+        if (!registration) {
+            return;
+        }
+
+        const now = new Date();
+
+        tasks.forEach(async task => {
+
+            if (task.notified) {
+                return;
+            }
+
+            const taskTime =
+                new Date(task.date + "T" + task.time);
+
+            if (now >= taskTime) {
+
+                await registration.showNotification(
+                    "To-Do Reminder 📚",
+                    {
+                        body: task.subject + ": " + task.text,
+                        icon: "https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png",
+                        tag: "todo-" + task.date + "-" + task.time
+                    }
+                );
+
+                task.notified = true;
+                save();
+            }
+        });
+    }
 
         setInterval(checkNotifications, 1000);
 
-        window.testNotification = async function () {
+    window.testNotification = async function () {
 
-            const allowed =
-                await requestNotificationPermission();
+        const allowed =
+            await requestNotificationPermission();
 
+        if (!allowed) {
+            return;
+        }
 
-            if (!allowed) {
-                return;
+        const registration =
+            await navigator.serviceWorker.ready;
+
+        await registration.showNotification(
+            "Test Notification 🔔",
+            {
+                body: "Your notifications are working!",
+                icon: "https://cdn3.emoji.gg/emojis/3524-pompomhearteyes.png"
             }
-
-
-            new Notification(
-                "Test Notification 🔔",
-                {
-                    body:
-                        "Your notifications are working!"
-                }
-            );
-        };
+        );
+    };
 
     const listInput = document.getElementById("listInput");
     const listAdd = document.getElementById("listAdd");
