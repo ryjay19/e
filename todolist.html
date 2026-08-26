@@ -9,34 +9,6 @@
     <title>૮・ﻌ・ა To-do List</title>
     <style>
 
-    @media screen and (max-width: 600px) {
-
-        #eyy {
-            width: 90px;
-            right: -5px;
-            top: -30px;
-        }
-
-        .navbar {
-            width: 120%;
-            margin-left: -10%;
-            padding: 8px 5px;
-        }
-
-        nav {
-            width: 100%;
-            transform: none;
-            justify-content: space-around;
-        }
-
-        nav a {
-            margin: 8px 5px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-    }
-    
     ::-webkit-scrollbar {
         width: 18px;
     }
@@ -92,6 +64,9 @@
         justify-content: center;
         background-color: #fdc97d;
         border: 2px #614238 solid;
+        padding: 8px 5px;
+        position: relative;
+        z-index: 2;
     }
 
     nav {
@@ -106,7 +81,7 @@
         display: inline;
         justify-content: center;
         align-items: center;
-        margin-left: 15px;
+        margin-left: 27px;
         margin: 5px;
         text-decoration: none;
         padding: 17px;
@@ -135,11 +110,54 @@
     #home {
         background: #c7f2f8;
         width: 100vw;
-        height: 35px;
+        height: 78px;
         position: absolute;
         top: 0;
         left: 0;
-        z-index: -1;
+        z-index: 1;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    #eyy {
+        position: absolute;
+        z-index: 10;
+        width: 130px;
+        height: auto;
+        right: -22px;
+        top: -44.822px;
+        mix-blend-mode: normal;
+        z-index: 3;
+    }
+
+    #clouds {
+        width: 110px;
+        height: auto;
+        position: absolute;
+        right: 100px;
+        top: 7px;
+        z-index: 999; 
+    }
+
+    #clouds2 {
+        transform: scaleX(-1);
+        width: 70px;
+        height: auto;
+        z-index: 999;
+        display: flex;
+        position: absolute;
+        margin-left: -10px;
+    }
+
+    #clouds3{
+        width: 120px;
+        height: auto;
+        display: flex;
+        position: absolute;
+        z-index: 9999;
+        left: 65px;
+        top: 10px;
     }
 
         /* MGA NASA PAGE 1 */
@@ -171,10 +189,10 @@
         text-align: center;
         margin: 0 auto;
         font-size: 8.67px;
-    }
-
-    #f1 {
-        font-size: 12px;
+        background-position: center;
+        z-index: 999;
+        background-color:#fff8d6;
+        width: 100%;
     }
 
     .ilan tr,
@@ -182,6 +200,35 @@
         text-align: center;
         padding: 14px;
         font-weight: bolder;
+    }
+
+    #galit{
+        width: auto;
+        height: 150px;
+        display: block;
+        position: relative;
+        margin-right: 240px;
+        margin-bottom: -64.5px;
+        mix-blend-mode: normal;
+    }
+
+    #f1{
+        font-size: 12px;
+        background-image: url(https://pbs.twimg.com/media/EzbrKvhX0AIEREq.jpg);
+        background-position: right;
+        background-size: 80px;
+        background-repeat:no-repeat;
+        background-color:#fffdf0;
+    }
+
+    #o {
+        font-size: 12px;
+        background-image: url(https://secretsurpriseshop.com/cdn/shop/collections/IMG_2102.jpg?v=1596833937&width=750);
+        background-position: right;
+        background-size: 55px;
+        background-repeat:no-repeat;
+        background-color:#fbf8e2;
+        mix-blend-mode: multiply;
     }
 
     #page1{
@@ -223,25 +270,63 @@
         font-size: 10px;
     }
 
-    /* ETO NAMAN UNG MGA NASA TODOLIST EHEYYYY*/
-
-    #eyy {
-        position: absolute;
-        z-index: 10;
-        width: 130px;
-        height: auto;
-        right: -22px;
-        top: -45.0248px;
-        mix-blend-mode: normal;
+    #gutom {
+        width: auto;
+        height: 50px;
+        display: flex;
+        position: relative;
+        margin-left: 200px;
+        margin-bottom: -50px;
     }
+
+    #galit2 {
+        width: auto;
+        height: 50px;
+        mix-blend-mode: multiply;
+        float: right;
+    }
+
+    #talsik {
+        width: auto;
+        height: 50px;
+        float: left;
+    }
+
+    #cl {
+        width: auto;
+        height: 50px;
+        margin-top: 10px;
+        mix-blend-mode: multiply;
+    }
+
+    #st {
+        width: auto;
+        height: 80px;
+        mix-blend-mode: multiply;
+    }
+
+    #tc {
+        width: auto;
+        height: 60px;
+    }
+
+    #h {
+        width: auto;
+        height: 60px;
+    }
+
+
+    /* ETO NAMAN UNG MGA NASA TODOLIST EHEYYYY*/
 
     #todo {
         width: 100%;
         display: none;
-        justify-content: center;
         position: relative;
         top: 0;
         padding-bottom: 30px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .todo-container {
@@ -250,7 +335,6 @@
         padding: 18px;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(180, 140, 0, 0.15);
-        align-self: flex-start;
         margin-top: 30px;
     }
 
@@ -375,78 +459,10 @@
         box-shadow: 0 0 1px 1px #e1bb32;
     }
 
-    /* PAGE 3 TO UNG LIST NAMAN */
-
-    #list {
-        display: none;
-        justify-content: center;
-        align-items: flex-start;
-        width: 100%;
-        padding-top: 30px;
-        position: absolute;
-        top: 130px;
-        left: 0;
-    }
-
-    .list-container {
-        background: #fffdf0;
-        width: 300px;
-        padding: 18px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(180, 140, 0, 0.15);
-        margin-top: 0;
-    }
-
-    .list-input {
+    #squishy {
+        margin: 0 auto;
         display: flex;
-        gap: 7px;
-    }
-
-    #listInput {
-        margin-bottom: 0;
-    }
-
-    #listAdd {
-        padding: 9px 13px;
-        border: none;
-        border-radius: 7px;
-        background: #f2c94c;
-        color: #5c4600;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    #listAdd:hover {
-        background: #e8b92e;
-    }
-
-    #list2 {
-        list-style: none;
-        margin-top: 15px;
-    }
-
-    #list2 li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 9px;
-        margin-bottom: 7px;
-        background: #fff8cf;
-        border: 1px solid #f0d66a;
-        border-radius: 7px;
-    }
-
-    .ldel {
-        padding: 5px 8px;
-        border: none;
-        border-radius: 5px;
-        background: #e6b800;
-        color: white;
-        cursor: pointer;
-    }
-
-    .ldel:hover {
-        background: #c99f00;
+        margin-top: 30px;
     }
 
 </style>
@@ -454,6 +470,21 @@
 <body>
 
     <div id="home"></div>
+
+    <img
+    id="clouds"
+    src="cloud.png"
+    >
+
+    <img
+    id="clouds2"
+    src="clouds2.png"
+    >
+
+    <img
+    id="clouds3"
+    src="clouds3.png"
+    >
 
         <section id="a">
 
@@ -468,7 +499,6 @@
                 <nav>
                     <a id="btn1" href="#home">Home</a>
                     <a id="btn2" href="#todo">To-Do</a>
-                    <a id="btn3" href="#list">List</a>
                     <a href="https://open.spotify.com/">Spotify</a>
                 </nav>
 
@@ -477,45 +507,109 @@
             <div class="sched">
             <img
                 id="sched"
-                src="./images/sched.jpg?v=1"
+                src="./sched.jpg?v=1"
                 >
             </div>
+
+            <img
+            id="gutom"
+            src="https://cdn3.emoji.gg/emojis/5015-pompomeat.png"
+            >
 
         <table class="ilan" border="1">
 
             <tr>
+                <img 
+                src="galit.gif"
+                id="galit"
+                >
                 <th colspan="3" id="f1">FILIPINO 1</th>
+                <th colspan="3" id="o">OTHERS</th>
             </tr>
 
             <tr>
                 <td colspan="3" id="f"></td>
+                <td colspan="3" id="other"></td>
             </tr>
 
             <tr>    
-                <th>KASAYSAYAN</th>
-                <th>EFFECTIVE<br>COMMUNICATION</th>
-                <th>MABISANG<br>KOMUNIKASYON</th>
+                <th colspan="2">
+                    <img
+                    id="h"
+                    src="https://static.wikia.nocookie.net/hellokitty/images/6/6e/Pompompurin2021ranking.png/revision/latest/scale-to-width-down/570?cb=20251026210919"
+                    >
+                    KASAYSAYAN
+                </th>
+                <th colspan="2">
+                    <img
+                    id="tc"
+                    src="https://i.pinimg.com/736x/66/eb/22/66eb22c117d2126bc21936ea925b34ea.jpg"
+                    >
+                    <br>
+                    EFFECTIVE
+                    <br>
+                    COMMUNICATION
+                </th>
+                <th colspan="2">
+                    <img
+                    id="talsik"
+                    src="https://media.tenor.com/cZBSaowouvkAAAAj/pompompurin-sanrio.gif"
+                    >
+                    <br>
+                    MABISANG
+                    <br>
+                    KOMUNIKASYON
+                </th>
             </tr>    
             
             <tr>
-                <td id="k"></td>
-                <td id="ec"></td>
-                <td id="mb"></td>
+                <td colspan="2" id="k"></td>
+                <td colspan="2" id="ec"></td>
+                <td colspan="2" id="mb"></td>
             </tr>
 
             <tr>
-                <th>LIFE SKILLS</th>
-                <th>GENERAL<br>SCIENCE</th>
-                <th>GENERAL<br>MATHEMATICS</th>
+                <th colspan="2">
+                    LIFE SKILLS
+                    <br>
+                    <img
+                    id="cl"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjEq766ZwT_QB8I91NL3V-yk9FlDUAmDvej1K3_ALktL6A_ky1fNnw5xQ&s=10"
+                    >
+                </th>
+                <th colspan="2">
+                    GENERAL
+                    <br>
+                    SCIENCE
+                    <br>
+                    <img
+                    id="st"
+                    src="https://i.pinimg.com/236x/07/f8/65/07f865308b222f0008effe680e7ff2dd.jpg"
+                    >
+                </th>
+                <th colspan="2">
+                    GENERAL
+                    <br>
+                    MATHEMATICS
+                    <br>
+                    <img 
+                    id="galit2"
+                    src="https://i.pinimg.com/1200x/93/cb/5d/93cb5d8ee394dc93c6c097cb5f836c93.jpg"
+                    >
+                </th>
             </tr>
 
             <tr>
-                <td id="ls"></td>
-                <td id="gs"></td>
-                <td id="gm"></td>
+                <td colspan="2" id="ls"></td>
+                <td colspan="2" id="gs"></td>
+                <td colspan="2" id="gm"></td>
             </tr>
-
+            
         </table>
+
+        <img 
+        src="cry.gif"
+        >
 
     </div>
             
@@ -535,6 +629,7 @@
                         <option value="Life Skills">Life Skills</option>
                         <option value="General Science">General Science</option>
                         <option value="General Mathematics">General Mathematics</option>
+                        <option value="Others">Others</option>
                     </select>
 
                     <input
@@ -543,41 +638,19 @@
                         placeholder="Enter a task..."
                     >
 
-                    <div class="datetime">
-                        <input type="date" id="date">
-                        <input type="time" id="time">
-                    </div>
-
                     <button id="add">Add Task</button>
 
                     <ul id="tl"></ul>
                 </div>
+                    
+            <img 
+            id="squishy"
+            src="squishy.png"
+            >
 
             </main>
 
         </section>
-
-            <section id="list">
-
-                <div class="list-container">
-
-                    <h1>My List</h1>
-
-                    <div class="list-input">
-                        <input
-                            type="text"
-                            id="listInput"
-                            placeholder="Enter something..."
-                        >
-
-                        <button id="listAdd">Add</button>
-                    </div>
-
-                    <ul id="list2"></ul>
-
-                </div>
-
-            </section>
 <script>
 
     const ti = document.getElementById("ti");
@@ -599,17 +672,9 @@
         const text =
             ti.value.trim();
 
-        const date =
-            document.getElementById("date").value;
-
-        const time =
-            document.getElementById("time").value;
-
         if (
             subject === "" ||
-            text === "" ||
-            date === "" ||
-            time === ""
+            text === ""
         ) {
             alert("Please complete all fields.");
             return;
@@ -618,8 +683,6 @@
         tasks.push({
             subject: subject,
             text: text,
-            date: date,
-            time: time,
             completed: false
         });
 
@@ -627,8 +690,6 @@
 
         document.getElementById("subject").value = "";
         ti.value = "";
-        document.getElementById("date").value = "";
-        document.getElementById("time").value = "";
 
         updateTable();
         displayTasks();
@@ -648,8 +709,7 @@
                 <div class="task-info">
                     <strong>${task.text}</strong>
                     <small>📚 ${task.subject}</small>
-                    <small>📅 ${task.date}</small>
-                    <small>⏰ ${task.time}</small>
+
                 </div>
 
                 <button class="del">Delete</button>
@@ -722,8 +782,6 @@
 
             taskDiv.innerHTML = `
                 <strong>${task.text}</strong>
-                <small>📅 ${task.date}</small>
-                <small>⏰ ${task.time}</small>
             `;
 
             cell.appendChild(taskDiv);
@@ -731,121 +789,17 @@
         });
     }
 
-    const listInput =
-        document.getElementById("listInput");
-
-    const listAdd =
-        document.getElementById("listAdd");
-
-    const list2 =
-        document.getElementById("list2");
-
-    let simpleItems =
-        JSON.parse(
-            localStorage.getItem("simpleItems")
-        ) || [];
-
-
-    function savelist2() {
-
-        localStorage.setItem(
-            "simpleItems",
-            JSON.stringify(simpleItems)
-        );
-
-    }
-
-
-    function displaylist2() {
-
-        list2.innerHTML = "";
-
-        simpleItems.forEach((item, index) => {
-
-            const li =
-                document.createElement("li");
-
-            li.innerHTML = `
-                <span>${item}</span>
-                <button class="ldel">Delete</button>
-            `;
-
-            li.querySelector(".ldel")
-                .addEventListener("click", () => {
-
-                    simpleItems.splice(index, 1);
-
-                    savelist2();
-                    displaylist2();
-
-                });
-
-            list2.appendChild(li);
-
-        });
-
-    }
-
-
-    function addSimpleItem() {
-
-        const text =
-            listInput.value.trim();
-
-        if (text === "") {
-            return;
-        }
-
-        simpleItems.push(text);
-
-        savelist2();
-        displaylist2();
-
-        listInput.value = "";
-        listInput.focus();
-
-    }
-
-
-    listAdd.addEventListener(
-        "click",
-        addSimpleItem
-    );
-
-
-    listInput.addEventListener(
-        "keydown",
-        function(event) {
-
-            if (event.key === "Enter") {
-                addSimpleItem();
-            }
-
-        }
-    );
-
-
-    displaylist2();
-
     const page1 =
         document.getElementById("page1");
 
     const page2 =
         document.getElementById("todo");
 
-    const page3 =
-        document.getElementById("list");
-
-
     const btn1 =
         document.getElementById("btn1");
 
     const btn2 =
         document.getElementById("btn2");
-
-    const btn3 =
-        document.getElementById("btn3");
-
 
     btn1.addEventListener(
         "click",
@@ -874,22 +828,6 @@
             page2.style.display = "flex";
 
             page3.style.display = "none";
-
-        }
-    );
-
-
-    btn3.addEventListener(
-        "click",
-        function(event) {
-
-            event.preventDefault();
-
-            page1.style.display = "none";
-
-            page2.style.display = "none";
-
-            page3.style.display = "flex";
 
         }
     );
@@ -925,9 +863,7 @@
         sched.classList.toggle("zoomed");
     });
 
-    if ("serviceWorker" in navigator) { 
-        navigator.serviceWorker.register("offline.js"); 
-    }
+
 
     updateTable();
     displayTasks();
