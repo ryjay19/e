@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+
+    <link rel="icon" type="image/png" href="barbie.png?v=3">
+    <title>Ay barbie sabi ko na</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            grid-template-rows: 70px 1fr 90px;
+            grid-template-areas:
+                "top top top"
+                "leftbar content rightbar"
+                "player player player";
+            user-select: none;
+            -webkit-user-drag: none;
+            gap: 8px;
+            background: #a33a76;
+            padding: 8px;
+        }
+
+        img {
+            -webkit-user-drag: none;
+        }
+
+        /* NASA TAAS TO BOI */
+
+        .top {
+            grid-area: top;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background: #c85897;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .top .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top .right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        #logo {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            margin: 0;
+        }
+
+        #home {
+            width: 38px;
+            height: 38px;
+            padding: 8px;
+            background-color: #d93c92;
+            border: 1px solid #d93c92;
+            border-radius: 50%;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .searchbar {
+            height: 38px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .searchicon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .input-box {
+            flex: 1;
+            height: 100%;
+
+            border: none;
+            outline: none;
+
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .browse {
+            width: 35px;
+            height: 35px;
+        }
+
+        .notif, .act, .profile2 {
+            width: 32px;
+            height: 32px;
+            background: #e07ab1;
+            border-radius: 50%;
+        }
+
+        #sicon {
+            width: 25px;
+            height: auto;
+            margin-top: 5px;
+            margin-left: 8px;
+        }
+
+        /* ETO NASA GILID */
+
+        .leftbar {
+            grid-area: leftbar;
+            background: #c85897;
+            border-radius: 12px;
+            color: white;
+        }
+
+        /* NASA GITNA TO BOI */
+
+        .content {
+            grid-area: content;
+            background: #e07ab1;
+            border-radius: 12px;
+            color: white;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .content header {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            grid-template-areas:
+                "dog title"
+                "dog logo"
+                "dog user";
+            column-gap: 130px;
+            row-gap: 0;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .content header.clicked {
+            column-gap: 20px;
+        }
+
+        #dog {
+            grid-area: dog;
+            width: auto;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 0;
+            align-self: start;
+            cursor: pointer;
+        }
+
+        .yours {
+            grid-area: title;
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .bp {
+            grid-area: logo;
+            margin: 0;
+            font-family:"Brush Script MT", "Lucida Handwriting", cursive;
+            font-size: 90px;
+            line-height: 0.9;
+            color: #e0218a;
+            text-shadow:
+                2px 2px 0 #fff,
+                4px 4px 0 #ff6bbd;
+        }
+
+        .user {
+            grid-area: user;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0;
+        }
+
+        .user span {
+            font-size: 14px;
+        }
+
+        .rightbar {
+            grid-area: rightbar;
+            background: #c85897;
+            border-radius: 12px;
+            color: white;
+            padding: 15px;
+        }
+
+        .player {
+            grid-area: player;
+            background: #df62a9;
+            border-radius: 12px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+
+    <nav class="top">
+
+        <div class="logo">
+        <img src="pinkspotify.png" id="logo" alt="Logo">
+        </div>
+
+        <div class="left">
+
+            <img
+                id="home"
+                src="barbiehouse.png"
+                alt="Home"
+            >
+
+            <div class="searchbar">
+
+                <div class="searchicon">
+                    <img
+                    id="sicon"
+                    src="https://img.icons8.com/fluent-systems-regular/1200/search--v2.jpg?v=2"
+                    >
+                </div>
+
+                <input
+                    type="text"
+                    class="input-box"
+                    placeholder="What do you want to play?"
+                >
+
+                <div class="browse"></div>
+
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="notif"></div>
+            <div class="act"></div>
+            <div class="profile2"></div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="leftbar">
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+        <div class="pl1">
+
+            <header>
+                <img
+                    id="dog"
+                    src="https://media.tenor.com/DGFTfFCPAjUAAAAM/barbie-dog.gif"
+                    alt="ay barbie"
+                >
+
+                <h2 class="yours">
+                    Yours Playlist
+                </h2>
+
+                <h1 class="bp">
+                    Barbie Playlist
+                </h1>
+
+                <div class="user">
+
+                    <img
+                        id="profile"
+                        src="https://avatars.steamstatic.com/bad7d428498457973f948850e54cccecf1e8df6e_full.jpg"
+                        alt="Profile"
+                    >
+
+                    <span>
+                        <strong>Garaldejosie</strong>
+
+                        <span style="color:#d6d6d6;font-weight:400;">
+                            • ## songs, about # hr
+                        </span>
+                    </span>
+
+                </div>
+
+            </header>
+
+            <hr
+                style="
+                    border: 1px solid #ffffff;
+                    margin-bottom: 10px;
+                    margin-left: -10px;
+                    margin-right: -10px;
+                "
+            >
+
+            <section class="playbtn">
+            </section>
+
+            <section class="playlist">
+                a
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- PLAYING -->
+
+    <aside class="rightbar">
+        Now Playing
+    </aside>
+
+
+    <!-- PLAYER -->
+
+    <footer class="player">
+    </footer>
+
+    <script>
+        const img = document.getElementById("dog");
+        let showingGif = true;
+        img.addEventListener("click", () => {
+            if (showingGif) {
+                img.src =
+                    "https://avatars.steamstatic.com/bad7d428498457973f948850e54cccecf1e8df6e_full.jpg";
+                document
+                    .querySelector(".content header")
+                    .classList.add("clicked");
+                showingGif = false;
+            } else {
+                img.src =
+                    "https://media.tenor.com/DGFTfFCPAjUAAAAM/barbie-dog.gif";
+                document
+                    .querySelector(".content header")
+                    .classList.remove("clicked");
+                showingGif = true;
+            }
+        });
+    </script>
+</body>
+</html>
