@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
     --bg:#1a0f16;
@@ -32,15 +31,28 @@
 
 *{
     box-sizing:border-box;
+    min-width:0;
 }
 
 body{
+    width:100%;
+    max-width:100%;
+    min-width:0;
     margin:0;
     padding:0;
+    overflow-x:hidden;
     height:100%;
     background:
-        radial-gradient(1200px 700px at 15% -10%,#3a1330 0%,transparent 60%),
-        radial-gradient(900px 600px at 100% 0%,#431a34 0%,transparent 55%),
+        radial-gradient(
+            1200px 700px at 15% -10%,
+            #3a1330 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            900px 600px at 100% 0%,
+            #431a34 0%,
+            transparent 55%
+        ),
         var(--bg);
     color:var(--text);
     font-family:'Manrope',system-ui,sans-serif;
@@ -55,6 +67,11 @@ body{
 
 button{
     font-family:inherit;
+}
+
+img,
+iframe{
+    max-width:100%;
 }
 
 *::-webkit-scrollbar{
@@ -79,15 +96,25 @@ button{
 
 .app{
     display:grid;
+    width:100%;
+    max-width:100%;
+    min-width:0;
     height:100vh;
-    grid-template-columns:var(--sidebar-w) 1fr var(--nowplaying-w);
-    grid-template-rows:var(--topbar-h) 1fr var(--player-h);
+    grid-template-columns:
+        minmax(0,var(--sidebar-w))
+        minmax(0,1fr)
+        minmax(0,var(--nowplaying-w));
+    grid-template-rows:
+        var(--topbar-h)
+        minmax(0,1fr)
+        var(--player-h);
     grid-template-areas:
         "top top top"
         "side main queue"
         "player player player";
     gap:8px;
     padding:8px;
+    overflow:hidden;
 }
 
 /* TOP BAR */
@@ -96,16 +123,20 @@ button{
     grid-area:top;
     display:flex;
     align-items:center;
-    gap:14px;
+    min-width:0;
+    width:100%;
     padding:0 16px;
+    gap:14px;
     background:var(--bg-elevated);
     border-radius:var(--radius-md);
+    overflow:hidden;
 }
 
 .brand{
     display:flex;
     align-items:center;
     gap:8px;
+    min-width:0;
     font-family:'Baloo 2',sans-serif;
     font-weight:800;
     font-size:19px;
@@ -118,12 +149,17 @@ button{
     width:26px;
     height:26px;
     border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),#ff8ec2);
+    background:linear-gradient(
+        135deg,
+        var(--accent),
+        #ff8ec2
+    );
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:13px;
     color:#3a0d24;
+    flex:none;
 }
 
 .menu-btn{
@@ -135,10 +171,12 @@ button{
     padding:8px;
     border-radius:8px;
     cursor:pointer;
+    flex:none;
 }
 
 .searchwrap{
-    flex:1;
+    flex:1 1 auto;
+    min-width:0;
     max-width:420px;
     display:flex;
     align-items:center;
@@ -156,10 +194,13 @@ button{
 .searchwrap i{
     color:var(--text-muted);
     font-size:14px;
+    flex:none;
 }
 
 .searchwrap input{
-    flex:1;
+    flex:1 1 auto;
+    min-width:0;
+    width:100%;
     background:none;
     border:none;
     outline:none;
@@ -173,7 +214,8 @@ button{
 }
 
 .topbar-spacer{
-    flex:1;
+    flex:1 1 auto;
+    min-width:0;
 }
 
 .queue-toggle{
@@ -188,12 +230,14 @@ button{
     font-size:15px;
     align-items:center;
     justify-content:center;
+    flex:none;
 }
 
 /* SIDEBAR */
 
 .sidebar{
     grid-area:side;
+    min-width:0;
     background:var(--bg-elevated);
     border-radius:var(--radius-md);
     padding:18px 12px;
@@ -201,6 +245,7 @@ button{
     flex-direction:column;
     gap:6px;
     overflow-y:auto;
+    overflow-x:hidden;
 }
 
 .sidebar h4{
@@ -214,6 +259,7 @@ button{
 .pl-item{
     display:flex;
     align-items:center;
+    min-width:0;
     gap:12px;
     padding:9px 10px;
     border-radius:var(--radius-sm);
@@ -241,6 +287,7 @@ button{
 
 .pl-item .meta{
     min-width:0;
+    overflow:hidden;
 }
 
 .pl-item .meta .t{
@@ -268,15 +315,19 @@ button{
 
 .main{
     grid-area:main;
+    min-width:0;
+    max-width:100%;
     background:var(--bg-elevated);
     border-radius:var(--radius-lg);
     overflow-y:auto;
+    overflow-x:hidden;
     position:relative;
 }
 
 .pl-hero{
     display:flex;
     align-items:flex-end;
+    min-width:0;
     gap:22px;
     padding:34px 28px 22px;
     background:linear-gradient(
@@ -289,6 +340,7 @@ button{
 .pl-hero img{
     width:168px;
     height:168px;
+    max-width:100%;
     border-radius:12px;
     object-fit:cover;
     box-shadow:var(--shadow);
@@ -297,6 +349,7 @@ button{
 
 .pl-hero-meta{
     min-width:0;
+    max-width:100%;
 }
 
 .pl-hero-meta .kind{
@@ -313,11 +366,13 @@ button{
     font-size:clamp(28px,4vw,46px);
     line-height:1.02;
     color:var(--text);
+    overflow-wrap:anywhere;
 }
 
 .pl-hero-meta .sub{
     font-size:13px;
     color:var(--text-muted);
+    overflow-wrap:anywhere;
 }
 
 .pl-hero-meta .sub strong{
@@ -346,6 +401,7 @@ button{
     justify-content:center;
     box-shadow:0 8px 20px rgba(255,61,146,.35);
     transition:transform .12s ease;
+    flex:none;
 }
 
 .play-big:hover{
@@ -364,7 +420,10 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:color .15s ease,background .15s ease;
+    transition:
+        color .15s ease,
+        background .15s ease;
+    flex:none;
 }
 
 .icon-btn:hover{
@@ -379,12 +438,18 @@ button{
 /* TRACK LIST */
 
 .tracklist{
+    min-width:0;
+    max-width:100%;
     padding:10px 12px 26px;
 }
 
 .tl-head{
     display:grid;
-    grid-template-columns:40px 1fr 90px 40px;
+    grid-template-columns:
+        40px
+        minmax(0,1fr)
+        90px
+        40px;
     gap:12px;
     padding:8px 16px;
     font-size:11px;
@@ -399,9 +464,15 @@ button{
 
 .track{
     display:grid;
-    grid-template-columns:40px 1fr 90px 40px;
+    grid-template-columns:
+        40px
+        minmax(0,1fr)
+        90px
+        40px;
     gap:12px;
     align-items:center;
+    min-width:0;
+    max-width:100%;
     padding:9px 16px;
     border-radius:var(--radius-sm);
     cursor:pointer;
@@ -467,9 +538,11 @@ button{
 
 .track-info{
     min-width:0;
+    max-width:100%;
     display:flex;
     flex-direction:column;
     gap:2px;
+    overflow:hidden;
 }
 
 .track-info .tt{
@@ -522,12 +595,15 @@ button{
     text-align:center;
     color:var(--text-muted);
     font-size:14px;
+    overflow-wrap:anywhere;
 }
 
 /* NOW PLAYING */
 
 .queue{
     grid-area:queue;
+    min-width:0;
+    max-width:100%;
     background:var(--bg-elevated);
     border-radius:var(--radius-lg);
     padding:18px 16px;
@@ -545,7 +621,8 @@ button{
 
 #videoBox{
     width:100%;
-    aspect-ratio:16/9;
+    max-width:100%;
+    aspect-ratio:16 / 9;
     border-radius:var(--radius-md);
     overflow:hidden;
     position:relative;
@@ -557,19 +634,22 @@ button{
 #nowPlayingImage{
     width:100%;
     height:100%;
+    max-width:100%;
     object-fit:cover;
     display:block;
 }
 
 #youtubePlayer{
     width:100%;
+    max-width:100%;
     height:100%;
     display:none;
 }
 
 #youtubePlayer iframe{
-    width:100%;
-    height:100%;
+    width:100% !important;
+    max-width:100% !important;
+    height:100% !important;
     border:0;
     display:block;
 }
@@ -577,7 +657,10 @@ button{
 /* SONG DESCRIPTION */
 
 .now-playing-description{
+    min-width:0;
+    max-width:100%;
     margin-top:-6px;
+    overflow:hidden;
 }
 
 .now-playing-description h2{
@@ -595,6 +678,9 @@ button{
     font-size:12px;
     color:var(--accent-soft);
     font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .now-playing-description p{
@@ -602,6 +688,7 @@ button{
     font-size:12px;
     line-height:1.5;
     color:var(--text-muted);
+    overflow-wrap:anywhere;
 }
 
 .queue-list-label{
@@ -611,13 +698,22 @@ button{
     margin-top:6px;
 }
 
+#queueListBody{
+    min-width:0;
+    max-width:100%;
+    overflow:hidden;
+}
+
 .queue-item{
     display:flex;
     align-items:center;
+    min-width:0;
+    max-width:100%;
     gap:10px;
     padding:6px 4px;
     border-radius:8px;
     cursor:pointer;
+    overflow:hidden;
 }
 
 .queue-item:hover{
@@ -630,6 +726,11 @@ button{
     border-radius:6px;
     object-fit:cover;
     flex:none;
+}
+
+.queue-item > div{
+    min-width:0;
+    overflow:hidden;
 }
 
 .queue-item .qt{
@@ -663,13 +764,19 @@ button{
 
 .player{
     grid-area:player;
+    min-width:0;
+    max-width:100%;
     background:var(--bg-elevated);
     border-radius:var(--radius-md);
     display:grid;
-    grid-template-columns:minmax(140px,260px) 1fr minmax(140px,200px);
+    grid-template-columns:
+        minmax(140px,260px)
+        minmax(0,1fr)
+        minmax(140px,200px);
     align-items:center;
     gap:16px;
     padding:0 16px;
+    overflow:hidden;
 }
 
 .np-now{
@@ -677,6 +784,7 @@ button{
     align-items:center;
     gap:12px;
     min-width:0;
+    max-width:100%;
 }
 
 .np-now img{
@@ -689,6 +797,8 @@ button{
 
 .np-meta{
     min-width:0;
+    max-width:100%;
+    overflow:hidden;
 }
 
 .np-meta .t{
@@ -726,12 +836,14 @@ button{
     align-items:center;
     gap:6px;
     min-width:0;
+    max-width:100%;
 }
 
 .np-controls{
     display:flex;
     align-items:center;
     gap:18px;
+    max-width:100%;
 }
 
 .np-controls .icon-btn{
@@ -752,6 +864,7 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
+    flex:none;
 }
 
 .np-progress{
@@ -760,6 +873,7 @@ button{
     gap:8px;
     width:100%;
     max-width:560px;
+    min-width:0;
 }
 
 .np-progress span{
@@ -774,6 +888,8 @@ button{
     -webkit-appearance:none;
     appearance:none;
     flex:1;
+    min-width:0;
+    width:100%;
     height:4px;
     border-radius:4px;
     background:
@@ -806,6 +922,7 @@ button{
     align-items:center;
     justify-content:flex-end;
     gap:10px;
+    min-width:0;
 }
 
 /* OVERLAY */
@@ -824,30 +941,57 @@ button{
         --topbar-h:56px;
     }
 
+    html,
+    body{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow-x:hidden;
+    }
+
     body{
         padding:0;
     }
 
     .app{
+        display:grid;
         width:100%;
+        max-width:100%;
+        min-width:0;
         height:100dvh;
-        grid-template-columns:1fr;
-        grid-template-rows:var(--topbar-h) 1fr var(--player-h);
+
+        grid-template-columns:minmax(0,1fr);
+
+        grid-template-rows:
+            var(--topbar-h)
+            minmax(0,1fr)
+            var(--player-h);
+
         grid-template-areas:
             "top"
             "main"
             "player";
+
         gap:6px;
+
         padding:6px;
         padding-top:max(6px,env(safe-area-inset-top));
         padding-left:max(6px,env(safe-area-inset-left));
         padding-right:max(6px,env(safe-area-inset-right));
+
+        overflow:hidden;
     }
 
+    /* TOP BAR */
+
     .topbar{
+        width:100%;
+        max-width:100%;
+        min-width:0;
         padding:0 6px 0 4px;
         gap:6px;
         border-radius:12px;
+        overflow:hidden;
     }
 
     .menu-btn{
@@ -858,6 +1002,10 @@ button{
         height:44px;
         flex:none;
         font-size:19px;
+    }
+
+    .brand{
+        flex:none;
     }
 
     .brand span{
@@ -871,20 +1019,24 @@ button{
     }
 
     .searchwrap{
-        flex:1;
+        flex:1 1 auto;
         min-width:0;
+        width:auto;
+        max-width:none;
         height:42px;
         padding:0 12px;
     }
 
     .searchwrap i{
         font-size:13px;
+        flex:none;
     }
 
-    /* 16px stops iOS Safari auto-zooming the page on focus */
     .searchwrap input{
-        font-size:16px;
+        flex:1 1 auto;
         min-width:0;
+        width:100%;
+        font-size:16px;
     }
 
     .queue-toggle{
@@ -894,11 +1046,21 @@ button{
         height:44px;
     }
 
+    /* MAIN */
+
     .main{
+        width:100%;
+        max-width:100%;
+        min-width:0;
         border-radius:14px;
+        overflow-x:hidden;
+        overflow-y:auto;
     }
 
     .pl-hero{
+        width:100%;
+        max-width:100%;
+        min-width:0;
         flex-direction:column;
         align-items:center;
         text-align:center;
@@ -909,12 +1071,22 @@ button{
     .pl-hero img{
         width:min(58vw,210px);
         height:min(58vw,210px);
+        max-width:100%;
         border-radius:14px;
     }
 
+    .pl-hero-meta{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow:hidden;
+    }
+
     .pl-hero-meta h1{
+        max-width:100%;
         font-size:28px;
         margin-bottom:6px;
+        overflow-wrap:anywhere;
     }
 
     .pl-hero-meta .kind{
@@ -926,6 +1098,8 @@ button{
     }
 
     .pl-actions{
+        width:100%;
+        max-width:100%;
         padding:8px 16px 4px;
         justify-content:center;
         gap:20px;
@@ -943,8 +1117,14 @@ button{
         font-size:19px;
     }
 
+    /* TRACK LIST */
+
     .tracklist{
+        width:100%;
+        max-width:100%;
+        min-width:0;
         padding:4px 6px 20px;
+        overflow:hidden;
     }
 
     .tl-head{
@@ -952,7 +1132,13 @@ button{
     }
 
     .track{
-        grid-template-columns:26px 1fr 44px;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        grid-template-columns:
+            26px
+            minmax(0,1fr)
+            44px;
         gap:8px;
         padding:10px 8px;
         min-height:60px;
@@ -964,6 +1150,13 @@ button{
 
     .track .idx{
         font-size:12px;
+        width:26px;
+    }
+
+    .track-info{
+        min-width:0;
+        max-width:100%;
+        overflow:hidden;
     }
 
     .track .like{
@@ -981,25 +1174,46 @@ button{
         font-size:12px;
     }
 
-    /* ---- PLAYER BAR ---- */
+    /* PLAYER BAR */
 
     .player{
-        grid-template-columns:1fr;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+
+        grid-template-columns:minmax(0,1fr);
         grid-template-rows:auto auto;
-        padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+
+        padding:
+            8px
+            10px
+            calc(8px + env(safe-area-inset-bottom));
+
         gap:6px;
         border-radius:14px;
+        overflow:hidden;
     }
 
     .np-now{
         width:100%;
+        max-width:100%;
+        min-width:0;
         gap:10px;
         cursor:pointer;
+        overflow:hidden;
     }
 
     .np-now img{
         width:46px;
         height:46px;
+        flex:none;
+    }
+
+    .np-meta{
+        flex:1 1 auto;
+        min-width:0;
+        max-width:100%;
+        overflow:hidden;
     }
 
     .np-meta .t{
@@ -1015,13 +1229,18 @@ button{
         width:40px;
         height:40px;
         font-size:15px;
+        flex:none;
     }
 
     .np-center{
         width:100%;
+        max-width:100%;
+        min-width:0;
     }
 
     .np-controls{
+        width:100%;
+        max-width:100%;
         gap:18px;
         justify-content:center;
     }
@@ -1040,12 +1259,20 @@ button{
 
     .np-progress{
         width:100%;
+        max-width:100%;
+        min-width:0;
         gap:8px;
     }
 
     .np-progress span{
         font-size:10px;
         width:30px;
+        flex:none;
+    }
+
+    .seek{
+        min-width:0;
+        width:100%;
     }
 
     .seek::-webkit-slider-thumb{
@@ -1058,41 +1285,70 @@ button{
         display:none;
     }
 
-    /* ---- NOW PLAYING: bottom sheet ---- */
+    /* MOBILE SIDEBAR */
 
     .sidebar{
         position:fixed;
         top:0;
         left:0;
         bottom:0;
+
         width:min(270px,80vw);
+        max-width:80vw;
+        min-width:0;
+
         z-index:40;
+
         transform:translateX(-100%);
         transition:transform .22s ease;
+
         border-radius:0;
-        padding-top:max(18px, env(safe-area-inset-top));
+
+        padding-top:
+            max(18px,env(safe-area-inset-top));
+
+        overflow-x:hidden;
     }
 
     .sidebar.open{
         transform:translateX(0);
     }
 
+    /* MOBILE QUEUE */
+
     .queue{
         position:fixed;
+
         left:0;
         right:0;
         bottom:0;
         top:auto;
+
         width:100%;
+        max-width:100%;
+        min-width:0;
+
         height:88dvh;
         max-height:88dvh;
+
         z-index:40;
+
         border-radius:22px 22px 0 0;
-        box-shadow:0 -10px 30px rgba(0,0,0,.45);
+
+        box-shadow:
+            0 -10px 30px rgba(0,0,0,.45);
+
         transform:translateY(100%);
         transition:transform .25s ease;
-        padding:10px 18px calc(16px + env(safe-area-inset-bottom));
+
+        padding:
+            10px
+            18px
+            calc(16px + env(safe-area-inset-bottom));
+
+        overflow-x:hidden;
         overflow-y:auto;
+
         gap:14px;
     }
 
@@ -1109,6 +1365,7 @@ button{
         background:rgba(255,255,255,.25);
         margin:2px auto 4px;
         order:-2;
+        flex:none;
     }
 
     .queue h3{
@@ -1121,24 +1378,46 @@ button{
         display:flex;
         align-items:center;
         justify-content:center;
+
         position:absolute;
         top:12px;
         right:14px;
+
         width:36px;
         height:36px;
+
         border-radius:50%;
         background:var(--surface);
+
+        z-index:2;
     }
 
     #videoBox{
-        aspect-ratio:16/9;
+        width:100%;
+        max-width:100%;
+        aspect-ratio:16 / 9;
         border-radius:16px;
+        flex:none;
+    }
+
+    #youtubePlayer,
+    #youtubePlayer iframe{
+        width:100% !important;
+        max-width:100% !important;
+        height:100% !important;
+    }
+
+    .now-playing-description{
+        width:100%;
+        max-width:100%;
+        min-width:0;
     }
 
     .now-playing-description h2{
         font-size:18px;
         text-align:center;
         white-space:normal;
+        overflow-wrap:anywhere;
     }
 
     .now-playing-description .description-artist{
@@ -1148,10 +1427,103 @@ button{
     .now-playing-description p{
         font-size:13px;
         text-align:center;
+        overflow-wrap:anywhere;
     }
 
     .queue-list-label{
         text-align:center;
+    }
+
+    #queueListBody{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow:hidden;
+    }
+
+    .queue-item{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+    }
+
+    /* OVERLAY */
+
+    .overlay{
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.45);
+        z-index:30;
+    }
+
+    .overlay.show{
+        display:block;
+    }
+}
+
+/* VERY SMALL PHONES */
+
+@media(max-width:380px){
+
+    .app{
+        gap:4px;
+        padding:4px;
+    }
+
+    .topbar{
+        gap:4px;
+        padding-left:2px;
+        padding-right:4px;
+    }
+
+    .menu-btn{
+        width:40px;
+        height:40px;
+    }
+
+    .brand .dot{
+        width:30px;
+        height:30px;
+    }
+
+    .queue-toggle{
+        width:40px;
+        height:40px;
+    }
+
+    .searchwrap{
+        height:40px;
+        padding:0 9px;
+    }
+
+    .np-controls{
+        gap:10px;
+    }
+
+    .np-controls .icon-btn{
+        width:40px;
+        height:40px;
+    }
+
+    .np-play{
+        width:46px;
+        height:46px;
+    }
+
+    .track{
+        grid-template-columns:
+            24px
+            minmax(0,1fr)
+            40px;
+        gap:6px;
+        padding-left:6px;
+        padding-right:6px;
+    }
+
+    .track .like{
+        width:40px;
+        height:40px;
     }
 }
 </style>
