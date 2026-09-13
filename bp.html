@@ -554,17 +554,24 @@ button{
     box-shadow:var(--shadow);
 }
 
-#nowPlayingImage,
-#youtubePlayer{
+#nowPlayingImage{
     width:100%;
     height:100%;
-    border:0;
     object-fit:cover;
     display:block;
 }
 
 #youtubePlayer{
+    width:100%;
+    height:100%;
     display:none;
+}
+
+#youtubePlayer iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
 }
 
 /* SONG DESCRIPTION */
@@ -807,57 +814,6 @@ button{
     display:none;
 }
 
-/* 1024 */
-
-@media(max-width:1024px){
-
-    :root{
-        --nowplaying-w:0px;
-    }
-
-    .app{
-        grid-template-columns:var(--sidebar-w) 1fr;
-        grid-template-areas:
-            "top top"
-            "side main"
-            "player player";
-    }
-
-    .queue{
-        position:fixed;
-        top:0;
-        right:0;
-        bottom:0;
-        width:min(340px,84vw);
-        z-index:40;
-        transform:translateX(100%);
-        transition:transform .22s ease;
-        border-radius:0;
-        box-shadow:-10px 0 30px rgba(0,0,0,.4);
-    }
-
-    .queue.open{
-        transform:translateX(0);
-    }
-
-    .queue-toggle{
-        display:flex;
-    }
-
-    .queue-close{
-        display:flex;
-        align-self:flex-end;
-    }
-
-    .overlay.show{
-        display:block;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,.45);
-        z-index:35;
-    }
-}
-
 /* PHONE */
 
 @media(max-width:720px){
@@ -873,6 +829,7 @@ button{
     }
 
     .app{
+        width:100%;
         height:100dvh;
         grid-template-columns:1fr;
         grid-template-rows:var(--topbar-h) 1fr var(--player-h);
@@ -882,9 +839,9 @@ button{
             "player";
         gap:6px;
         padding:6px;
-        padding-top:max(6px, env(safe-area-inset-top));
-        padding-left:max(6px, env(safe-area-inset-left));
-        padding-right:max(6px, env(safe-area-inset-right));
+        padding-top:max(6px,env(safe-area-inset-top));
+        padding-left:max(6px,env(safe-area-inset-left));
+        padding-right:max(6px,env(safe-area-inset-right));
     }
 
     .topbar{
@@ -1335,13 +1292,7 @@ button{
                 alt="Now Playing"
             >
 
-            <iframe
-                id="youtubePlayer"
-                src=""
-                title="YouTube video"
-                allow="autoplay; encrypted-media"
-                allowfullscreen>
-            </iframe>
+        <div id="youtubePlayer"></div>
 
         </div>
 
@@ -1503,6 +1454,8 @@ button{
 
 </div>
 
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
 (function(){
 
@@ -1572,7 +1525,6 @@ button{
                     youtubeId:"VIDEO_ID_7",
                     spotifyId:"7J1uxwnxfQLu4APicE5Rnj"
                 }
-
             ]
         },
 
@@ -1640,27 +1592,34 @@ button{
                     youtubeId:"VIDEO_ID_14",
                     spotifyId:"7J1uxwnxfQLu4APicE5Rnj"
                 }
-
             ]
         }
-
     };
 
-    const order = [
-        "barbie",
-        "her"
-    ];
+    const order = ["barbie","her"];
 
     /* STATE */
 
     let currentPlaylistKey = "barbie";
     let currentIndex = 0;
+
     let isPlaying = false;
     let isShuffle = false;
+
+    /*
+        0 = repeat off
+        1 = repeat playlist
+        2 = repeat song
+    */
     let repeatMode = 0;
+
     let shuffleOrder = [];
     let likedTracks = new Set();
     let searchQuery = "";
+
+    let ytPlayer = null;
+    let youtubeReady = false;
+    let pendingVideo = null;
 
     /* ELEMENTS */
 
@@ -1764,14 +1723,14 @@ button{
 
         nowPlayingDescription:
             document.getElementById("nowPlayingDescription")
-
     };
 
     const nowPlayingImage =
         document.getElementById("nowPlayingImage");
 
-    const youtubePlayer =
+    const youtubePlayerContainer =
         document.getElementById("youtubePlayer");
+
 
     /* HELPERS */
 
@@ -1806,6 +1765,18 @@ button{
             String(seconds).padStart(2,"0");
     }
 
+
+    function isValidYoutubeId(id){
+
+        return(
+            typeof id === "string" &&
+            /^[A-Za-z0-9_-]{11}$/.test(id)
+        );
+    }
+
+
+    /* SHUFFLE */
+
     function buildShuffleOrder(len,excludeIndex){
 
         const arr =
@@ -1837,50 +1808,522 @@ button{
             : [excludeIndex,...arr];
     }
 
-    /* YOUTUBE */
 
-    function showAlbum(){
+    /* YOUTUBE API */
 
-        youtubePlayer.src = "";
+    window.onYouTubeIframeAPIReady = function(){
 
-        youtubePlayer.style.display =
-            "none";
+        youtubeReady = true;
 
-        nowPlayingImage.style.display =
-            "block";
+        ytPlayer = new YT.Player(
+            "youtubePlayer",
+            {
+                width:"100%",
+                height:"100%",
+
+                playerVars:{
+                    playsinline:1,
+                    controls:1,
+                    rel:0
+                },
+
+                events:{
+                    onReady:onYoutubeReady,
+                    onStateChange:onYoutubeStateChange,
+                    onError:onYoutubeError
+                }
+            }
+        );
+    };
+
+
+    function onYoutubeReady(){
+
+        if(pendingVideo){
+
+            const videoId =
+                pendingVideo;
+
+            pendingVideo = null;
+
+            ytPlayer.loadVideoById(videoId);
+        }
     }
 
-    function showVideo(){
+
+    function onYoutubeStateChange(event){
+
+        if(!youtubeReady){
+            return;
+        }
+
+        if(
+            event.data ===
+            YT.PlayerState.PLAYING
+        ){
+
+            isPlaying = true;
+
+            updatePlayIcons();
+            updateTrackUI();
+
+        }
+
+        else if(
+            event.data ===
+            YT.PlayerState.PAUSED
+        ){
+
+            isPlaying = false;
+
+            updatePlayIcons();
+            updateTrackUI();
+
+        }
+
+        else if(
+            event.data ===
+            YT.PlayerState.ENDED
+        ){
+
+            isPlaying = false;
+
+            updatePlayIcons();
+
+            handleTrackEnded();
+        }
+    }
+
+
+    function onYoutubeError(event){
+
+        console.error(
+            "YouTube player error:",
+            event.data
+        );
+
+        isPlaying = false;
+
+        updatePlayIcons();
+    }
+
+
+    function loadYoutubeVideo(){
 
         const track =
             currentTrack();
 
         if(
             !track ||
-            !track.youtubeId ||
-            track.youtubeId.startsWith("VIDEO_ID")
+            !isValidYoutubeId(track.youtubeId)
         ){
-            return;
-        }
 
-        youtubePlayer.src =
-            "https://www.youtube.com/embed/" +
-            track.youtubeId +
-            "?autoplay=1";
+            showAlbum();
+
+            console.warn(
+                "Invalid YouTube ID for:",
+                track?.title
+            );
+
+            return false;
+        }
 
         nowPlayingImage.style.display =
             "none";
 
-        youtubePlayer.style.display =
+        youtubePlayerContainer.style.display =
             "block";
+
+        if(!youtubeReady || !ytPlayer){
+
+            pendingVideo =
+                track.youtubeId;
+
+            return true;
+        }
+
+        ytPlayer.loadVideoById(
+            track.youtubeId
+        );
+
+        return true;
     }
 
-    nowPlayingImage.addEventListener(
-        "click",
-        showVideo
+
+    function showAlbum(){
+
+        if(
+            ytPlayer &&
+            typeof ytPlayer.stopVideo === "function"
+        ){
+            ytPlayer.stopVideo();
+        }
+
+        youtubePlayerContainer.style.display =
+            "none";
+
+        nowPlayingImage.style.display =
+            "block";
+
+        el.curTime.textContent =
+            "0:00";
+
+        el.durTime.textContent =
+            "0:00";
+
+        el.seekBar.value = 0;
+
+        updateSeekBackground();
+    }
+
+
+    function playYoutube(){
+
+        const track =
+            currentTrack();
+
+        if(
+            !track ||
+            !isValidYoutubeId(track.youtubeId)
+        ){
+
+            isPlaying = false;
+
+            updatePlayIcons();
+
+            console.warn(
+                "Replace " +
+                track?.youtubeId +
+                " with a real 11-character YouTube video ID."
+            );
+
+            return;
+        }
+
+        if(
+            ytPlayer &&
+            youtubeReady
+        ){
+
+            const currentVideo =
+                ytPlayer.getVideoData &&
+                ytPlayer.getVideoData().video_id;
+
+            if(
+                currentVideo ===
+                track.youtubeId
+            ){
+
+                ytPlayer.playVideo();
+
+            }else{
+
+                ytPlayer.loadVideoById(
+                    track.youtubeId
+                );
+            }
+
+        }else{
+
+            pendingVideo =
+                track.youtubeId;
+
+            loadYoutubeVideo();
+        }
+    }
+
+
+    /* PLAYBACK */
+
+    function togglePlay(){
+
+        const track =
+            currentTrack();
+
+        if(!track){
+            return;
+        }
+
+        if(isPlaying){
+
+            if(
+                ytPlayer &&
+                typeof ytPlayer.pauseVideo ===
+                "function"
+            ){
+
+                ytPlayer.pauseVideo();
+
+            }else{
+
+                isPlaying = false;
+                updatePlayIcons();
+            }
+
+        }else{
+
+            isPlaying = true;
+
+            updatePlayIcons();
+
+            playYoutube();
+        }
+    }
+
+
+    function handleTrackEnded(){
+
+        if(repeatMode === 2){
+
+            playYoutube();
+
+            return;
+        }
+
+        nextTrack();
+    }
+
+
+    function nextTrack(){
+
+        const len =
+            currentPlaylist().tracks.length;
+
+        if(isShuffle){
+
+            if(!shuffleOrder.length){
+
+                shuffleOrder =
+                    buildShuffleOrder(
+                        len,
+                        currentIndex
+                    );
+            }
+
+            const pos =
+                shuffleOrder.indexOf(
+                    currentIndex
+                );
+
+            const nextPos =
+                pos + 1;
+
+            if(nextPos >= shuffleOrder.length){
+
+                if(repeatMode === 0){
+
+                    isPlaying = false;
+
+                    showAlbum();
+
+                    updatePlayIcons();
+
+                    return;
+                }
+
+                shuffleOrder =
+                    buildShuffleOrder(
+                        len,
+                        null
+                    );
+
+                currentIndex =
+                    shuffleOrder[0];
+
+            }else{
+
+                currentIndex =
+                    shuffleOrder[nextPos];
+            }
+
+        }else{
+
+            const next =
+                currentIndex + 1;
+
+            if(
+                next >= len &&
+                repeatMode === 0
+            ){
+
+                isPlaying = false;
+
+                showAlbum();
+
+                updatePlayIcons();
+
+                return;
+            }
+
+            currentIndex =
+                next % len;
+        }
+
+        isPlaying = true;
+
+        renderAll();
+
+        playYoutube();
+    }
+
+
+    function prevTrack(){
+
+        const len =
+            currentPlaylist().tracks.length;
+
+        if(
+            ytPlayer &&
+            youtubeReady &&
+            ytPlayer.getCurrentTime &&
+            ytPlayer.getCurrentTime() > 3
+        ){
+
+            ytPlayer.seekTo(0,true);
+
+            return;
+        }
+
+        if(isShuffle){
+
+            const pos =
+                shuffleOrder.indexOf(
+                    currentIndex
+                );
+
+            const prevPos =
+                (
+                    pos - 1 +
+                    shuffleOrder.length
+                ) %
+                shuffleOrder.length;
+
+            currentIndex =
+                shuffleOrder[prevPos];
+
+        }else{
+
+            currentIndex =
+                (
+                    currentIndex - 1 +
+                    len
+                ) % len;
+        }
+
+        isPlaying = true;
+
+        renderAll();
+
+        playYoutube();
+    }
+
+
+    /* SEEK BAR */
+
+    function updateSeekBar(){
+
+        if(
+            ytPlayer &&
+            youtubeReady &&
+            typeof ytPlayer.getCurrentTime ===
+            "function"
+        ){
+
+            const current =
+                ytPlayer.getCurrentTime();
+
+            const duration =
+                ytPlayer.getDuration();
+
+            if(duration > 0){
+
+                el.seekBar.value =
+                    (current / duration) * 100;
+
+                el.curTime.textContent =
+                    formatTime(current);
+
+                el.durTime.textContent =
+                    formatTime(duration);
+
+                updateSeekBackground();
+            }
+        }
+
+        requestAnimationFrame(
+            updateSeekBar
+        );
+    }
+
+
+    function updateSeekBackground(){
+
+        const value =
+            Number(el.seekBar.value) || 0;
+
+        el.seekBar.style.background =
+            `linear-gradient(
+                to right,
+                var(--accent) 0%,
+                var(--accent) ${value}%,
+                rgba(255,255,255,.18) ${value}%,
+                rgba(255,255,255,.18) 100%
+            )`;
+    }
+
+
+    el.seekBar.addEventListener(
+        "input",
+        function(){
+
+            updateSeekBackground();
+
+            if(
+                ytPlayer &&
+                youtubeReady &&
+                ytPlayer.getDuration()
+            ){
+
+                const duration =
+                    ytPlayer.getDuration();
+
+                const time =
+                    duration *
+                    (Number(this.value) / 100);
+
+                el.curTime.textContent =
+                    formatTime(time);
+            }
+        }
     );
 
-    /* RENDER SIDEBAR */
+
+    el.seekBar.addEventListener(
+        "change",
+        function(){
+
+            if(
+                ytPlayer &&
+                youtubeReady
+            ){
+
+                const duration =
+                    ytPlayer.getDuration();
+
+                const time =
+                    duration *
+                    (Number(this.value) / 100);
+
+                ytPlayer.seekTo(
+                    time,
+                    true
+                );
+            }
+        }
+    );
+
+
+    /* SIDEBAR */
 
     function renderSidebar(){
 
@@ -1927,9 +2370,9 @@ button{
             );
 
             el.playlistList.appendChild(item);
-
         });
     }
+
 
     /* HERO */
 
@@ -1958,6 +2401,7 @@ button{
         el.heroDuration.textContent =
             estMinutes + " min";
     }
+
 
     /* TRACK LIST */
 
@@ -1990,6 +2434,7 @@ button{
                             .includes(q)
                     )
                 ){
+
                     return;
                 }
 
@@ -2029,6 +2474,7 @@ button{
                     );
 
                 row.innerHTML = `
+
                     <div class="idx">
 
                         <span class="num">
@@ -2102,34 +2548,44 @@ button{
                             if(
                                 likedTracks.has(key)
                             ){
+
                                 likedTracks.delete(key);
+
                             }else{
+
                                 likedTracks.add(key);
                             }
 
                             renderTrackList();
-
+                            renderNowPlayingBar();
                         }
                     );
 
                 el.trackListBody
                     .appendChild(row);
-
             }
         );
 
         if(shown === 0){
 
-            el.trackListBody.innerHTML =
-                `
+            el.trackListBody.innerHTML = `
+
                 <div class="empty-state">
                     No songs match "${searchQuery}".
                 </div>
-                `;
+
+            `;
         }
     }
 
-    /* NOW PLAYING BAR + DESCRIPTION */
+
+    function updateTrackUI(){
+
+        renderTrackList();
+    }
+
+
+    /* NOW PLAYING */
 
     function renderNowPlayingBar(){
 
@@ -2147,15 +2603,6 @@ button{
             el.npArtist.textContent =
                 "—";
 
-            el.nowPlayingTitle.textContent =
-                "Pick a song";
-
-            el.nowPlayingArtist.textContent =
-                "—";
-
-            el.nowPlayingDescription.textContent =
-                "Select a song to see its description.";
-
             return;
         }
 
@@ -2167,8 +2614,6 @@ button{
 
         el.npArtist.textContent =
             tr.artist;
-
-        /* NOW PLAYING DESCRIPTION */
 
         el.nowPlayingTitle.textContent =
             tr.title;
@@ -2203,13 +2648,13 @@ button{
                     : ""
             );
 
-        el.npLike.innerHTML =
-            `
+        el.npLike.innerHTML = `
             <i
                 class="fa-${liked ? "solid" : "regular"} fa-heart">
             </i>
-            `;
+        `;
     }
+
 
     /* QUEUE */
 
@@ -2262,6 +2707,7 @@ button{
         return result;
     }
 
+
     function renderQueue(){
 
         const pl =
@@ -2284,6 +2730,7 @@ button{
                 "queue-item";
 
             item.innerHTML = `
+
                 <img
                     src="${pl.cover}"
                     alt=""
@@ -2310,17 +2757,16 @@ button{
                         currentPlaylistKey,
                         index
                     );
-
                 }
             );
 
             el.queueListBody
                 .appendChild(item);
-
         });
     }
 
-    /* RENDER EVERYTHING */
+
+    /* RENDER ALL */
 
     function renderAll(){
 
@@ -2329,13 +2775,23 @@ button{
         renderTrackList();
         renderNowPlayingBar();
         renderQueue();
-        updatePlayIcons();
 
+        updatePlayIcons();
     }
+
 
     /* PLAYLIST */
 
     function switchPlaylist(key){
+
+        if(
+            ytPlayer &&
+            typeof ytPlayer.stopVideo ===
+            "function"
+        ){
+
+            ytPlayer.stopVideo();
+        }
 
         currentPlaylistKey =
             key;
@@ -2344,12 +2800,15 @@ button{
 
         isPlaying = false;
 
+        shuffleOrder = [];
+
         showAlbum();
 
         renderAll();
 
         closeSidebarMobile();
     }
+
 
     /* PLAY SONG */
 
@@ -2376,37 +2835,13 @@ button{
 
         isPlaying = true;
 
-        showAlbum();
+        renderAll();
 
-        renderTrackList();
-
-        renderNowPlayingBar();
-
-        renderQueue();
-
-        updatePlayIcons();
+        playYoutube();
     }
 
-    /* PLAY / PAUSE */
 
-    function togglePlay(){
-
-        if(!isPlaying){
-
-            isPlaying = true;
-
-            showVideo();
-
-        }else{
-
-            isPlaying = false;
-
-        }
-
-        renderTrackList();
-
-        updatePlayIcons();
-    }
+    /* PLAY ICONS */
 
     function updatePlayIcons(){
 
@@ -2415,105 +2850,15 @@ button{
                 ? "fa-pause"
                 : "fa-play";
 
-        el.playPauseBtn.innerHTML =
-            `
+        el.playPauseBtn.innerHTML = `
             <i class="fa-solid ${icon}"></i>
-            `;
+        `;
 
-        el.bigPlayBtn.innerHTML =
-            `
+        el.bigPlayBtn.innerHTML = `
             <i class="fa-solid ${icon}"></i>
-            `;
+        `;
     }
 
-    /* NEXT */
-
-    function nextTrack(){
-
-        const len =
-            currentPlaylist().tracks.length;
-
-        if(isShuffle){
-
-            const pos =
-                shuffleOrder.indexOf(
-                    currentIndex
-                );
-
-            let nextPos =
-                pos + 1;
-
-            if(
-                nextPos >=
-                shuffleOrder.length
-            ){
-
-                shuffleOrder =
-                    buildShuffleOrder(
-                        len,
-                        null
-                    );
-
-                nextPos = 0;
-            }
-
-            currentIndex =
-                shuffleOrder[nextPos];
-
-        }else{
-
-            currentIndex =
-                (
-                    currentIndex + 1
-                ) % len;
-        }
-
-        isPlaying = true;
-
-        showAlbum();
-
-        renderAll();
-    }
-
-    /* PREVIOUS */
-
-    function prevTrack(){
-
-        const len =
-            currentPlaylist().tracks.length;
-
-        if(isShuffle){
-
-            const pos =
-                shuffleOrder.indexOf(
-                    currentIndex
-                );
-
-            const prevPos =
-                (
-                    pos - 1 +
-                    shuffleOrder.length
-                ) %
-                shuffleOrder.length;
-
-            currentIndex =
-                shuffleOrder[prevPos];
-
-        }else{
-
-            currentIndex =
-                (
-                    currentIndex - 1 +
-                    len
-                ) % len;
-        }
-
-        isPlaying = true;
-
-        showAlbum();
-
-        renderAll();
-    }
 
     /* SHUFFLE */
 
@@ -2549,6 +2894,7 @@ button{
         renderQueue();
     }
 
+
     /* REPEAT */
 
     function cycleRepeat(){
@@ -2565,8 +2911,8 @@ button{
 
         if(repeatMode === 2){
 
-            el.repeatBtn.innerHTML =
-                `
+            el.repeatBtn.innerHTML = `
+
                 <i class="fa-solid fa-repeat"></i>
 
                 <span
@@ -2575,22 +2921,53 @@ button{
                         font-size:8px;
                         margin-left:14px;
                         margin-top:-14px;
-                    ">
+                    "
+                >
                     1
                 </span>
-                `;
+
+            `;
 
         }else{
 
-            el.repeatBtn.innerHTML =
-                `
+            el.repeatBtn.innerHTML = `
                 <i class="fa-solid fa-repeat"></i>
-                `;
+            `;
         }
 
         el.repeatBtn.style.position =
             "relative";
     }
+
+
+    /* LIKE */
+
+    el.npLike.addEventListener(
+        "click",
+        () => {
+
+            const key =
+                trackKey(
+                    currentPlaylistKey,
+                    currentIndex
+                );
+
+            if(
+                likedTracks.has(key)
+            ){
+
+                likedTracks.delete(key);
+
+            }else{
+
+                likedTracks.add(key);
+            }
+
+            renderNowPlayingBar();
+            renderTrackList();
+        }
+    );
+
 
     /* BUTTONS */
 
@@ -2629,49 +3006,25 @@ button{
         cycleRepeat
     );
 
-    /* LIKE */
 
-    el.npLike.addEventListener(
+    /* ALBUM IMAGE */
+
+    nowPlayingImage.addEventListener(
         "click",
         () => {
 
-            const key =
-                trackKey(
-                    currentPlaylistKey,
-                    currentIndex
-                );
-
             if(
-                likedTracks.has(key)
+                isValidYoutubeId(
+                    currentTrack().youtubeId
+                )
             ){
-                likedTracks.delete(key);
-            }else{
-                likedTracks.add(key);
+
+                loadYoutubeVideo();
+
             }
-
-            renderNowPlayingBar();
-            renderTrackList();
-
         }
     );
 
-    /* TAP ALBUM ART TO OPEN NOW PLAYING (mobile) */
-
-    document.querySelector(".np-now")
-        .addEventListener(
-            "click",
-            event => {
-
-                if(
-                    event.target.closest(".np-like")
-                ){
-                    return;
-                }
-
-                openQueue();
-
-            }
-        );
 
     /* SEARCH */
 
@@ -2683,9 +3036,9 @@ button{
                 event.target.value;
 
             renderTrackList();
-
         }
     );
+
 
     /* MOBILE SIDEBAR */
 
@@ -2699,6 +3052,7 @@ button{
             "show"
         );
     }
+
 
     function closeSidebarMobile(){
 
@@ -2718,6 +3072,7 @@ button{
         }
     }
 
+
     /* MOBILE QUEUE */
 
     function openQueue(){
@@ -2730,6 +3085,7 @@ button{
             "show"
         );
     }
+
 
     function closeQueue(){
 
@@ -2749,6 +3105,7 @@ button{
         }
     }
 
+
     el.sidebarToggle.addEventListener(
         "click",
         () => {
@@ -2764,11 +3121,10 @@ button{
             }else{
 
                 openSidebarMobile();
-
             }
-
         }
     );
+
 
     el.queueToggle.addEventListener(
         "click",
@@ -2785,16 +3141,16 @@ button{
             }else{
 
                 openQueue();
-
             }
-
         }
     );
+
 
     el.queueClose.addEventListener(
         "click",
         closeQueue
     );
+
 
     el.overlay.addEventListener(
         "click",
@@ -2802,9 +3158,9 @@ button{
 
             closeSidebarMobile();
             closeQueue();
-
         }
     );
+
 
     /* KEYBOARD */
 
@@ -2821,17 +3177,20 @@ button{
                 event.preventDefault();
 
                 togglePlay();
-
             }
-
         }
     );
+
 
     /* INITIALIZE */
 
     renderAll();
 
     showAlbum();
+
+    updateSeekBackground();
+
+    updateSeekBar();
 
 })();
 </script>
