@@ -20,6 +20,12 @@
 
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;font-family:Manrope,sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
+*{scrollbar-width:thin;scrollbar-color:var(--accent) var(--surface)}
+*::-webkit-scrollbar{width:8px;height:8px}
+*::-webkit-scrollbar-track{background:var(--bg-elevated);border-radius:10px}
+*::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent-soft),var(--accent));border-radius:10px;border:2px solid var(--bg-elevated)}
+*::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+*::-webkit-scrollbar-corner{background:var(--bg-elevated)}
 button,input,textarea{font:inherit}button{border:0;cursor:pointer}
 .app{height:100vh;display:grid;grid-template-columns:var(--sidebar-w) 1fr var(--nowplaying-w);grid-template-rows:var(--topbar-h) 1fr var(--player-h);grid-template-areas:"topbar topbar topbar" "sidebar main queue" "player player player";overflow:hidden}
 
@@ -532,7 +538,7 @@ const defaultPlaylists = {
 barbie: {
     name: "Barbie Playlist",
     owner: "Garaldejosie",
-    cover: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=85&fit=crop",
+    cover: "https://vectorseek.com/wp-content/uploads/2023/07/Barbie-Movie-2023-Logo-Vector.png",
     tracks: [
         // Barbie & the Diamond Castle
         {
@@ -829,7 +835,7 @@ barbie: {
     her: {
         name: "Reminds me of you",
         owner: "Garaldejosie",
-        cover: "smileyy.jpg",
+        cover: "./images/smileyy.jpg",
         tracks: [
             {
                 title: "Walang Iba",
@@ -838,10 +844,94 @@ barbie: {
                 youtubeId: "--6fqzrPbSQ"
             },
             {
-                title: "Walang Iba",
-                artist: "Ezra Band",
-                description: "halata na naman siguro, lyrics palang ayon na yon e HAHAHAHAHAHA",
-                youtubeId: "--6fqzrPbSQ"
+                title: "Makasama",
+                artist: "LUMI",
+                description: "kasi gusto kitang makasama lagi😭😭😭😭😭",
+                youtubeId: "plDZhWF18BM"
+            },
+            {
+                title: "Bahala na",
+                artist: "Kenniah",
+                description: "Fav song nung gr8-9 times lagi kita iniisip dito 🥺🥺🥺 lagi kasi ako nagdadalawang isip pano ako aamin o aamin bako o hindi HAHAHAHAHHAHA",
+                youtubeId: "9kacFrFroZw"
+            },
+            {
+                title: "Ikaw na",
+                artist: "LEILA",
+                description: "Fav song nung gr8 times lagi kita iniisip dito 🥺🥺🥺 part 2",
+                youtubeId: "0bjRKTFL6NI"
+            },
+            {
+                title: "Aura",
+                artist: "IV OF SPADES",
+                description: "Ganto yung feeling ko lagi pagantahimik ng buhay natin paghindi tayo nagaaway",
+                youtubeId: "5yHaatld7rY"
+            },
+            {
+                title: "Bukod-Tangi",
+                artist: "Cup of Joe",
+                description: "Lagi ko to naiisip tuwing nagseselos ka or tuwing ano ewan parang gusto kitang sabihan na ikaw lang hehehe kasi like legit ikaw lang talaga ang baby ko hehehehe I love youuu lagi ko din to patugtog noon e",
+                youtubeId: "s21YpmmGAg8"
+            },
+            {
+                title: "Ikaw Lang",
+                artist: "Kiyo",
+                description: "Urban Legend na kanta pero gustong gusto ko dahil sa maangas na vibes ng kanta nya pero dito kasi literal na describe na describe ka lagi tuloy kita naiisip sa kantang to mwehhwehwhewee",
+                youtubeId: "iGRqb8kBoz8"
+            },
+            {
+                title: "Ikot",
+                artist: "Over October",
+                description: "ETO PINAPAKINGGAN KO NOON BAGO PA SYA SUMIKAT LIKE LEGIT kasi kabado ako talaga nonnn kung aamin bako o hindi hihihi ikaw lang talaga mwamwamwa",
+                youtubeId: "8yvWcZ8BtrQ"
+            },
+            {
+                title: "Yakap",
+                artist: "Figvres",
+                description: "ETO PINAPAKINGGAN KO NOON BAGO PA SYA SUMIKAT LIKE LEGIT kasi kabado ako talaga nonnn kung aamin bako o hindi hihihi part 2 kasi e halata na nga baby hayst dmo pa malaman",
+                youtubeId: "8yvWcZ8BtrQ"
+            },
+            {
+                title: "Kung Maging Akin Ka",
+                artist: "Sugarcane",
+                description: "Hayst eto din habang naguusap tayo lagi ako parinig talaga non dmo maramdaman hayst new release to non sabi may crush ka ba ganon ganon HAHAHAHHAHAHA hayst pero ikaw talaga lagi naaalala ko dito kasi wala pa tayong keme keme non e usap usap palang talaga medyo malapit na maging baby ng isa't isa HAHAHHAHAHA pero wala pading label hayst HAHAHAHHAAHA",
+                youtubeId: "gsYQX9lDkBw"
+            },
+            {
+                title: "Miss Miss",
+                artist: "Rob Daniel",
+                description: "Lagi na kitang miss talaga matagal na noon pa talaga :'(",
+                youtubeId: "B2bnLUce6wI"
+            },
+            {
+                title: "Paki Sabi",
+                artist: "Sunkissed Lola",
+                description: "HAHAHAHAHAH ETO KASI HIYANG HIYA AKO KILIG PA LAGI AYAW KO TALAGA UMAMINNNN",
+                youtubeId: "6hOFULDlu6A"
+            },
+            {
+                title: "Fallen",
+                artist: "Lola Amour",
+                description: "Super scared talaga ako non kung magugustuhan mo ba talaga ako o hindi e kasi baka mas okay na friends tayo ba o maging strangers kasi tatut akuuuuuu HAHAHAHAHA",
+                youtubeId: "S3wytd6ZbXc"
+            },
+            {
+                title: "LASIK",
+                artist: "HEY JUNE!",
+                description: "ETO TALAGA HAHAHAHAHAHA kasi ikaw yung parang salamin ko like ang ganda talaga ng song na to pati ikaw hehe kasi pagnalaman mo meaning neto like legit magugustuhan mo na talaga parang ikaw lang pagnakilala pa kita hehehe I love you cute mo kasi e basta ang ganda ng meaning neto hehehe",
+                youtubeId: "ihsM0gDcsI8"
+            },
+            {
+                title: "Ikaw Lamang",
+                artist: "Silent Sanctuary",
+                description: "Ikaw nga lang nganiii heheehehhe I love you the most gusto ko talaga lagi tau magkasama ahihihi ",
+                youtubeId: "7lLiE096YWw"
+            },
+            {
+                title: "Konsensya",
+                artist: "IV OF SPADES",
+                description: "nyenyenyenyenye away mo ako ayaw mo na sakin :( (joke) madami pang ibang songs pero masyado nang madami hehehe sabihin mo sakin paggusto mo pang malaman yung iba oki?",
+                youtubeId: "xWfQa2zss80"
             }
         ]
     }
@@ -974,11 +1064,43 @@ let pinnedPlaylists = new Set(loadJSON(STORAGE.pinned, []));
 let currentPlaylistKey = localStorage.getItem(STORAGE.current) || "barbie";
 
 let currentIndex = 0;
+let playbackPlaylistKey = null;
+let playbackIndex = -1;
 let isPlaying = false;
 let isShuffle = false;
 let repeatMode = 0;
 let shuffleOrder = [];
 let searchQuery = "";
+
+function getPlaybackTracks() {
+    if (!playbackPlaylistKey) return [];
+    if (playbackPlaylistKey === "liked") {
+        return getCurrentPlaylistForKey("liked")?.tracks || [];
+    }
+    return playlists[playbackPlaylistKey]?.tracks || [];
+}
+
+function getCurrentPlaylistForKey(key) {
+    if (key === "liked") {
+        const tracks = [];
+        likedOrder.forEach(id => {
+            for (const p of Object.values(playlists)) {
+                const found = p.tracks.find(t => t.id === id);
+                if (found) {
+                    tracks.push(found);
+                    break;
+                }
+            }
+        });
+        return {name:"Liked Songs",owner:"Garaldejosie",cover:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=85&fit=crop",tracks};
+    }
+    return playlists[key];
+}
+
+function getPlaybackTrack() {
+    const tracks = getPlaybackTracks();
+    return playbackIndex >= 0 ? tracks[playbackIndex] : null;
+}
 
 order = order.filter(key => playlists[key]);
 if (!order.length) {
@@ -1030,25 +1152,7 @@ function getDisplayOrder() {
 }
 
 function getCurrentPlaylist() {
-    if (currentPlaylistKey === "liked") {
-        const tracks = [];
-        likedOrder.forEach(id => {
-            for (const p of Object.values(playlists)) {
-                const found = p.tracks.find(t => t.id === id);
-                if (found) {
-                    tracks.push(found);
-                    break;
-                }
-            }
-        });
-        return {
-            name: "Liked Songs",
-            owner: "Garaldejosie",
-            cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=85&fit=crop",
-            tracks
-        };
-    }
-    return playlists[currentPlaylistKey];
+    return getCurrentPlaylistForKey(currentPlaylistKey);
 }
 
 function getCurrentTracks() {
@@ -1209,7 +1313,7 @@ function renderTrackList() {
         const canMoveDown = index < tracks.length - 1;
 
         return `
-            <div class="track ${currentIndex === index ? "active" : ""}" data-index="${index}">
+            <div class="track ${currentPlaylistKey === playbackPlaylistKey && playbackIndex === index ? "active" : ""}" data-index="${index}">
                 <div class="track-number">${index + 1}</div>
                 <div class="track-main">
                     <img class="track-cover" src="${escapeHTML(cover)}" alt="">
@@ -1335,18 +1439,17 @@ function moveTrack(id, direction) {
 }
 
 function renderQueue() {
-    const tracks = getCurrentTracks();
+    const tracks = getPlaybackTracks();
     if (!tracks.length) {
-        el.queueList.innerHTML = `
-            <div class="empty">No songs here yet.</div>
-        `;
+        el.queueList.innerHTML = `<div class="empty">No songs here yet.</div>`;
         return;
     }
 
+    const playbackPlaylist = getCurrentPlaylistForKey(playbackPlaylistKey);
     el.queueList.innerHTML = tracks.map((tr, index) => {
-        const cover = getYoutubeThumbnail(tr, getCurrentPlaylist()?.cover || "");
+        const cover = getYoutubeThumbnail(tr, playbackPlaylist?.cover || "");
         return `
-            <div class="queue-item ${index === currentIndex ? "active" : ""}" data-index="${index}">
+            <div class="queue-item ${index === playbackIndex ? "active" : ""}" data-index="${index}">
                 <img class="queue-item-cover" src="${escapeHTML(cover)}" alt="">
                 <div class="queue-item-text">
                     <div class="queue-item-title">${escapeHTML(tr.title)}</div>
@@ -1359,14 +1462,21 @@ function renderQueue() {
 
     el.queueList.querySelectorAll(".queue-item").forEach(item => {
         item.addEventListener("click", () => {
-            selectTrack(Number(item.dataset.index), true);
+            if (playbackPlaylistKey === currentPlaylistKey) {
+                selectTrack(Number(item.dataset.index), true);
+                return;
+            }
+            playbackIndex = Number(item.dataset.index);
+            isPlaying = false;
+            showAlbum();
+            renderAll();
+            playYoutube();
         });
     });
 }
 
 function updateNowPlayingInfo() {
-    const tracks = getCurrentTracks();
-    const tr = tracks[currentIndex];
+    const tr = getPlaybackTrack();
 
     if (!tr) {
         el.queueNowTitle.textContent = "Nothing playing";
@@ -1381,11 +1491,11 @@ function updateNowPlayingInfo() {
 }
 
 function showAlbum() {
-    const tracks = getCurrentTracks();
-    const tr = tracks[currentIndex];
+    const tr = getPlaybackTrack();
+    const playbackPlaylist = getCurrentPlaylistForKey(playbackPlaylistKey);
 
     if (!tr) {
-        const cover = getCurrentPlaylist()?.cover || "";
+        const cover = playbackPlaylist?.cover || getCurrentPlaylist()?.cover || "";
         el.nowPlayingImage.src = cover;
         el.nowCover.src = cover;
         el.nowTitle.textContent = "Nothing playing";
@@ -1396,7 +1506,7 @@ function showAlbum() {
         return;
     }
 
-    const cover = getYoutubeThumbnail(tr, getCurrentPlaylist()?.cover || "");
+    const cover = getYoutubeThumbnail(tr, playbackPlaylist?.cover || "");
     el.nowPlayingImage.src = cover;
     el.nowCover.src = cover;
     el.nowTitle.textContent = tr.title;
@@ -1410,13 +1520,13 @@ function showAlbum() {
 }
 
 function renderPlayer() {
-    const tracks = getCurrentTracks();
-    const tr = tracks[currentIndex];
+    const tr = getPlaybackTrack();
+    const playbackPlaylist = getCurrentPlaylistForKey(playbackPlaylistKey);
 
     if (!tr) {
         el.nowTitle.textContent = "Nothing playing";
         el.nowArtist.textContent = "Choose a song";
-        el.nowCover.src = getCurrentPlaylist()?.cover || "";
+        el.nowCover.src = playbackPlaylist?.cover || getCurrentPlaylist()?.cover || "";
         el.playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
         el.totalTime.textContent = "0:00";
         el.currentTime.textContent = "0:00";
@@ -1426,7 +1536,7 @@ function renderPlayer() {
 
     el.nowTitle.textContent = tr.title;
     el.nowArtist.textContent = tr.artist;
-    el.nowCover.src = getYoutubeThumbnail(tr, getCurrentPlaylist()?.cover || "");
+    el.nowCover.src = getYoutubeThumbnail(tr, playbackPlaylist?.cover || "");
     el.playBtn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
     el.shuffleBtn.classList.toggle("active", isShuffle);
     el.repeatBtn.classList.toggle("active", repeatMode > 0);
@@ -1450,6 +1560,9 @@ function selectTrack(index, autoPlay = false) {
     if (!tracks[index]) return;
 
     currentIndex = index;
+    playbackPlaylistKey = currentPlaylistKey;
+    playbackIndex = index;
+    shuffleOrder = [];
     isPlaying = false;
     showAlbum();
     renderAll();
@@ -1523,7 +1636,7 @@ window.onYouTubeIframeAPIReady = function() {
 };
 
 function playYoutube() {
-    const tr = getCurrentTracks()[currentIndex];
+    const tr = getPlaybackTrack();
     if (!tr) return;
 
     if (!isValidYoutubeId(tr.youtubeId)) {
@@ -1552,7 +1665,7 @@ function playYoutube() {
 }
 
 function togglePlay() {
-    const tr = getCurrentTracks()[currentIndex];
+    const tr = getPlaybackTrack();
     if (!tr) return;
 
     if (!isValidYoutubeId(tr.youtubeId)) {
@@ -1579,28 +1692,28 @@ function togglePlay() {
 }
 
 function nextTrack() {
-    const tracks = getCurrentTracks();
+    const tracks = getPlaybackTracks();
     if (!tracks.length) return;
 
     if (isShuffle) {
         if (!shuffleOrder.length) createShuffleOrder();
-        const pos = shuffleOrder.indexOf(currentIndex);
+        const pos = shuffleOrder.indexOf(playbackIndex);
 
         if (pos < shuffleOrder.length - 1) {
-            currentIndex = shuffleOrder[pos + 1];
+            playbackIndex = shuffleOrder[pos + 1];
         } else if (repeatMode === 1) {
             createShuffleOrder();
-            currentIndex = shuffleOrder[0] ?? 0;
+            playbackIndex = shuffleOrder[0] ?? 0;
         } else {
             isPlaying = false;
             renderAll();
             return;
         }
     } else {
-        if (currentIndex < tracks.length - 1) {
-            currentIndex++;
+        if (playbackIndex < tracks.length - 1) {
+            playbackIndex++;
         } else if (repeatMode === 1) {
-            currentIndex = 0;
+            playbackIndex = 0;
         } else {
             isPlaying = false;
             if (youtubeReady && ytPlayer) ytPlayer.stopVideo();
@@ -1613,7 +1726,7 @@ function nextTrack() {
 }
 
 function previousTrack() {
-    const tracks = getCurrentTracks();
+    const tracks = getPlaybackTracks();
     if (!tracks.length) return;
 
     if (youtubeReady && ytPlayer && ytPlayer.getCurrentTime() > 3) {
@@ -1622,14 +1735,11 @@ function previousTrack() {
     }
 
     if (isShuffle && shuffleOrder.length) {
-        const pos = shuffleOrder.indexOf(currentIndex);
-        if (pos > 0) {
-            currentIndex = shuffleOrder[pos - 1];
-        } else {
-            currentIndex = shuffleOrder[0] ?? 0;
-        }
+        const pos = shuffleOrder.indexOf(playbackIndex);
+        if (pos > 0) playbackIndex = shuffleOrder[pos - 1];
+        else playbackIndex = shuffleOrder[0] ?? 0;
     } else {
-        currentIndex = currentIndex <= 0 ? tracks.length - 1 : currentIndex - 1;
+        playbackIndex = playbackIndex <= 0 ? tracks.length - 1 : playbackIndex - 1;
     }
 
     playYoutube();
@@ -1637,7 +1747,7 @@ function previousTrack() {
 }
 
 function createShuffleOrder() {
-    const tracks = getCurrentTracks();
+    const tracks = getPlaybackTracks();
     shuffleOrder = tracks.map((_, i) => i);
 
     for (let i = shuffleOrder.length - 1; i > 0; i--) {
@@ -1645,7 +1755,7 @@ function createShuffleOrder() {
         [shuffleOrder[i], shuffleOrder[j]] = [shuffleOrder[j], shuffleOrder[i]];
     }
 
-    if (shuffleOrder.length > 1 && shuffleOrder[0] === currentIndex) {
+    if (shuffleOrder.length > 1 && shuffleOrder[0] === playbackIndex) {
         [shuffleOrder[0], shuffleOrder[1]] = [shuffleOrder[1], shuffleOrder[0]];
     }
 }
@@ -1872,7 +1982,7 @@ function updateProgress() {
             el.progressBar.style.width = Math.min(100, (current / duration) * 100) + "%";
             el.totalTime.textContent = formatTime(duration);
 
-            const tr = getCurrentTracks()[currentIndex];
+            const tr = getPlaybackTrack();
             if (tr && (!tr.durationMs || Math.abs(tr.durationMs - duration * 1000) > 1500)) {
                 tr.durationMs = Math.round(duration * 1000);
                 saveState();
@@ -1917,6 +2027,9 @@ el.playAllBtn.addEventListener("click", () => {
     if (!tracks.length) return;
 
     currentIndex = 0;
+    playbackPlaylistKey = currentPlaylistKey;
+    playbackIndex = 0;
+    shuffleOrder = [];
     playYoutube();
     renderAll();
 });
