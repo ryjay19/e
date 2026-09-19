@@ -109,11 +109,11 @@ button,input,textarea{font:inherit}button{border:0;cursor:pointer}
 .queue-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
 .queue-title h2{font-family:"Baloo 2",sans-serif;font-size:23px;margin:0}
 .youtube-box{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#100a0f;margin-bottom:13px;position:relative}
-.youtube-box iframe{width:100%;height:100%;border:0;pointer-events:none}
+.youtube-box iframe{width:100%;height:100%;border:0;pointer-events:auto}
 .youtube-album{width:100%;height:100%;object-fit:cover;display:block}
 #youtubePlayerContainer{position:absolute;inset:0}
 #youtubePlayer{width:100%;height:100%}
-#youtubePlayer iframe{width:100%;height:100%;border:0;pointer-events:none}
+#youtubePlayer iframe{width:100%;height:100%;border:0;pointer-events:auto}
 .now-playing-info{padding:3px 2px 0;margin-bottom:17px}
 .now-playing-title{font-size:15px;font-weight:800;line-height:1.25;word-break:break-word}
 .now-playing-artist{font-size:11px;color:var(--text-muted);margin-top:4px}
@@ -529,55 +529,303 @@ const STORAGE = {
 };
 
 const defaultPlaylists = {
-    barbie: {
-        name: "Barbie Playlist",
-        owner: "Garaldejosie",
-        cover: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=85&fit=crop",
-        tracks: [
-            {
-                title: "Life in Plastic",
-                artist: "Dreamhouse Radio",
-                description: "A bright and playful track inspired by the colorful world of Barbie and the dreamy feeling of living in a perfect plastic world.",
-                youtubeId: ""
-            },
-            {
-                title: "Come On Barbie",
-                artist: "Malibu Sound Club",
-                description: "A fun, energetic song with a Malibu-inspired vibe, perfect for a sunny day in the Dreamhouse.",
-                youtubeId: ""
-            },
-            {
-                title: "Pink Dream",
-                artist: "Dreamhouse Radio",
-                description: "A soft and dreamy track filled with pink energy, imagination, and the feeling of escaping into your own little world.",
-                youtubeId: ""
-            },
-            {
-                title: "Plastic Fantastic",
-                artist: "Convertible Hearts",
-                description: "A playful pop track celebrating the bright, stylish, and unforgettable world of Barbie.",
-                youtubeId: ""
-            },
-            {
-                title: "Glitter & Gloss",
-                artist: "Malibu Sound Club",
-                description: "A glamorous track inspired by fashion, beauty, and everything that shines.",
-                youtubeId: ""
-            },
-            {
-                title: "Girls' Night Forever",
-                artist: "Dreamhouse Radio",
-                description: "A feel-good song about friendship, fun nights, and making memories.",
-                youtubeId: ""
-            },
-            {
-                title: "Dreamhouse Disco",
-                artist: "Convertible Hearts",
-                description: "A colorful disco-inspired track made for dancing through the Dreamhouse.",
-                youtubeId: ""
-            }
-        ]
-    },
+barbie: {
+    name: "Barbie Playlist",
+    owner: "Garaldejosie",
+    cover: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=85&fit=crop",
+    tracks: [
+        // Barbie & the Diamond Castle
+        {
+            title: "Connected",
+            artist: "Barbie & the Diamond Castle",
+            description: "A song about friendship and the special connection between two best friends.",
+            youtubeId: "56lfqbUvyBI"
+        },
+        {
+            title: "Two Voices, One Song",
+            artist: "Barbie & the Diamond Castle",
+            description: "A heartfelt song about friendship and bringing two voices together.",
+            youtubeId: "7UzKFyLq9KQ"
+        },
+        {
+            title: "We're Gonna Find It",
+            artist: "Barbie & the Diamond Castle",
+            description: "An adventurous song about friendship and finding the Diamond Castle.",
+            youtubeId: "KiMGQmAcTgE"
+        },
+        {
+            title: "Believe",
+            artist: "Barbie & the Diamond Castle",
+            description: "An uplifting song about believing in yourself and your friends.",
+            youtubeId: "q9fDRPyWM7M"
+        },
+        {
+            title: "Wonderful Me",
+            artist: "Barbie & the Diamond Castle",
+            description: "A cheerful song celebrating confidence and being yourself.",
+            youtubeId: "6bB0JTn1gGE"
+        },
+
+        // Barbie as the Princess and the Pauper
+        {
+            title: "Free",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "A song about wanting freedom and choosing your own path.",
+            youtubeId: "qfJTxhlykvQ"
+        },
+        {
+            title: "How Can I Refuse?",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "Preminger's dramatic musical number.",
+            youtubeId: "5otYUHbaJX8"
+        },
+        {
+            title: "Written in Your Heart",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "The opening version of the heartfelt song about following your heart.",
+            youtubeId: "f0BZon_flpA"
+        },
+        {
+            title: "I Am a Girl Like You",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "A playful duet about discovering how much two girls have in common.",
+            youtubeId: "wTPw0YeQs5A"
+        },
+        {
+            title: "To Be a Princess",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "A fun song imagining life as a princess.",
+            youtubeId: "3fz34yzBAEc"
+        },
+        {
+            title: "The Cat's Meow",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "A playful musical number featuring Erika and Serafina.",
+            youtubeId: "TG_1aRJ8YBw"
+        },
+        {
+            title: "If You Love Me for Me",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "A song about being loved for who you really are.",
+            youtubeId: "dt25SFw8H4Y"
+        },
+        {
+            title: "How Can I Refuse? (Reprise)",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "The reprise of Preminger's musical number.",
+            youtubeId: "nbSlpdM8nPo"
+        },
+        {
+            title: "I'm on My Way",
+            artist: "Barbie as the Princess and the Pauper",
+            description: "An upbeat song about moving forward and beginning a new journey.",
+            youtubeId: "rMmREtfF_xA"
+        },
+
+        // Barbie in Rock 'N Royals
+        {
+            title: "Gotta Get to Camp",
+            artist: "Barbie in Rock 'N Royals",
+            description: "An energetic song about heading to camp and beginning a new adventure.",
+            youtubeId: "qUafFkRrPVM"
+        },
+        {
+            title: "Brand New Sound",
+            artist: "Barbie in Rock 'N Royals",
+            description: "A lively song about discovering a new sound and bringing different styles together.",
+            youtubeId: "S0G1twMSbmw"
+        },
+        {
+            title: "What If I Shine",
+            artist: "Barbie in Rock 'N Royals",
+            description: "A song about confidence, self-discovery, and letting yourself shine.",
+            youtubeId: "Y3fLchMHbMY"
+        },
+        {
+            title: "When You're a Princess",
+            artist: "Barbie in Rock 'N Royals",
+            description: "A royal-themed musical number about life as a princess.",
+            youtubeId: "JhnHZbynt1o"
+        },
+        {
+            title: "Find Yourself in the Song",
+            artist: "Barbie in Rock 'N Royals",
+            description: "A song about finding your identity through music.",
+            youtubeId: "VX_UpK_XD-s"
+        },
+        {
+            title: "Unlock Your Dreams",
+            artist: "Barbie in Rock 'N Royals",
+            description: "An uplifting song about pursuing your dreams.",
+            youtubeId: "es3Xg4PpqrM"
+        },
+        {
+            title: "Finale Mash Up",
+            artist: "Barbie in Rock 'N Royals",
+            description: "A finale combining musical themes from the movie.",
+            youtubeId: "iPfhCSkPiqU"
+        },
+        {
+            title: "What If I Shine (Remix)",
+            artist: "Barbie in Rock 'N Royals",
+            description: "The official remix of What If I Shine.",
+            youtubeId: "kyPK2ffuY5I"
+        },
+        {
+            title: "Raise Our Voices",
+            artist: "Barbie in Rock 'N Royals",
+            description: "A celebratory song about coming together through music.",
+            youtubeId: "D8iFqW4YWYY"
+        },
+
+        // Barbie and the Secret Door
+        {
+            title: "What's Gonna Happen",
+            artist: "Barbie and the Secret Door",
+            description: "A magical song about discovering what lies beyond the secret door.",
+            youtubeId: "irCmbHtsSMc"
+        },
+        {
+            title: "If I Had Magic",
+            artist: "Barbie and the Secret Door",
+            description: "A whimsical song about imagining life with magical powers.",
+            youtubeId: "yPSAFkvn97Q"
+        },
+        {
+            title: "You're Here",
+            artist: "Barbie and the Secret Door",
+            description: "A magical friendship song performed by Nori and Romy.",
+            youtubeId: "bJIiesT-L0M"
+        },
+        {
+            title: "I Want It All",
+            artist: "Barbie and the Secret Door",
+            description: "Princess Malucia's dramatic song about wanting all the magic.",
+            youtubeId: "QSXowQ60UmA"
+        },
+        {
+            title: "I've Got Magic",
+            artist: "Barbie and the Secret Door",
+            description: "A magical song about discovering your abilities.",
+            youtubeId: "ofXzYqAT8sA"
+        },
+        {
+            title: "We've Got Magic",
+            artist: "Barbie and the Secret Door",
+            description: "A group song about discovering and using magic together.",
+            youtubeId: "tgyijp2rayY"
+        },
+        {
+            title: "What's Gonna Happen (Reprise)",
+            artist: "Barbie and the Secret Door",
+            description: "The reprise of What's Gonna Happen.",
+            youtubeId: "iUHWe-hIIgk"
+        },
+
+        // Barbie and the Three Musketeers
+        {
+            title: "Making My Way",
+            artist: "Barbie and the Three Musketeers",
+            description: "A song about finding your own path and pursuing your dreams.",
+            youtubeId: "vdQSNSlsseY"
+        },
+        {
+            title: "All For One",
+            artist: "Barbie and the Three Musketeers",
+            description: "A song about friendship, teamwork, and standing together.",
+            youtubeId: "w9ab0_vSZs4"
+        },
+        {
+            title: "Unbelievable",
+            artist: "Barbie and the Three Musketeers",
+            description: "An energetic song about the power and confidence of the four musketeers.",
+            youtubeId: "AhNm5SLXVN4"
+        },
+
+        // Barbie in the Pink Shoes
+        {
+            title: "Keep On Dancing",
+            artist: "Barbie in the Pink Shoes",
+            description: "The movie's main song about following your heart and continuing to dance.",
+            youtubeId: "cK9aKKtYbU"
+        },
+
+        // Barbie as the Island Princess
+        {
+            title: "Here on My Island",
+            artist: "Barbie as the Island Princess",
+            description: "An opening song introducing Ro's life on the island.",
+            youtubeId: "flfgXYRJZHg"
+        },
+        {
+            title: "Right Here in My Arms",
+            artist: "Barbie as the Island Princess",
+            description: "A warm song about affection and being close to someone you care about.",
+            youtubeId: "Ummg38TIdhQ"
+        },
+        {
+            title: "A Brand New Shore",
+            artist: "Barbie as the Island Princess",
+            description: "A song about discovering a new world and beginning a new chapter.",
+            youtubeId: "zQEmYsRWTCI"
+        },
+        {
+            title: "I Need to Know",
+            artist: "Barbie as the Island Princess",
+            description: "A song about searching for answers and discovering where you belong.",
+            youtubeId: "X7beGDcsoqQ"
+        },
+        {
+            title: "Love Is for Peasants",
+            artist: "Barbie as the Island Princess",
+            description: "A comedic royal song about very different views of love.",
+            youtubeId: "NWW4Sdxrcbk"
+        },
+        {
+            title: "Right Here in My Arms (Greenhouse)",
+            artist: "Barbie as the Island Princess",
+            description: "The greenhouse version of Right Here in My Arms.",
+            youtubeId: "WIrnr_6qDqI"
+        },
+        {
+            title: "At the Ball",
+            artist: "Barbie as the Island Princess",
+            description: "A lively musical number performed during the royal ball.",
+            youtubeId: "7OuC76L_bDM"
+        },
+        {
+            title: "The Rat Song",
+            artist: "Barbie as the Island Princess",
+            description: "A humorous musical number featuring the royal rats.",
+            youtubeId: "4bh8SQw6nG4"
+        },
+        {
+            title: "Always More",
+            artist: "Barbie as the Island Princess",
+            description: "An uplifting song about adventure, hope, and discovering what lies ahead.",
+            youtubeId: "vP1K0RBtk"
+        },
+        {
+            title: "Right Here in My Arms (Reunion)",
+            artist: "Barbie as the Island Princess",
+            description: "The reunion version of Right Here in My Arms.",
+            youtubeId: "Fg0iUEiGQjE"
+        },
+        {
+            title: "When We Have Love",
+            artist: "Barbie as the Island Princess",
+            description: "A warm finale about the strength of love and togetherness.",
+            youtubeId: "5hy5TtqMlXw"
+        },
+        {
+            title: "I Need to Know (Pop Version)",
+            artist: "Barbie as the Island Princess",
+            description: "The pop version of I Need to Know.",
+            youtubeId: "GzWjhSAUjLA"
+        }
+    ]
+},
+
     her: {
         name: "Reminds me of you",
         owner: "Garaldejosie",
@@ -586,7 +834,13 @@ const defaultPlaylists = {
             {
                 title: "Walang Iba",
                 artist: "Ezra Band",
-                description: "A gentle track about that unforgettable first moment when someone unexpectedly catches your attention.",
+                description: "halata na naman siguro, lyrics palang ayon na yon e HAHAHAHAHAHA",
+                youtubeId: "--6fqzrPbSQ"
+            },
+            {
+                title: "Walang Iba",
+                artist: "Ezra Band",
+                description: "halata na naman siguro, lyrics palang ayon na yon e HAHAHAHAHAHA",
                 youtubeId: "--6fqzrPbSQ"
             }
         ]
@@ -1215,7 +1469,7 @@ window.onYouTubeIframeAPIReady = function() {
         videoId: "",
         playerVars: {
             autoplay: 0,
-            controls: 0,
+            controls: 1,
             rel: 0,
             modestbranding: 1,
             playsinline: 1,
